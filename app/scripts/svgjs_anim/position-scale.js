@@ -1,10 +1,10 @@
 'use strict';
 /*global SVGjsAnim, mill */
 
-window.onresize = function() {
+/*window.onresize = function() {
   mill.positionAndScale();
   mill.resize();
-};
+};*/
 
 SVGjsAnim.prototype.positionAndScale = function()
 {
@@ -30,11 +30,15 @@ SVGjsAnim.prototype.positionAndScale = function()
   this.origSceneW = 1366;
   this.origSceneH = 700;
 
+  this.draw.viewbox(0, 0, this.origSceneW, this.origSceneH)
+  this.draw.attr('preserveAspectRatio', 'xMinYMax meet');
+  console.log(this.draw.viewbox());
+
   this.transform.width = this.transform.defaultWidth = this.windowW;
   this.transform.height = this.transform.defaultHeight = this.windowH;
-  var sceneResizePercent = this.calcResizePercent(this.origSceneW, this.transform.width);
-  console.log(sceneResizePercent);
-  this.transform.scale = 1 - sceneResizePercent;
+//  var sceneResizePercent = this.calcResizePercent(this.origSceneW, this.transform.width);
+//  console.log(sceneResizePercent);
+//  this.transform.scale = 1 - sceneResizePercent;
 
   var svgHeight = this.origSceneH * this.transform.scale;
   var remainingHeight = this.transform.height - svgHeight;
@@ -59,24 +63,6 @@ SVGjsAnim.prototype.y = function(y) {
   y = y || false;
   if (y) { this.transform.y = y; }
   else { return this.transform.y; }
-};
-
-SVGjsAnim.prototype.resetCamera = function() {
-  var x = -120 * this.transform.scale;
-  this.scene
-    .animate(1250)
-    .scale(this.transform.scale + (this.transform.scale * 0.08));
-    //.move(x, this.transform.defaultY);
-//    .move(x, this.transform.y);
-};
-
-SVGjsAnim.prototype.resize = function() {
-  this.draw
-    .size(this.transform.width, this.transform.height);
-  this.scene
-    .move(this.transform.x, this.transform.y)
-    .size(this.transform.width, this.transform.height)
-    .scale(this.transform.scale);
 };
 
 /***********

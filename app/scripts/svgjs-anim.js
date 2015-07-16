@@ -1,25 +1,19 @@
 'use strict';
 /*global SVG, mill */
 
-/*
-    Features:
-        - image preloading
-        - stepping
-        - zoom
-        - animation paths
-*/
 function SVGjsAnim(id)
 {
     this.draw = SVG(id)
-        .fixSubPixelOffset();
+        .addClass('svg-content')
+        .spof();
 
-    this.scene = this.draw.group()
+    this.scene = this.draw
+        .group()
         .attr({ id: 'scene' });
 
     this.positionAndScale();
-    this.resize();
 
-    this.zooms = this.draw.set();
+//    this.zooms = this.draw.set();
 }
 
 SVGjsAnim.prototype.layers = {};
