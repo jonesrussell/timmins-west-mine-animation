@@ -3,7 +3,6 @@
 
 SVGjsAnim.prototype.setupShaft = function()
 {
-    var scale = 1.1;
     var x = 150;
     var y = 0;
     var w = 950;
@@ -21,17 +20,12 @@ SVGjsAnim.prototype.setupShaft = function()
         .data({ id: 'step-shaft' })
         .setScene(this.scene);
 //        .setHeading(heading)
-//        .scale(scale);
 
-    // Dump Truck
-//    var truckScale = 0.8;
-//    var truckX = -300;
-//    var truckY = 285;
-    this.skip = this.draw.skip(0, 0)
-//            .scale(truckScale)
-//            .setDumpAt(415, truckY);
+    this.skip = this.draw.skip(0, 0);
     step.content(this.skip);
-    this.skip.go();
+
+    this.elevator = this.draw.elevator(0, 0);
+    step.content(this.elevator);
 
     /*
     // Dump Truck

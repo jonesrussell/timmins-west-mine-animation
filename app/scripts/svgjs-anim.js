@@ -76,6 +76,8 @@ SVGjsAnim.prototype.setupLayers = function()
 
 SVGjsAnim.prototype.start = function()
 {
+  this.skip.go();
+  this.elevator.go();
 //    this.showBullets();
 //    this.dumpTruck.go();
 //    this.rockBreaker.go();

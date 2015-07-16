@@ -1,7 +1,7 @@
 'use strict';
 /*global SVG, Q */
 
-SVG.Skip = SVG.invent({
+SVG.Elevator = SVG.invent({
     create: 'g',
     inherit: SVG.G,
     extend: {
@@ -10,33 +10,33 @@ SVG.Skip = SVG.invent({
             this.startY = y;
             this.move(x, y);
             this.duration = 20000;
-            this.skipTo = -470;
+            this.elevatorTo = -470;
 
             this.clip = this.doc()
               .rect(1366, 700)
               .move(0, 217);
             this.add(this.clip);
-            this.skipBody = this.doc()
-              .image('images/skip.svg', 1366, 700)
+            this.elevatorBody = this.doc()
+              .image('images/elevator.svg', 1366, 700)
               .clipWith(this.clip);
 
-            this.add(this.skipBody);
+            this.add(this.elevatorBody);
 
             return this;
         }
     },
     construct: {
-        skip: function(x, y) {
-            return this.put(new SVG.Skip).build(x, y);
+        elevator: function(x, y) {
+            return this.put(new SVG.Elevator).build(x, y);
         }
     }
 });
 
-SVG.extend(SVG.Skip, {
+SVG.extend(SVG.Elevator, {
     go: function() {
         var self = this;
-        this.skipBody.animate(this.duration)
-          .move(this.startX, this.skipTo)
+        this.elevatorBody.animate(this.duration)
+          .move(this.startX, this.elevatorTo)
           .after(function(){
             self.goBack();
           });
@@ -44,7 +44,7 @@ SVG.extend(SVG.Skip, {
     },
     goBack: function() {
         var self = this;
-        this.skipBody.animate(this.duration)
+        this.elevatorBody.animate(this.duration)
           .move(this.startX, this.startY)
           .after(function(){
               self.go();
