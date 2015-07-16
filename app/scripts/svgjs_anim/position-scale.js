@@ -9,7 +9,7 @@ window.onresize = function() {
 SVGjsAnim.prototype.positionAndScale = function()
 {
   this.transform = {
-    x: 0
+      x: 0
     , y: 0
     , scale: 0
     , width: 0
@@ -27,17 +27,19 @@ SVGjsAnim.prototype.positionAndScale = function()
   this.aspectRatio = this.calcAspectRatio(this.windowW, this.windowH);
 
   // Scene
-  this.origSceneW = 3676;
-  this.origSceneH = 1256;
+  this.origSceneW = 1366;
+  this.origSceneH = 700;
+
   this.transform.width = this.transform.defaultWidth = this.windowW;
   this.transform.height = this.transform.defaultHeight = this.windowH;
   var sceneResizePercent = this.calcResizePercent(this.origSceneW, this.transform.width);
+  console.log(sceneResizePercent);
   this.transform.scale = 1 - sceneResizePercent;
 
   var svgHeight = this.origSceneH * this.transform.scale;
   var remainingHeight = this.transform.height - svgHeight;
-  this.transform.y = this.transform.defaultY = (remainingHeight / 3) * 1.5;
-  this.groundStart = this.transform.y + svgHeight - 1;
+//  this.transform.y = this.transform.defaultY = (remainingHeight / 3) * 1.5;
+  this.transform.y = this.transform.defaultY = remainingHeight;
 
   console.log('Aspect Ratio: ' + this.aspectRatio);
   console.log('Resolution: ' + this.windowW + 'x' + this.windowH);
@@ -63,9 +65,9 @@ SVGjsAnim.prototype.resetCamera = function() {
   var x = -120 * this.transform.scale;
   this.scene
     .animate(1250)
-    .scale(this.transform.scale + (this.transform.scale * 0.08))
+    .scale(this.transform.scale + (this.transform.scale * 0.08));
     //.move(x, this.transform.defaultY);
-    .move(x, this.transform.y);
+//    .move(x, this.transform.y);
 };
 
 SVGjsAnim.prototype.resize = function() {

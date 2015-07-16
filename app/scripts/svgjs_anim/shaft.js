@@ -1,7 +1,7 @@
 'use strict';
 /*global SVGjsAnim */
 
-SVGjsAnim.prototype.setupReceiving = function()
+SVGjsAnim.prototype.setupShaft = function()
 {
     var scale = 1.1;
     var x = 150;
@@ -9,20 +9,31 @@ SVGjsAnim.prototype.setupReceiving = function()
     var w = 950;
     var h = 450;
 
-    this.wistiaObjs.receiving = this.wistiaEmbed('wy0jb1fb5d');
+//    this.wistiaObjs.shaft = this.wistiaEmbed('wy0jb1fb5d');
 
     // Heading
-    var heading = this.draw.heading('RECEIVING', this.wistiaObjs.receiving)
-        .move(355, 50);
-    this.headings.receiving = this.draw.set().add(heading);
+//    var heading = this.draw.heading('RECEIVING', this.wistiaObjs.shaft)
+//        .move(355, 50);
+//    this.headings.shaft = this.draw.set().add(heading);
 
-    var step = this.steps.receiving = this.draw.step('receiving')
-        .move(x, y)
-        .data({ id: 'step-receiving' })
-        .setScene(this.scene)
-        .setHeading(heading)
-        .scale(scale);
+    var step = this.steps.shaft = this.draw.step('shaft')
+//        .move(x, y)
+        .data({ id: 'step-shaft' })
+        .setScene(this.scene);
+//        .setHeading(heading)
+//        .scale(scale);
 
+    // Dump Truck
+//    var truckScale = 0.8;
+//    var truckX = -300;
+//    var truckY = 285;
+    this.skip = this.draw.skip(0, 0)
+//            .scale(truckScale)
+//            .setDumpAt(415, truckY);
+    step.content(this.skip);
+    this.skip.go();
+
+    /*
     // Dump Truck
     var truckScale = 0.8;
     var truckX = -300;
@@ -48,8 +59,8 @@ SVGjsAnim.prototype.setupReceiving = function()
     step.content(orePileRockBreaker);
 
     // Bullets
-    var bulletsGroup = this.bullets.receiving = this.draw.group()
-        .attr({ id: 'bullets-receiving' })
+    var bulletsGroup = this.bullets.shaft = this.draw.group()
+        .attr({ id: 'bullets-shaft' })
         .move(680, 120)
         .attr({ opacity: 0 })
         .scale(0.75);
@@ -83,16 +94,17 @@ SVGjsAnim.prototype.setupReceiving = function()
     var zoom = this.draw.zoom({
       width: w
       , height: h
-      , id: 'receiving'
+      , id: 'shaft'
       , scale: stepToScale
       , zx: stepToX
       , zy: stepToY
     })
     .video(605, 63);
     step.setZoom(zoom);
+   */
 
     //@TODO create moveContent()
-    step._content.move(119.5, -20);
+    //step._content.move(119.5, -20);
     return step;
 };
 
