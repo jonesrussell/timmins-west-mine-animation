@@ -1,4 +1,4 @@
-# svg.js
+# SVG.js
 
 A lightweight library for manipulating and animating SVG.
 
@@ -6,13 +6,13 @@ Svg.js has no dependencies and aims to be as small as possible.
 
 Svg.js is licensed under the terms of the MIT License.
 
-See [svgjs.com](http://svgjs.com) for an introduction, [documentation](http://documentup.com/wout/svg.js) and [some action](http://svgjs.com/test).
+See [svgjs.com](http://svgjs.com) for an introduction, [documentation](http://documentup.com/wout/SVG.js) and [some action](http://svgjs.com/test).
 
 ## Usage
 
-### Create a SVG document
+### Create an SVG document
 
-Use the `SVG()` function to create a SVG document within a given html element:
+Use the `SVG()` function to create an SVG document within a given html element:
 
 ```javascript
 var draw = SVG('drawing').size(300, 300)
@@ -65,17 +65,23 @@ Svg.js also works outside of the HTML DOM, inside an SVG document for example:
 </svg>
 ```
 
-### Sub pixel offset fix
-By default sub pixel offset won't be corrected. To enable it, call the `fixSubPixelOffset()` method:
+### Sub-pixel offset fix
+Call the `spof()` method to fix sub-pixel offset:
 
 ```javascript
-var draw = SVG('drawing').fixSubPixelOffset()
+var draw = SVG('drawing').spof()
+```
+
+To enable automatic sub-pixel offset correction when the window is resized:
+
+```javascript
+SVG.on(window, 'resize', function() { draw.spof() })
 ```
 
 ## Parent elements
 
 ### Main svg document
-The main svg.js initializer function creates a root svg node in the given element and returns an instance of `SVG.Doc`:
+The main SVG.js initializer function creates a root svg node in the given element and returns an instance of `SVG.Doc`:
 
 ```javascript
 var draw = SVG('drawing')
@@ -99,7 +105,7 @@ __`returns`: `SVG.Nested`__
 _Javascript inheritance stack: `SVG.Nested` < `SVG.Container` < `SVG.Parent`_
 
 ### Groups
-Grouping elements is useful if you want to transform a set of elements as if it were one. All element within a group maintain their position relative to the group they belong to. A group has all the same element methods as the root svg document: 
+Grouping elements is useful if you want to transform a set of elements as if it were one. All element within a group maintain their position relative to the group they belong to. A group has all the same element methods as the root svg document:
 
 ```javascript
 var group = draw.group()
@@ -111,6 +117,8 @@ Existing elements from the svg document can also be added to a group:
 ```javascript
 group.add(rect)
 ```
+
+__Note:__ Groups do not have a geometry of their own, it's inherited from their content. Therefore groups do not listen to `x`, `y`, `width` and `height` attributes. If that is what you are looking for, use a `nested()` svg instead.
 
 __`returns`: `SVG.G`__
 
@@ -167,7 +175,7 @@ The `<defs>` element is a container element for referenced elements. Elements th
 var defs = draw.defs()
 ```
 
-The defs are also availabel on any other element through the `doc()` method:
+The defs are also available on any other element through the `doc()` method:
 
 ```javascript
 var defs = rect.doc().defs()
@@ -205,6 +213,25 @@ rect.radius(10, 20)
 
 __`returns`: `itself`__
 
+## Circle
+The only argument necessary for a circle is the diameter:
+
+```javascript
+var circle = draw.circle(100)
+```
+
+__`returns`: `SVG.Circle`__
+
+_Javascript inheritance stack: `SVG.Circle` < `SVG.Shape` < `SVG.Element`_
+
+### radius()
+Circles can also be redefined by their radius:
+
+```javascript
+rect.radius(75)
+```
+
+__`returns`: `itself`__
 
 ## Ellipse
 Ellipses, like rects, have two arguments, their `width` and `height`:
@@ -226,34 +253,14 @@ rect.radius(75, 50)
 
 __`returns`: `itself`__
 
-## Circle
-The only argument necessary for a circle is the diameter:
-
-```javascript
-var circle = draw.circle(100)
-```
-
-__`returns`: `SVG.Ellipse`__
-
-_Javascript inheritance stack: `SVG.Ellipse` < `SVG.Shape` < `SVG.Element`_
-
-_Note that this generates an `<ellipse>` element instead of a `<circle>`. This choice has been made to keep the size of the library down._
-
-### radius()
-Circles can also be redefined by their radius:
-
-```javascript
-rect.radius(75)
-```
-
-__`returns`: `itself`__
-
 ## Line
-The line element always takes four arguments, `x1`, `y1`, `x2` and `y2`:
+Create a line from point A to point B:
 
 ```javascript
 var line = draw.line(0, 0, 100, 150).stroke({ width: 1 })
 ```
+
+Creating a line element can be done in four ways. Look at the `plot()` method to see all the possiblilities.
 
 __`returns`: `SVG.Line`__
 
@@ -266,7 +273,36 @@ Updating a line is done with the `plot()` method:
 line.plot(50, 30, 100, 150)
 ```
 
+Alternatively it also accepts a point string:
+
+```javascript
+line.plot('0,0 100,150')
+```
+
+Or a point array:
+
+```javascript
+line.plot([[0, 0], [100, 150]])
+```
+
+Or an instance of `SVG.PointArray`:
+
+```javascript
+var array = new SVG.PointArray([[0, 0], [100, 150]])
+line.plot(array)
+```
+
 __`returns`: `itself`__
+
+### array()
+References the `SVG.PointArray` instance. This method is rather intended for internal use:
+
+```javascript
+polyline.array()
+```
+
+__`returns`: `SVG.PointArray`__
+
 
 ## Polyline
 The polyline element defines a set of connected straight line segments. Typically, polyline elements define open shapes:
@@ -304,6 +340,15 @@ polyline.animate(3000).plot([[0,0], [100,50], [50,100], [150,50], [200,50], [250
 
 __`returns`: `itself`__
 
+### array()
+References the `SVG.PointArray` instance. This method is rather intended for internal use:
+
+```javascript
+polyline.array()
+```
+
+__`returns`: `SVG.PointArray`__
+
 ## Polygon
 The polygon element, unlike the polyline element, defines a closed shape consisting of a set of connected straight line segments:
 
@@ -333,6 +378,15 @@ polygon.animate(3000).plot([[0,0], [100,50], [50,100], [150,50], [200,50], [250,
 
 __`returns`: `itself`__
 
+### array()
+References the `SVG.PointArray` instance. This method is rather intended for internal use:
+
+```javascript
+polygon.array()
+```
+
+__`returns`: `SVG.PointArray`__
+
 ## Path
 The path string is similar to the polygon string but much more complex in order to support curves:
 
@@ -356,6 +410,15 @@ path.plot('M100,200L300,400')
 
 __`returns`: `itself`__
 
+### array()
+References the `SVG.PathArray` instance. This method is rather intended for internal use:
+
+```javascript
+path.array()
+```
+
+__`returns`: `SVG.PathArray`__
+
 ## Image
 Creating images is as you might expect:
 
@@ -377,7 +440,7 @@ _Javascript inheritance stack: `SVG.Image` < `SVG.Shape` < `SVG.Element`_
 Loading another image can be done with the `load()` method:
 
 ```javascript
-draw.image('/path/to/another/image.jpg')
+image.load('/path/to/another/image.jpg')
 ```
 
 __`returns`: `itself`__
@@ -401,7 +464,7 @@ __`returns`: `itself`__
 
 
 ## Text
-Unlike html, text in svg is much harder to tame. There is no way to create flowing text, so newlines should be entered manually. In svg.js there are two ways to create text elements.
+Unlike html, text in svg is much harder to tame. There is no way to create flowing text, so newlines should be entered manually. In SVG.js there are two ways to create text elements.
 
 The first and easiest method is to provide a string of text, split by newlines:
 
@@ -460,7 +523,7 @@ Just adding one tspan is also possible:
 text.tspan(' on a train...').fill('#f06')
 ```
 
-__`returns`: `SVG.TSpan`__
+__`returns`: `SVG.Tspan`__
 
 ### plain()
 If the content of the element doesn't need any stying or multiple lines, it might be sufficient to just add some plain text:
@@ -486,7 +549,7 @@ text.font({
 __`returns`: `itself`__
 
 ### leading()
-As opposed to html, where leading is defined by `line-height`, svg does not have a natural leading equivalent. In svg, lines are not defined naturally. They are defined by `<tspan>` nodes with a `dy` attribute defining the line height and a `x` value resetting the line to the `x` position of the parent text element. But you can also have many nodes in one line defining a different `y`, `dy`, `x` or even `dx` value. This gives us a lot of freedom, but also a lot more responsibility. We have to decide when a new line is defined, where it starts, what its offset is and what it's height is. The `leading()` method in svg.js tries to ease the pain by giving you behaviour that is much closer to html. In combination with newline separated text, it works just like html:
+As opposed to html, where leading is defined by `line-height`, svg does not have a natural leading equivalent. In svg, lines are not defined naturally. They are defined by `<tspan>` nodes with a `dy` attribute defining the line height and a `x` value resetting the line to the `x` position of the parent text element. But you can also have many nodes in one line defining a different `y`, `dy`, `x` or even `dx` value. This gives us a lot of freedom, but also a lot more responsibility. We have to decide when a new line is defined, where it starts, what its offset is and what it's height is. The `leading()` method in SVG.js tries to ease the pain by giving you behaviour that is much closer to html. In combination with newline separated text, it works just like html:
 
 ```javascript
 var text = draw.text("Lorem ipsum dolor sit amet consectetur.\nCras sodales imperdiet auctor.")
@@ -547,8 +610,16 @@ text.length()
 __`returns`: `number`__
 
 
-### lines
-All added tspans are stored in the `lines` reference, which is an instance of `SVG.Set`.
+### lines()
+All first level tspans can be referenced with the `lines()` method:
+
+```javascript
+text.lines()
+```
+
+This will return an intance of `SVG.Set` including all `tspan` elements.
+
+__`returns`: `SVG.Set`__
 
 ### events
 The text element has one event. It is fired every time the `rebuild()` method is called:
@@ -559,10 +630,10 @@ text.on('rebuild', function() {
 })
 ```
 
-## TSpan
-The tspan elements are only available inside text elements or inside other tspan elements. In svg.js they have a class of their own:
+## Tspan
+The tspan elements are only available inside text elements or inside other tspan elements. In SVG.js they have a class of their own:
 
-_Javascript inheritance stack: `SVG.TSpan` < `SVG.Shape` < `SVG.Element`_
+_Javascript inheritance stack: `SVG.Tspan` < `SVG.Shape` < `SVG.Element`_
 
 ### text()
 Update the content of the tspan. This can be done by either passing a string:
@@ -595,7 +666,7 @@ Add a nested tspan:
 tspan.tspan('I am a child of my parent').fill('#f06')
 ```
 
-__`returns`: `SVG.TSpan`__
+__`returns`: `SVG.Tspan`__
 
 ### plain()
 Just adds some plain text:
@@ -681,26 +752,36 @@ text.plot('M 300 500 C 200 100 300 0 400 100 C 500 200 600 300 700 200 C 800 100
 Attributes specific to the `<textPath>` element can be applied to the textPath instance itself:
 
 ```javascript
-text.textPath.attr('startOffset', 0.5)
+text.textPath().attr('startOffset', 0.5)
 ```
 
 And they can be animated as well of course:
 
 ```javascript
-text.textPath.animate(3000).attr('startOffset', 0.8)
+text.textPath().animate(3000).attr('startOffset', 0.8)
 ```
 
 __`returns`: `SVG.TextPath`__
 
 _Javascript inheritance stack: `SVG.TextPath` < `SVG.Element`_
 
-### track
+### textPath()
+Referencing the textPath node directly:
+
+```javascript
+var textPath = text.textPath()
+```
+
+__`returns`: `SVG.TextPath`__
+
+### track()
 Referencing the linked path element directly:
 
 ```javascript
-var path = text.track
+var path = text.track()
 ```
 
+__`returns`: `SVG.Path`__
 
 ## Use
 The use element simply emulates another existing element. Any changes on the master element will be reflected on all the `use` instances. The usage of `use()` is very straightforward:
@@ -719,13 +800,21 @@ var use  = draw.use(rect).move(200, 200)
 
 In this way the rect element acts as a library element. You can edit it but it won't be rendered.
 
+Another way is to point an external SVG file, just specified the element `id` and path to file.
+
+```javascript
+var use  = draw.use('elementId', 'path/to/file.svg')
+```
+
+This way is usefull when you have complex images already created.
+Note that, for external images (outside your domain) it may be necessary to load the file with XHR.
+
 __`returns`: `SVG.Use`__
 
 _Javascript inheritance stack: `SVG.Use` < `SVG.Shape` < `SVG.Element`_
 
 ## Symbol
 Not unlike the `group` element, the `symbol` element is a container element. The only difference between symbols and groups is that symbols are not rendered. Therefore a `symbol` element is ideal in combination with the `use` element:
-
 
 ```javascript
 var symbol = draw.symbol()
@@ -734,15 +823,45 @@ symbol.rect(100, 100).fill('#f09')
 var use  = draw.use(symbol).move(200, 200)
 ```
 
-__`returns`: `SVG.Symbol`__
+__`returns`: `SVG.Bare`__
 
-_Javascript inheritance stack: `SVG.Use` < `SVG.Container` < `SVG.Symbol`_
+_Javascript inheritance stack: `SVG.Bare` < `SVG.Element` [with a shallow inheritance from `SVG.Parent`]_
 
+## Bare
+For all SVG elements that are not described by SVG.js, the `SVG.Bare` class comes in handy. This class inherits directly from `SVG.Element` and makes it possible to add custom methods in a separate namespace without polluting the main `SVG.Element` namespace. Consider it your personal playground.
+
+### element()
+The `SVG.Bare` class can be instantiated with the `element()` method on any parent element:
+
+```javascript
+var element = draw.element('title')
+```
+The string value passed as the first argument is the node name that should be generated.
+
+Additionally any existing class name can be passed as the second argument to define from which class the element should inherit:
+
+```javascript
+var element = draw.element('symbol', SVG.Parent)
+```
+
+This gives you as the user a lot of power. But remember, with great power comes great responsibility.
+
+__`returns`: `SVG.Bare`__
+
+### words()
+The `SVG.Bare` instance carries an additional method to add plain text:
+
+```javascript
+var element = draw.element('title').words('This is a title.')
+//-> <title>This is a title.</title>
+```
+
+__`returns`: `itself`__
 
 ## Referencing elements
 
 ### By id
-If you want to get an element created by svg.js by its id, you can use the `SVG.get()` method:
+If you want to get an element created by SVG.js by its id, you can use the `SVG.get()` method:
 
 ```javascript
 var element = SVG.get('my_element')
@@ -750,15 +869,30 @@ var element = SVG.get('my_element')
 element.fill('#f06')
 ```
 
-### By class name
-There is no DOM querying system built into svg.js but [jQuery](http://jquery.com/) or [Zepto](http://zeptojs.com/) will help you achieve this. Here is an example:
+### Using CSS selectors
+There are two ways to select elements using CSS selectors.
+
+The first is to search globally. This will search in all svg elements in a document and return them in an instance of `SVG.Set`:
+
+```javascript
+var elements = SVG.select('rect.my-class').fill('#f06')
+```
+
+The second is to search within a parent element:
+
+```javascript
+var elements = group.select('rect.my-class').fill('#f06')
+```
+
+### Using jQuery or Zepto
+Another way is to use [jQuery](http://jquery.com/) or [Zepto](http://zeptojs.com/). Here is an example:
 
 ```javascript
 /* add elements */
 var draw   = SVG('drawing')
-var group  = draw.group().attr('class', 'my-group')
-var rect   = group.rect(100,100).attr('class', 'my-element')
-var circle = group.circle(100).attr('class', 'my-element').move(100, 100)
+var group  = draw.group().addClass('my-group')
+var rect   = group.rect(100,100).addClass('my-element')
+var circle = group.circle(100).addClass('my-element').move(100, 100)
 
 /* get elements in group */
 var elements = $('#drawing g.my-group .my-element').each(function() {
@@ -767,7 +901,7 @@ var elements = $('#drawing g.my-group .my-element').each(function() {
 ```
 
 ## Circular reference
-Every element instance within svg.js has a reference to the actual `node`:
+Every element instance within SVG.js has a reference to the actual `node`:
 
 ### node
 ```javascript
@@ -775,8 +909,16 @@ element.node
 ```
 __`returns`: `node`__
 
+### native()
+The same can be achieved with the `native()` method:
+```javascript
+element.native()
+```
+__`returns`: `node`__
+
+
 ### instance
-Similarly, the node carries a reference to the svg.js `instance`:
+Similar, the node carries a reference to the SVG.js `instance`:
 
 ```javascript
 node.instance
@@ -784,12 +926,12 @@ node.instance
 __`returns`: `element`__
 
 ## Parent reference
-Every element has a reference to its parent:
+Every element has a reference to its parent with the `parent()` method:
 
-### parent
+### parent()
 
 ```javascript
-element.parent
+element.parent()
 ```
 
 __`returns`: `element`__
@@ -799,10 +941,10 @@ Even the main svg document:
 ```javascript
 var draw = SVG('drawing')
 
-draw.parent //-> returns the wrappig html element with id 'drawing'
+draw.parent() //-> returns the wrappig html element with id 'drawing'
 ```
 
-__`returns`: `node`__
+__`returns`: `HTMLNode`__
 
 
 ### doc()
@@ -936,6 +1078,28 @@ rect.reference('fill') //-> returns gradient or pattern instance for example
 circle.reference('clip-path') //-> returns clip instance
 ```
 
+## Import / export SVG
+
+### svg()
+Exporting the full generated SVG, or a part of it, can be done with the `svg()` method:
+
+```javascript
+draw.svg()
+```
+
+Exporting works on all elements.
+
+Importing is done with the same method:
+
+```javascript
+draw.svg('<g><rect width="100" height="50" fill="#f06"></rect></g>')
+```
+
+Importing works on any element that inherits from `SVG.Parent`, which is basically every element that can contain other elements.
+
+`getter`__`returns`: `string`__
+
+`setter`__`returns`: `itself`__
 
 ## Manipulating elements
 
@@ -978,58 +1142,66 @@ rect.attr('fill', null)
 
 
 ### transform()
-With the `transform()` method elements can be scaled, rotated, translated and skewed:
+
+The `transform()` method acts as a full getter without an argument:
 
 ```javascript
-rect.transform({
-  rotation: 45
-, cx:       100
-, cy:       100
-})
+element.transform()
 ```
 
-You can also provide two arguments as property and value:
+The returned __`object`__ contains the following values:
+
+- `x` (translation on the x-axis)
+- `y` (translation on the y-axis)
+- `skewX` (calculated skew on x-axis)
+- `skewY` (calculated skew on y-axis)
+- `scaleX` (calculated scale on x-axis)
+- `scaleY` (calculated scale on y-axis)
+- `rotation` (calculated rotation)
+- `cx` (last used rotation centre on x-axis)
+- `cy` (last used rotation centre on y-axis)
+
+Additionally a string value for the required property can be passed:
 
 ```javascript
-rect.transform('matrix', '1,0.5,0.5,1,0,0')
+element.transform('rotation')
 ```
 
-All available transformations are:
+In this case the returned value is a __`number`__.
+
+
+As a setter it has two ways of working. By default transformations are absolute. For example, if you call:
 
 ```javascript
-rect.transform({
-  x:        [translation on x-axis]
-, y:        [translation on y-axis]
-
-, rotation: [degrees]
-, cx:       [x rotation point]
-, cy:       [y rotation point]
-
-, scaleX:   [scaling on x-axis]
-, scaleY:   [scaling on y-axis]
-
-, skewX:    [skewing on x-axis]
-, skewY:    [skewing on y-axis]
-
-, matrix:   [a 6-digit matrix string; e.g. '1,0,0,1,0,0']
-, a:        [the first matrix digit]
-, b:        [the second matrix digit]
-, c:        [the third matrix digit]
-, d:        [the fourth matrix digit]
-, e:        [the fifth matrix digit]
-, f:        [the sixth matrix digit]
-})
+element.transform({ rotation: 125 }).transform({ rotation: 37.5 })
 ```
 
-Note that you can also apply transformations directly using the `attr()` method:
+The resulting rotation will be `37.5` and not the sum of the two transformations. But if that's what you want there is a way out by adding the `relative` parameter. That would be:
+
 
 ```javascript
-rect.attr('transform', 'matrix(1,0.5,0.5,1,0,0)')
+element.transform({ rotation: 125 }).transform({ rotation: 37.5, relative: true })
 ```
 
-Although that would mean you can't use the `transform()` method because it would overwrite any manually applied transformations. You should only go down this route if you know exactly what you are doing and you want to achieve an effect that is not achievable with the `transform()` method.
+Alternatively a relative flag can be passed as the second argument:
 
-`getter`__`returns`: `number`__
+```javascript
+element.transform({ rotation: 125 }).transform({ rotation: 37.5 }, true)
+```
+
+Available transformations are:
+
+- `rotation` with optional `cx` and `cy`
+- `scale` with optional `cx` and `cy`
+- `scaleX` with optional `cx` and `cy`
+- `scaleY` with optional `cx` and `cy`
+- `skewX` with optional `cx` and `cy`
+- `skewY` with optional `cx` and `cy`
+- `x`
+- `y`
+- `a`, `b`, `c`, `d`, `e` and/or `f` or an existing matrix instead of the object
+
+`getter`__`returns`: `value`__
 
 `setter`__`returns`: `itself`__
 
@@ -1052,7 +1224,7 @@ Or a css string:
 rect.style('cursor:pointer;fill:#f03;')
 ```
 
-Similar to `attr()`, the `style()` method can also act as a getter:
+Similar to `attr()` the `style()` method can also act as a getter:
 
 ```javascript
 rect.style('cursor')
@@ -1249,7 +1421,7 @@ Set the size of an element by a given `width` and `height`:
 rect.size(200, 300)
 ```
 
-Proporional resizing is also possible by leaving out `height`:
+Proportional resizing is also possible by leaving out `height`:
 
 ```javascript
 rect.size(200)
@@ -1435,17 +1607,24 @@ If the size of the viewbox equals the size of the svg drawing, the zoom value wi
 `setter`__`returns`: `itself`__
 
 ### bbox()
+Get the bounding box of an element. This is a wrapper for the native `getBBox()` method but adds more values:
 
 ```javascript
 path.bbox()
 ```
+
 This will return an instance of `SVG.BBox` containing the following values:
 
-```javascript
-{ width: 20, height: 20, x: 10, y: 20, cx: 20, cy: 30, x2: 30, y2: 40 } 
-```
-
-As opposed to the native `getBBox()` method any translations used with the `transform()` method will be taken into account.
+- `width` (value from native `getBBox`)
+- `height` (value from native `getBBox`)
+- `w` (shorthand for `width`)
+- `h` (shorthand for `height`)
+- `x` (value from native `getBBox`) 
+- `y` (value from native `getBBox`)
+- `cx` (center `x` of the bounding box)
+- `cy` (center `y` of the bounding box)
+- `x2` (lower right `x` of the bounding box)
+- `y2` (lower right `y` of the bounding box)
 
 The `SVG.BBox` has one other nifty little feature, enter the `merge()` method. With `merge()` two `SVG.BBox` instances can be merged into one new instance, basically being the bounding box of the two original bounding boxes:
 
@@ -1457,14 +1636,72 @@ var box3 = box1.merge(box2)
 
 __`returns`: `SVG.BBox`__
 
+### tbox()
+Where `bbox()` returns a bounding box mindless of any transformations, the `tbox()` method does take transformations into account. So any translation or scale will be applied to the resulting values to get closer to the actual visual representation:
+
+```javascript
+path.tbox()
+```
+
+This will return an instance of `SVG.TBox` containing the following values:
+
+- `width` (value from native getBBox influenced by the `scaleX` of the current matrix)
+- `height` (value from native getBBox influenced by the `scaleY` of the current matrix)
+- `w` (shorthand for `width`)
+- `h` (shorthand for `height`)
+- `x` (value from native getBBox influenced by the `x` of the current matrix)
+- `y` (value from native getBBox influenced by the `y` of the current matrix)
+- `cx` (center `x` of the bounding box)
+- `cy` (center `y` of the bounding box)
+- `x2` (lower right `x` of the bounding box)
+- `y2` (lower right `y` of the bounding box)
+
+Note that the rotation of the element will not be added to the calculation.
+
+__`returns`: `SVG.TBox`__
+
 ### rbox()
-Is similar to `bbox()` but will give you the box around the exact representation of the element, taking all transformations into account.
+Is similar to `bbox()` but will give you the box around the exact visual representation of the element, taking all transformations into account.
 
 ```javascript
 path.rbox()
 ```
 
+This will return an instance of `SVG.RBox` containing the following values:
+
+- `width` (the actual visual width)
+- `height` (the actual visual height)
+- `w` (shorthand for `width`)
+- `h` (shorthand for `height`)
+- `x` (the actual visual position on the x-axis)
+- `y` (the actual visual position on the y-axis)
+- `cx` (center `x` of the bounding box)
+- `cy` (center `y` of the bounding box)
+- `x2` (lower right `x` of the bounding box)
+- `y2` (lower right `y` of the bounding box)
+
+__Important__: Mozilla browsers include stroke widths where other browsers do not. Therefore the resulting box might be different in Mozulla browsers. It is very hard to modify this behavior so for the time being this is an inconvenience we have to live with.
+
 __`returns`: `SVG.RBox`__
+
+### ctm()
+Retreives the current transform matrix of the element to the root coordinate system:
+
+```javascript
+path.ctm()
+```
+
+__`returns`: `SVG.Matrix`__
+
+### matrixify()
+Merges all transformations of the element into one single matrix which is returned
+
+```javascript
+path.matrixify()
+```
+
+__`returns`: `SVG.Matrix`__
+
 
 ### inside()
 To check if a given point is inside the bounding box of an element you can use the `inside()` method:
@@ -1490,7 +1727,7 @@ var length = path.length()
 __`returns`: `number`__
 
 ### pointAt()
-Get get point on a path at given length:
+Get point on a path at given length:
 
 ```javascript
 var point = path.pointAt(105) //-> returns { x : 96.88497924804688, y : 58.062747955322266 }
@@ -1524,7 +1761,7 @@ If you include the sugar.js module, `fill()`, `stroke()`, `rotate()`, `skew()`, 
 rect.animate().rotate(45).skew(25, 0)
 ```
 
-You can also animate non-numeric unit values unsing the `attr()` method:
+You can also animate non-numeric unit values using the `attr()` method:
 ```javascript
 rect.attr('x', '10%').animate().attr('x', '50%')
 ```
@@ -1642,13 +1879,13 @@ To make things easier a morphing function is passed as the second argument. This
 var ellipse = draw.ellipse(100, 100).attr('cx', '20%').fill('#333')
 
 rect.animate(3000).move(100, 100).during(function(pos, morph) {
-  /* numeric values */
+  // numeric values
   ellipse.size(morph(100, 200), morph(100, 50))
   
-  /* unit strings */
+  // unit strings
   ellipse.attr('cx', morph('20%', '80%'))
   
-  /* hex color strings */
+  // hex color strings
   ellipse.fill(morph('#333', '#ff0066'))
 })
 ```
@@ -1665,8 +1902,18 @@ rect.animate(3000).move(100, 100).loop()
 But the loop can also be a predefined number of times:
 
 ```javascript
-rect.animate(3000).move(100, 100).loop(5)
+rect.animate(3000).move(100, 100).loop(3)
 ```
+
+Loops go from beginning to end and start over again (`0->1.0->1.0->1.`).
+
+There is also a reverse flag that should be passed as the second argument:
+
+```javascript
+rect.animate(3000).move(100, 100).loop(3, true)
+```
+
+Loops will then be completely reversed before starting over (`0->1->0->1->0->1.`).
 
 __`returns`: `SVG.FX`__
 
@@ -1683,22 +1930,46 @@ Note that the `after()` method will never be called if the animation is looping 
 
 __`returns`: `SVG.FX`__
 
-### to()
-Say you want to control the position of an animation with an external event, then the `to()` method will prove to be very useful:
+### at()
+Say you want to control the position of an animation with an external event, then the `at()` method will proove very useful:
 
 ```javascript
-var animate = draw.rect(100, 100).move(50, 50).animate('=').move(200, 200)
+var animation = draw.rect(100, 100).move(50, 50).animate('=').move(200, 200)
 
 document.onmousemove = function(event) {
-  animate.to(event.clientX / 1000)
+  animation.at(event.clientX / 1000)
 }
 ```
 
-In order to be able use the `to()` method the duration of the animation should be set to `'='`. The value passed as the first argument of `to()` should be a number between `0` and `1`, `0` being the beginning of the animation and `1` being the end. Note that any values below `0` and above `1` will be normalized.
+In order to be able to use the `at()` method, the duration of the animation should be set to `'='`. The value passed as the first argument of `at()` should be a number between `0` and `1`, `0` being the beginning of the animation and `1` being the end. Note that any values below `0` and above `1` will be normalized.
 
 _This functionality requires the fx.js module which is included in the default distribution._
 
 __`returns`: `SVG.FX`__
+
+
+### situation
+The current situation of an animation is stored in the `situation` object:
+
+```javascript
+rect.animate(3000).move(100, 100)
+rect.fx.situation //-> everything is in here
+```
+
+Available values are:
+
+- `start` (start time as a number in milliseconds)
+- `play` (animation playing or not; `true` or `false`)
+- `pause` (time when the animation was last paused)
+- `duration` (the chosen duration of the animation)
+- `ease` (the chosen easing calculation)
+- `finish` (start + duration)
+- `loop` (the current loop; counting down if a number; `true`, `false` or a number)
+- `loops` (if a number, the total number loops; `true`, `false` or a number)
+- `reverse` (whether or not the loop should be reversed; `true` or `false`)
+- `reversing` (`true` if the loop is currently reversing, otherwise `false`)
+- `during` (the function that should be called on every keyframe)
+- `after` (the function that should be called after completion)
 
 
 ## Syntax sugar
@@ -1925,7 +2196,7 @@ var clip = draw.clip().add(text).add(ellipse)
 rect.clipWith(clip)
 ```
 
-__`returns`: `SVG.Clip`__
+__`returns`: `SVG.ClipPath`__
 
 ### unclip()
 Unclipping the elements can be done with the `unclip()` method:
@@ -2395,7 +2666,7 @@ path.marker('end', 20, 20, function(add) {
 The `marker()` method can be used in three ways. Firstly, a marker can be created on any container element (e.g. svg, nested, group, ...). This is useful if you plan to reuse the marker many times so it will create a marker in the defs but not show it yet:
 
 ```javascript
-var marker = draw.marker(10, 10, function() {
+var marker = draw.marker(10, 10, function(add) {
   add.rect(10, 10)
 })
 ```
@@ -2403,7 +2674,7 @@ var marker = draw.marker(10, 10, function() {
 Secondly a marker can be created and applied directly on its target element:
 
 ```javascript
-path.marker('start', 10, 10, function() {
+path.marker('start', 10, 10, function(add) {
   add.circle(10).fill('#f06')
 })
 ```
@@ -2587,7 +2858,7 @@ Removing it is quite as easy:
 rect.click(null)
 ```
 
-All available evenets are: `click`, `dblclick`, `mousedown`, `mouseup`, `mouseover`, `mouseout`, `mousemove`, `touchstart`, `touchmove`, `touchleave`, `touchend` and `touchcancel`.
+All available events are: `click`, `dblclick`, `mousedown`, `mouseup`, `mouseover`, `mouseout`, `mousemove`, `touchstart`, `touchmove`, `touchleave`, `touchend` and `touchcancel`.
 
 __`returns`: `itself`__
 
@@ -2610,6 +2881,18 @@ Unbinding events is just as easy:
 rect.off('click', click)
 ```
 
+Or to unbind all listeners for a given event:
+
+```javascript
+rect.off('click')
+```
+
+Or even unbind all listeners for all events:
+
+```javascript
+rect.off()
+```
+
 __`returns`: `itself`__
 
 But there is more to event listeners. You can bind events to html elements as well:
@@ -2625,17 +2908,11 @@ SVG.off(window, 'click', click)
 ```
 
 ### Custom events
-You can even create your own events.
+You can even use your own events.
 
-The only thing you need to do is register your own event:
-
+Just add an event listener for your event:
 ```javascript
-SVG.registerEvent('my:event')
-```
-
-Next you can add an event listener for your newly created event:
-```javascript
-rect.on('my:event', function() {
+rect.on('myevent', function() {
   alert('ta-da!')
 })
 ```
@@ -2644,15 +2921,55 @@ Now you are ready to fire the event whenever you need:
 
 ```javascript
 function whenSomethingHappens() {
-  rect.fire('my:event') 
+  rect.fire('myevent') 
 }
+
+// or if you want to pass an event
+function whenSomethingHappens(event) {
+  rect.fire(event) 
+}
+
 ```
 
-_Important: always make sure you namespace your event to avoid conflicts. Preferably use something very specific. So `wicked:event` for example would be better than something generic like `svg:event`._
+You can also pass some data to the event:
+
+```javascript
+function whenSomethingHappens() {
+  rect.fire('myevent', {some:'data'}) 
+}
+
+rect.on('myevent', function(e) {
+  alert(e.detail.some) // outputs 'data'
+})
+```
+
+svg.js supports namespaced events following the syntax `event.namespace`.
+
+A namespaced event behaves like a normal event with the difference that you can remove it without touching handlers from other namespaces.
+
+```
+// attach
+rect.on('myevent.namespace', function(e) {
+  // do something
+})
+
+// detach all handlers of namespace for myevent
+rect.off('myevent.namespace')
+
+// detach all handlers of namespace
+rect.off('.namespace')
+
+// detach all handlers including all namespaces
+rect.off('myevent)
+```
+
+However you can't fire a specific namespaced event. Calling `rect.fire('myevent.namespace')` won't do anything while `rect.fire('myevent')` works and fires all attached handlers of the event
+
+_Important: always make sure you namespace your event to avoid conflicts. Preferably use something very specific. So `event.wicked` for example would be better than something generic like `event.svg`._
 
 ## Numbers
 
-Numbers in svg.js have a dedicated number class to be able to process string values. Creating a new number is simple:
+Numbers in SVG.js have a dedicated number class to be able to process string values. Creating a new number is simple:
 
 ```javascript
 var number = new SVG.Number('78%')
@@ -2669,7 +2986,7 @@ Addition:
 number.plus('3%')
 ```
 
-__`returns`: `itself`__
+__`returns`: `SVG.Number`__
 
 ### minus()
 Subtraction:
@@ -2678,7 +2995,7 @@ Subtraction:
 number.minus('3%')
 ```
 
-__`returns`: `itself`__
+__`returns`: `SVG.Number`__
 
 ### times()
 Multiplication:
@@ -2687,7 +3004,7 @@ Multiplication:
 number.times(2)
 ```
 
-__`returns`: `itself`__
+__`returns`: `SVG.Number`__
 
 ### divide()
 Division:
@@ -2696,7 +3013,7 @@ Division:
 number.divide('3%')
 ```
 
-__`returns`: `itself`__
+__`returns`: `SVG.Number`__
 
 ### to()
 Change number to another unit:
@@ -2705,7 +3022,7 @@ Change number to another unit:
 number.to('px')
 ```
 
-__`returns`: `itself`__
+__`returns`: `SVG.Number`__
 
 ### morph()
 Make a number morphable:
@@ -2790,7 +3107,7 @@ __`returns`: `SVG.Color`__
 
 
 ## Arrays
-In svg.js every value list string can be cast and passed as an array. This makes writing them more convenient but also adds a lot of key functionality to them.
+In SVG.js every value list string can be cast and passed as an array. This makes writing them more convenient but also adds a lot of key functionality to them.
 
 ### SVG.Array
 Is for simple, whitespace separated value strings:
@@ -2824,7 +3141,7 @@ The dynamic representation:
 ]
 ```
 
-Precompiling it as a `SVG.PointArray`:
+Precompiling it as an `SVG.PointArray`:
 
 ```javascript
 new SVG.PointArray([
@@ -2836,7 +3153,7 @@ new SVG.PointArray([
 Note that every instance of `SVG.Polyline` and `SVG.Polygon` carries a reference to the `SVG.PointArray` instance:
 
 ```javascript
-polygon.array //-> returns the SVG.PointArray instance
+polygon.array() //-> returns the SVG.PointArray instance
 ```
 
 _Javascript inheritance stack: `SVG.PointArray` < `SVG.Array`_
@@ -2858,7 +3175,7 @@ The dynamic representation:
 ]
 ```
 
-Precompiling it as a `SVG.PathArray`:
+Precompiling it as an `SVG.PathArray`:
 
 ```javascript
 new SVG.PathArray([
@@ -2871,44 +3188,44 @@ new SVG.PathArray([
 Note that every instance of `SVG.Path` carries a reference to the `SVG.PathArray` instance:
 
 ```javascript
-path.array //-> returns the SVG.PathArray instance
+path.array() //-> returns the SVG.PathArray instance
 ```
 
 #### Syntax
 The syntax for patharrays is very predictable. They are basically literal representations in the form of two dimentional arrays.
 
 ##### Move To
-Original syntax is `M0 0` or `m0 0`. The svg.js syntax `['M',0,0]` or `['m',0,0]`.
+Original syntax is `M0 0` or `m0 0`. The SVG.js syntax `['M',0,0]` or `['m',0,0]`.
 
 ##### Line To
-Original syntax is `L100 100` or `l100 100`. The svg.js syntax `['L',100,100]` or `['l',100,100]`.
+Original syntax is `L100 100` or `l100 100`. The SVG.js syntax `['L',100,100]` or `['l',100,100]`.
 
 ##### Horizontal line
-Original syntax is `H200` or `h200`. The svg.js syntax `['H',200]` or `['h',200]`.
+Original syntax is `H200` or `h200`. The SVG.js syntax `['H',200]` or `['h',200]`.
 
 ##### Vertical line
-Original syntax is `V300` or `v300`. The svg.js syntax `['V',300]` or `['v',300]`.
+Original syntax is `V300` or `v300`. The SVG.js syntax `['V',300]` or `['v',300]`.
 
 ##### Bezier curve
-Original syntax is `C20 20 40 20 50 10` or `c20 20 40 20 50 10`. The svg.js syntax `['C',20,20,40,20,50,10]` or `['c',20,20,40,20,50,10]`.
+Original syntax is `C20 20 40 20 50 10` or `c20 20 40 20 50 10`. The SVG.js syntax `['C',20,20,40,20,50,10]` or `['c',20,20,40,20,50,10]`.
 
 Or mirrored with `S`:
 
-Original syntax is `S40 20 50 10` or `s40 20 50 10`. The svg.js syntax `['S',40,20,50,10]` or `['s',40,20,50,10]`.
+Original syntax is `S40 20 50 10` or `s40 20 50 10`. The SVG.js syntax `['S',40,20,50,10]` or `['s',40,20,50,10]`.
 
 Or quadratic with `Q`:
 
-Original syntax is `Q20 20 50 10` or `q20 20 50 10`. The svg.js syntax `['Q',20,20,50,10]` or `['q',20,20,50,10]`.
+Original syntax is `Q20 20 50 10` or `q20 20 50 10`. The SVG.js syntax `['Q',20,20,50,10]` or `['q',20,20,50,10]`.
 
 Or a complete shortcut with `T`:
 
-Original syntax is `T50 10` or `t50 10`. The svg.js syntax `['T',50,10]` or `['t',50,10]`.
+Original syntax is `T50 10` or `t50 10`. The SVG.js syntax `['T',50,10]` or `['t',50,10]`.
 
 ##### Arc
-Original syntax is `A 30 50 0 0 1 162 163` or `a 30 50 0 0 1 162 163`. The svg.js syntax `['A',30,50,0,0,1,162,163]` or `['a',30,50,0,0,1,162,163]`.
+Original syntax is `A 30 50 0 0 1 162 163` or `a 30 50 0 0 1 162 163`. The SVG.js syntax `['A',30,50,0,0,1,162,163]` or `['a',30,50,0,0,1,162,163]`.
 
 ##### Close
-Original syntax is `Z` or `z`. The svg.js syntax `['Z']` or `['z']`.
+Original syntax is `Z` or `z`. The SVG.js syntax `['Z']` or `['z']`.
 
 The best documentation on paths can be found at https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths.
 
@@ -2916,7 +3233,7 @@ The best documentation on paths can be found at https://developer.mozilla.org/en
 _Javascript inheritance stack: `SVG.PathArray` < `SVG.Array`_
 
 ### morph()
-In order to animate array values the `morph()` method lets you pass a destination value. This can be either the string value, a plain array or an instance of the same type of svg.js array:
+In order to animate array values the `morph()` method lets you pass a destination value. This can be either the string value, a plain array or an instance of the same type of SVG.js array:
 
 ```javascript
 var array = new SVG.PointArray([[0, 0], [100, 100]])
@@ -2952,10 +3269,10 @@ Note that this method is currently not available on `SVG.PathArray` but will be 
 __`returns`: `itself`__
 
 ### move()
-Moves geometry to a given `x` and `y` position by its upper left corner:
+Moves geometry of the array with the given `x` and `y` values:
 
 ```javascript
-var array = new SVG.PointArray([[10, 10], [100, 100]])
+var array = new SVG.PointArray([[0, 0], [100, 100]])
 array.move(33,75)
 array.toString() //-> returns '33,75 133,175'
 ```
@@ -3000,10 +3317,258 @@ Note that this method is only available on `SVG.PointArray` and `SVG.PathArray`
 __`returns`: `object`__
 
 
+## Matrices
+Matrices in SVG.js have their own class `SVG.Matrix`, wrapping the native `SVGMatrix`. They add a lot of functionality like extracting transform values, matrix morphing and improvements on the native methods.
+
+### SVG.Matrix
+In SVG.js matrices accept various values on initialization.
+
+Without a value:
+
+```javascript
+var matrix = new SVG.Matrix
+matrix.toString() //-> returns matrix(1,0,0,1,0,0)
+```
+
+Six arguments:
+
+```javascript
+var matrix = new SVG.Matrix(1, 0, 0, 1, 100, 150)
+matrix.toString() //-> returns matrix(1,0,0,1,100,150)
+```
+
+A string value:
+
+```javascript
+var matrix = new SVG.Matrix('1,0,0,1,100,150')
+matrix.toString() //-> returns matrix(1,0,0,1,100,150)
+```
+
+An object value:
+
+```javascript
+var matrix = new SVG.Matrix({ a: 1, b: 0, c: 0, d: 1, e: 100, f: 150 })
+matrix.toString() //-> returns matrix(1,0,0,1,100,150)
+```
+
+A native `SVGMatrix`:
+
+```javascript
+var svgMatrix = svgElement.getCTM()
+var matrix = new SVG.Matrix(svgMatrix)
+matrix.toString() //-> returns matrix(1,0,0,1,0,0)
+```
+
+Even an instance of `SVG.Element`:
+
+```javascript
+var rect = draw.rect(50, 25)
+var matrix = new SVG.Matrix(rect)
+matrix.toString() //-> returns matrix(1,0,0,1,0,0)
+```
+
+### extract()
+Gets the calculated values of the matrix as an object:
+
+```javascript
+matrix.extract()
+```
+
+The returned object contains the following values:
+
+- `x` (translation on the x-axis)
+- `y` (translation on the y-axis)
+- `skewX` (calculated skew on x-axis)
+- `skewY` (calculated skew on y-axis)
+- `scaleX` (calculated scale on x-axis)
+- `scaleY` (calculated scale on y-axis)
+- `rotation` (calculated rotation)
+
+__`returns`: `object`__
+
+### clone()
+Returns an exact copy of the matrix:
+
+```javascript
+matrix.clone()
+```
+
+__`returns`: `SVG.Matrix`__
+
+### morph()
+In order to animate matrices the `morph()` method lets you pass a destination matrix. This can be any value a `SVG.Matrix` would accept on initialization:
+
+```javascript
+matrix.morph('matrix(2,0,0,2,100,150)')
+```
+
+__`returns`: `itself`__
+
+### at()
+This method will morph the matrix to a given position between `0` and `1`:
+
+```javascript
+matrix.at(0.27)
+```
+
+This will only work when a destination matirx is defined using the `morph()` method.
+
+__`returns`: `SVG.Matrix`__
+
+### multiply()
+Multiplies by another given matrix:
+
+```javascript
+matrix.matrix(matrix2)
+```
+
+__`returns`: `SVG.Matrix`__
+
+### inverse()
+Creates an inverted matix:
+
+```javascript
+matrix.inverse()
+```
+
+__`returns`: `SVG.Matrix`__
+
+### translate()
+Translates matrix by a given x and y value:
+
+```javascript
+matrix.translate(10, 20)
+```
+
+__`returns`: `SVG.Matrix`__
+
+### scale()
+Scales matrix uniformal with one value:
+
+```javascript
+// scale
+matrix.scale(2)
+```
+
+Scales matrix non-uniformal with two values:
+
+```javascript
+// scaleX, scaleY
+matrix.scale(2, 3)
+```
+
+Scales matrix uniformal on a given center point with three values:
+
+```javascript
+// scale, cx, cy
+matrix.scale(2, 100, 150)
+```
+
+Scales matrix non-uniformal on a given center point with four values:
+
+```javascript
+// scaleX, scaleY, cx, cy
+matrix.scale(2, 3, 100, 150)
+```
+
+__`returns`: `SVG.Matrix`__
+
+### rotate()
+Rotates matrix by degrees with one value given:
+
+```javascript
+// degrees
+matrix.rotate(45)
+```
+
+Rotates a matrix by degrees around a given point with three values:
+
+```javascript
+// degrees, cx, cy
+matrix.rotate(45, 100, 150)
+```
+
+__`returns`: `SVG.Matrix`__
+
+### flip()
+Flips matrix over a given axis:
+
+```javascript
+matrix.flip('x')
+```
+
+or
+
+```javascript
+matrix.flip('y')
+```
+
+By default elements are flipped over their center point. The flip axis position can be defined with the second argument:
+
+```javascript
+matrix.flip('x', 150)
+```
+
+or
+
+```javascript
+matrix.flip('y', 100)
+```
+
+__`returns`: `SVG.Matrix`__
+
+### skew()
+Skews matrix a given degrees over x and or y axis with two values:
+
+```javascript
+// degreesX, degreesY
+matrix.skew(0, 45)
+```
+
+Skews matrix a given degrees over x and or y axis on a given point with four values:
+
+```javascript
+// degreesX, degreesY, cx, cy
+matrix.skew(0, 45, 150, 100)
+```
+
+__`returns`: `SVG.Matrix`__
+
+### around()
+Performs a given matrix transformation around a given center point:
+
+```javascript
+// cx, cy, matrix
+matrix.around(100, 150, new SVG.Matrix().skew(0, 45))
+```
+
+The matrix passed as the third argument will be used to multiply.
+
+__`returns`: `SVG.Matrix`__
+
+### native()
+Returns a native `SVGMatrix` extracted from the `SVG.Matrix` instance:
+
+```javascript
+matrix.native()
+```
+
+__`returns`: `SVGMatrix`__
+
+### toString()
+Converts the matrix to a transform string:
+
+```javascript
+matrix.toString()
+// -> matrix(1,0,0,1,0,0)
+```
+
+__`returns`: `string`__
+
 ## Extending functionality
 
 ### SVG.invent()
-Creating your own custom elements with svg.js is a piece of cake thanks to the `SVG.invent` function. For the sake of this example, let's "invent" a shape. We want a `rect` with rounded corners that are always proportional to the height of the element. The new shape lives in the `SVG` namespace and is called `Rounded`. Here is how we achieve that.
+Creating your own custom elements with SVG.js is a piece of cake thanks to the `SVG.invent` function. For the sake of this example, lets "invent" a shape. We want a `rect` with rounded corners that are always proportional to the height of the element. The new shape lives in the `SVG` namespace and is called `Rounded`. Here is how we achieve that.
 
 ```javascript
 SVG.Rounded = SVG.invent({
@@ -3046,19 +3611,19 @@ var rounded = draw.rounded(200, 100)
 That's it, the invention is now ready to be used!
 
 #### Accepted values
-The `SVG.invent()` function always expectes an object. The object can have the following configuration values:
+The `SVG.invent()` function always expects an object. The object can have the following configuration values:
 
 - `create`: can be either a string with the node name (e.g. `rect`, `ellipse`, ...) or a custom initializer function; `[required]`
-- `inherit`: the desired svg.js class to inherit from (e.g. `SVG.Shape`, `SVG.Element`, `SVG.Container`, `SVG.Rect`, ...); `[optional but recommended]`
+- `inherit`: the desired SVG.js class to inherit from (e.g. `SVG.Shape`, `SVG.Element`, `SVG.Container`, `SVG.Rect`, ...); `[optional but recommended]`
 - `extend`: an object with the methods that should be applied to the element's prototype; `[optional]`
-- `construct`: an objects with the methods to create the element on the parent element; `[optional]`
-- `parent`: an svg.js parent class on which the methods in the passed `construct` object should be available; `[optional]`
+- `construct`: an object with the methods to create the element on the parent element; `[optional]`
+- `parent`: an SVG.js parent class on which the methods in the passed `construct` object should be available; `[optional]`
 
 Svg.js uses the `SVG.invent()` function to create all internal elements, so have a look at the source to see how this function is used in various ways.
 
 
 ### SVG.extend()
-Svg.js has a modular structure. It is very easy to add you own methods at different levels. Let's say we want to add a method to all shape types then we would add our method to SVG.Shape:
+SVG.js has a modular structure. It is very easy to add you own methods at different levels. Let's say we want to add a method to all shape types then we would add our method to SVG.Shape:
 
 ```javascript
 SVG.extend(SVG.Shape, {
@@ -3105,13 +3670,20 @@ SVG.extend(SVG.Ellipse, SVG.Path, SVG.Polygon, {
 
 
 ## Plugins
-Here are a few nice plugins that are available for svg.js:
+Here are a few nice plugins that are available for SVG.js:
+
+** Caution: Not tested for SVG.js 2.0 **
 
 ### absorb
-[svg.absorb.js](https://github.com/wout/svg.absorb.js) absorb raw SVG data into a svg.js instance.
+[svg.absorb.js](https://github.com/wout/svg.absorb.js) absorb raw SVG data into an SVG.js instance.
 
 ### draggable
 [svg.draggable.js](https://github.com/wout/svg.draggable.js) to make elements draggable.
+
+### connectable
+[svg.connectable.js](https://github.com/jillix/svg.connectable.js) to connect elements.
+
+[svg.connectable.js fork](https://github.com/loredanacirstea/svg.connectable.js) to connect elements (added: curved connectors, you can use any self-made path as a connector, choosable 'center'/'perifery' attachment, 'perifery' attachment for source / target SVG Paths uses smallest-distance algorithm between PathArray points)
 
 ### easing
 [svg.easing.js](https://github.com/wout/svg.easing.js) for more easing methods on animations.
@@ -3140,63 +3712,158 @@ Here are a few nice plugins that are available for svg.js:
 ### topath
 [svg.topath.js](https://github.com/wout/svg.topath.js) to convert any other shape to a path.
 
+### topoly
+[svg.topoly.js](https://github.com/wout/svg.topoly.js) to convert a path to polygon or polyline.
+
+### wiml
+[svg.wiml.js](https://github.com/wout/svg.wiml.js) a templating language for svg output.
+
+### comic
+[comic.js](https://github.com/balint42/comic.js) to cartoonize any given svg.
+
+### draw
+[svg.draw.js](https://github.com/fuzzyma/svg.draw.js) to draw elements with your mouse
+
+### select
+[svg.select.js](https://github.com/fuzzyma/svg.select.js) to select elements
+
+### resize
+[svg.resize.js](https://github.com/fuzzyma/svg.resize.js) to resize elements with your mouse
 
 ## Contributing
-All contributions are very welcome but please make sure you:
+We love contributions. Yes indeed, we used the word LOVE! But please make sure you follow the same coding style. Here are some guidelines.
 
-- maintain the coding style
-  - __indentation__ of 2 spaces
-  - no tailing __semicolons__
-  - single __quotes__
-  - use one line __comments__ to describe any additions
-  - look around and you'll know what to do
-- write at least one spec example per implementation or modification
+### Indentation
+We do it with __two spaces__. Make sure you don't start using tabs because then things get messy.
 
-Before running the specs you will need to build the library.
-Be aware that pull requests without specs will be declined.
+### Avoid hairy code
+We like to keep things simple and clean, don't write anything you don't need. So use __single quotes__ where possible and __avoid semicolons__, we're not writing PHP here.
+
+__Good__:
+```javascript
+var text = draw.text('with single quotes here')
+  , nest = draw.nested().attr('x', '50%')
+
+for (var i = 0; i < 5; i++)
+  if (i != 3)
+    nest.circle(i * 100)
+```
+
+__Bad__:
+```javascript
+var text = draw.text("with single quotes here");
+var nest = draw.nested().attr("x", "50%");
+
+for (var i = 0; i < 5; i++) {
+  if (i != 3) {
+    nest.circle(100);
+  };
+};
+```
+
+### Minimize variable declarations
+All local variables should be declared at the beginning of a function or method unless there is ony one variable to declare. Although it is not required to assign them at the same moment. When if statements are involved, requiring some variables only to be present in the statement, the necessary variables should be declared right after the if statement.
+
+__Good__:
+```javascript
+function reading_board() {
+  var aap, noot, mies
+
+  aap  = 1
+  noot = 2
+  mies = aap + noot
+}
+```
+
+__Bad__:
+```javascript
+function reading_board() {
+  var aap  = 1
+  var noot = 2
+  var mies = aap + noot
+}
+```
+
+### Let your code breathe people!
+Don't try to be a code compressor yourself, they do way a better job anyway. Give your code some spaces and newlines.
+
+__Good__:
+```javascript
+var nest = draw.nested().attr({
+  x:      10
+, y:      20
+, width:  200
+, height: 300
+})
+
+for (var i = 0; i < 5; i++)
+  nest.circle(100)
+```
+
+__Bad__:
+```javascript
+var nest=draw.nested().attr({x:10,y:20,width:200,height:300});
+for(var i=0;i<5;i++)nest.circle(100);
+```
+
+### It won't hurt to add a few comments
+Where necessary tell us what you are doing but be concise. We only use single-line comments. Also keep your variable and method names short while maintaining readability.
+
+__Good__:
+```javascript
+// Adds orange-specific methods
+SVG.extend(SVG.Rect, {
+  // Add a nice, transparent orange
+  orangify: function() {
+    // fill with orange color
+    this.fill('orange')
+
+    // add a slight opacity
+    return this.opacity(0.85)
+  }
+})
+```
+
+__Bad__:
+```javascript
+/*
+ *
+ * does something with orange and opacity
+ *
+ */
+SVG.extend(SVG.Rect, {
+  orgf: function() {
+    return this.fill('orange').opacity(0.85)
+  }
+})
+```
+
+### Refactor your code
+Once your implementation is ready, revisit and rework it. We like to keep it [DRY](http://en.wikipedia.org/wiki/Don't_repeat_yourself).
+
+### Test. Your. Code.
+It's not that hard to write at least one example per implementation, although we prefer more. Your code might seem to work by quickly testing it in your brwoser but more than often you can't forsee everything.
+
+Before running the specs you will need to build the library. Be aware that pull requests without specs will be declined.
 
 
 ## Building
-Starting out with the default distribution of svg.js is good. Although you might want to remove some modules to keep the size at minimum.
-
-You will need ruby, RubyGems, and rake installed on your system.
+After contributing you probably want to build the library to run some specs. Make sure you have Node.js installed on your system, `cd` to the svg.js directory and run:
 
 ``` sh
-# dependencies:
-$ ruby -v
-$ gem -v
-$ rake -V
-
-# required to generate the minified version:
-$ gem install uglifier
+$ npm install
 ```
 
-Build svg.js by running `rake`:
+Build SVG.js by running `gulp`:
 
 ``` sh
-$ rake
-Original version: 32.165k
-Minified: 14.757k
-Minified and gzipped: 4.413k, compression factor 7.289
+$ gulp
 ```
 
 The resulting files are:
 
 1. `dist/svg.js`
 2. `dist/svg.min.js`
-
-To include optional modules and remove default ones, use the `concat` task. In
-this example, 'clip' is removed, but 'group' and 'arrange' are added:
-
-``` sh
-$ rake concat[-clip:group:arrange] dist
-```
-
-To build the base library only including shapes:
-
-``` sh
-rake concat[-fx:-event:-group:-arrange:-mask:-gradient:-nested:-sugar] dist
-```
 
 
 ## Compatibility
@@ -3206,7 +3873,7 @@ rake concat[-fx:-event:-group:-arrange:-mask:-gradient:-nested:-sugar] dist
 - Chrome 4+
 - Safari 3.2+
 - Opera 9+
-- IE9 +
+- IE9+
 
 ### Mobile
 - iOS Safari 3.2+
@@ -3215,6 +3882,10 @@ rake concat[-fx:-event:-group:-arrange:-mask:-gradient:-nested:-sugar] dist
 - Chrome for Android 18+
 - Firefox for Android 15+
 
-Visit the [svg.js test page](http://svgjs.com/test) if you want to check compatibility with different browsers.
+Visit the [SVG.js test page](http://svgjs.com/test) if you want to check compatibility with different browsers.
 
-Important: this library is still in beta, therefore the API might be subject to change in the course of development.
+## Acknowledgements & Thanks
+
+Documentation kindly provided by [DocumentUp](http://documentup.com)
+
+SVG.js and its documentation is released under the terms of the MIT license.

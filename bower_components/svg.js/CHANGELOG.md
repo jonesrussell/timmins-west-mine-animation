@@ -1,7 +1,73 @@
-# 1.0.0 (?/09/2014)
+# 2.0.0-rc.2 (?/11/2014)
 
-- fixed event module
-- removed `mouseenter` and `mouseleave` events because they are not supported by IE
+- added `morph()` method to `SVG.PathArray` -> __TODO!__
+- added `rotate()` method to linear gradients -> __TODO!__
+- added `'random'` option and `randomize()` method to `SVG.Color` -> __TODO!__
+- added `parents()` method to get an array of all parenting elements -> __TODO!__
+- added support for css selectors with the `parent()` method -> __TODO!__
+- added `enqueue()` method to `SVG.FX` -> __TODO!__
+- added `ungroup()` method -> __TODO!__ [thanks to Peter Uithoven]
+
+# 2.0.0-rc.1 (?/10/2014)
+
+- added specs for `SVG.FX` -> __TODO!__
+- fixed a bug in clipping and masking where empty nodes persists after removal -> __TODO!__
+- fixed a bug in IE11 with `mouseenter` and `mouseleave` -> __TODO!__
+- added `precision()` method to round numeric element attributes -> __TODO!__
+
+# 2.0.2 (22/06/2015)
+
+- Fixed zoom consideration in circle and ellipse
+
+# 2.0.1 (21/06/2015)
+
+- fixed bug with `doc()` which always should return root svg
+- removed target reference from use which caused bugs in `dmove()` and `use()` with external file
+- added possibility to remove all events from a certain namespace
+- fixed bug in `SVG.FX` when animating with `plot()`
+- removed scale consideration in `move()` duo to incompatibilities with other move-functions e.g. in `SVG.PointArray`
+
+# 2.0.0 (11/06/2015)
+
+- implemented an SVG adoption system to be able to manipulate existing SVG's not created with svg.js
+- changed `parent` reference on elements to `parent()` method
+- using `CustomEvent` instead of `Event` to be able to fire events with a `detail` object [thanks @Fuzzyma]
+- added polyfill for IE9 and IE10 custom events [thanks @Fuzzyma]
+- added DOM query selector with the `select()` method globally or on parent elements
+- added the intentionally neglected `SVG.Circle` element
+- fixed bug in `radius()` method when `y` value equals `0`
+- renamed `SVG.TSpan` class to `SVG.Tspan` to play nice with the adoption system
+- added `rx()` and `ry()` to `SVG.Rect`, `SVG.Circle`, `SVG.Ellispe` and `SVG.FX`
+- changed `array` reference to `array()` method on `SVG.Polyline`, `SVG.Polygon` and `SVG.Path`
+- completely reworked `clone()` method to use the adoption system
+- added support to clone manually built text elements
+- added `svg.wiml.js` plugin to plugins list
+- added `ctm()` method to for matrix-centric transformations
+- added `morph()` method to `SVG.Matrix`
+- added support for new matrix system to `SVG.FX`
+- completely reworked transformations to be chainable and more true to their nature
+- changed `lines` reference to `lines()` on `SVG.Text`
+- changed `track` reference to `track()` on `SVG.Text`
+- changed `textPath` reference to `textPath()` on `SVG.Text`
+- added raw svg import functionality with the `svg()` method
+- reworked sup-pixel offset implementation to be more compact
+- added `native()` method to elements and matrix to get to the native api
+- added `untransform()` method to remove all transformations
+- switched from Ruby's `rake` to Node's `gulp` for building [thanks to Alex Ewerlöf]
+- added coding style description to README
+- changed `to()` method to `at()` method in `SVG.FX`
+- added reverse functionality for animations
+- documented the `situation` object in `SVG.FX`
+- renamed `SVG.SetFX` to `SVG.FX.Set`
+- added distinction between relative and absolute matrix transformations
+- implemented the `element()` method using the `SVG.Bare` class to create elements that are not described by SVG.js
+- removed `SVG.Symbol` but kept the `symbol()` method using the new `element()` method
+- reworked `SVG.Number` to return new instances with calculations rather than itself
+- added `w` and `h` properties as shorthand for `width` and `height` to `SVG.BBox`
+- added `SVG.TBox` to get a bounding box that is affected by transformation values
+- reworked animatable matrix rotations
+- fixed a bug where events are not detached properly
+- added event-based or complete detaching of event listeners in `off()` method
 
 # 1.0.0-rc.9 (17/06/2014)
 
