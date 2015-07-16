@@ -5,7 +5,6 @@ An animation of svg's with the lightweight [svg.js](https://github.com/wout/svg.
 
 ### Install dependencies
 npm install
-bower install
 
 ### Serve
 grunt serve
