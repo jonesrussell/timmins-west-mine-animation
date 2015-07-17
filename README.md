@@ -12,4 +12,4 @@ grunt serve
 ### Build
 grunt build
 
-test 123
+test 12
