@@ -57,8 +57,12 @@ SVGjsAnim.prototype.setupLayers = function()
     var h = this.origSceneH;
     var layers = {};
 
-    var clouds        = this.draw.image('images/clouds.svg', w*2, h);
-    layers.clouds     = this.draw.layer({ 'clouds': clouds }, w, h);
+    var clouds        = this.draw.image('images/clouds.svg', w, h);
+    var cloudGroup = this.draw.group().attr({ id: 'cloud-group' })
+      .add(clouds)
+      .add(clouds.clone().move(-w, 0));
+
+    layers.clouds     = this.draw.layer({ 'clouds': cloudGroup }, w, h);
     var background    = this.draw.image('images/background.svg', w, h);
     layers.background = this.draw.layer({ 'background': background }, w, h);
 /*
@@ -67,9 +71,9 @@ SVGjsAnim.prototype.setupLayers = function()
         .add(this.draw.rect(this.origSceneW, 4000).attr({ fill: '#6e6e5f', id: 'ground'}));
 */
     this.scene
-        .add(layers.clouds)
 //        .add(groundExtension)
-        .add(layers.background);
+        .add(layers.background)
+        .add(layers.clouds);
 
    return layers;
 };
@@ -82,6 +86,11 @@ SVGjsAnim.prototype.start = function()
 //    this.dumpTruck.go();
 //    this.rockBreaker.go();
 //    this.jawCrusher.go();
+
+  this.layers.clouds.innerLayer
+    .animate(180000, '-', 0)
+    .move(this.origSceneW, 0)
+    .loop();
 };
 
 SVGjsAnim.prototype.scale = function(n) {
