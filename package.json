@@ -31,6 +31,9 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-        "start": "grunt serve"
+    "start": "grunt serve"
+  },
+  "dependencies": {
+    "grunt-cli": "^0.1.13"
   }
 }
