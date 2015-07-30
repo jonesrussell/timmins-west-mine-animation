@@ -43,20 +43,27 @@ SVGjsAnim.prototype.build = function() {
       .add(clouds.clone().move(-w, 0));
     this.scene.add(this.cloudGroup);
 
-    this.initShaft();
-    this.shaft = this.getShaft();
-    this.scene.add(this.shaft);
+    var equipment    = this.draw.image('images/equipment.svg', w, h);
+    this.scene.add(equipment);
+
+    var text    = this.draw.image('images/text.svg', w, h);
+    this.scene.add(text);
+
+    this.Hoisting()
+      .go();
+
+    this.Development();
 
     this.headings.hoisting = this.draw.use('Hoisting_Video_1_', 'images/headings.svg');
-    this.headings.hoisting.move(-50, -1250);
-    this.scene.add(this.headings.hoisting);
+    this.headings.hoisting
+      .move(-50, -1250);
+    this.scene
+      .add(this.headings.hoisting);
 };
 
 
 SVGjsAnim.prototype.start = function()
 {
-  this.skipGo();
-//  this.elevator.go();
 //    this.showBullets();
 //    this.dumpTruck.go();
 //    this.rockBreaker.go();
