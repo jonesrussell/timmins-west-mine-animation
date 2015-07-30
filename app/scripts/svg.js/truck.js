@@ -18,7 +18,7 @@ SVG.Truck = SVG.invent({
                 .move(39, -10);
             this.truckTire1 = this.doc().image('images/truck/truck_tires.svg', 28, 28)
                 .move(18, 34);
-            this.truckTire2 = this.truckTire1.clone().move(105, 34); 
+            this.truckTire2 = this.truckTire1.clone().move(105, 34);
 
             this.orePile = this.doc().image('images/ore/ore_pile_1.svg', 58, 21)
                 .move(60, -25);
@@ -90,7 +90,7 @@ SVG.extend(SVG.Truck, {
     },
     dump: function() {
         this.oreClipDump();
-        return this.orePileDump();        
+        return this.orePileDump();
     },
     down: function() {
         this.orePileReset();
@@ -131,7 +131,7 @@ SVG.extend(SVG.Truck, {
             x: 0,
             y: 0
         });
-       
+
     },
     orePileDump: function() {
         var defer = Q.defer();
@@ -139,7 +139,7 @@ SVG.extend(SVG.Truck, {
             .transform({
                 rotation: 0,
                 x: 150,
-                y: 60 
+                y: 60
             })
             .after(function(){
                 defer.resolve();

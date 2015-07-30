@@ -12,19 +12,9 @@ function SVGjsAnim(id)
         .attr({ id: 'scene' });
 
     this.positionAndScale();
-
-//    this.zooms = this.draw.set();
 }
 
-SVGjsAnim.prototype.layers = {};
-SVGjsAnim.prototype.activeVideo = '';
-SVGjsAnim.prototype.zoomed = false;
-SVGjsAnim.prototype.stepObjs = [];
-SVGjsAnim.prototype.bullets = {};
-//SVGjsAnim.prototype.headings = {};
-SVGjsAnim.prototype.animations = [];
-SVGjsAnim.prototype.steps = [];
-SVGjsAnim.prototype.stepCurrent = 'overview';
+SVGjsAnim.prototype.headings = {};
 
 SVGjsAnim.prototype.init = function() {
     var svgjsAnim = mill;
@@ -41,56 +31,49 @@ SVGjsAnim.prototype.init = function() {
 SVGjsAnim.prototype.build = function() {
     this.transform.defaultX = this.scene.x();
     this.transform.defaultY = this.scene.y();
-//    this.resetCamera();
-    this.layers = this.setupLayers();
-
-    var shaft = this.setupShaft();
-
-//    this.layers.background
-//        .addToInner(shaft);
-        this.scene.add(shaft);
-};
-
-SVGjsAnim.prototype.setupLayers = function()
-{
     var w = this.origSceneW;
     var h = this.origSceneH;
-    var layers = {};
+
+    var background    = this.draw.image('images/background.svg', w, h);
+    this.scene.add(background);
 
     var clouds        = this.draw.image('images/clouds.svg', w, h);
-    var cloudGroup = this.draw.group().attr({ id: 'cloud-group' })
+    this.cloudGroup = this.draw.group().attr({ id: 'cloud-group' })
       .add(clouds)
       .add(clouds.clone().move(-w, 0));
+    this.scene.add(this.cloudGroup);
 
-    layers.clouds     = this.draw.layer({ 'clouds': cloudGroup }, w, h);
-    var background    = this.draw.image('images/background.svg', w, h);
-    layers.background = this.draw.layer({ 'background': background }, w, h);
-/*
-    var groundExtension = this.draw.group()
-        .move(0, 220)
-        .add(this.draw.rect(this.origSceneW, 4000).attr({ fill: '#6e6e5f', id: 'ground'}));
-*/
+    var equipment    = this.draw.image('images/equipment.svg', w, h);
+    this.scene.add(equipment);
+
+    var text    = this.draw.image('images/text.svg', w, h);
+    this.scene.add(text);
+
+    this.Hoisting()
+      .go();
+
+    this.Development();
+
+    this.headings.hoisting = this.draw.use('Hoisting_Video_1_', 'images/headings.svg');
+    this.headings.hoisting
+      .move(-50, -1250);
     this.scene
-//        .add(groundExtension)
-        .add(layers.background)
-        .add(layers.clouds);
-
-   return layers;
+      .add(this.headings.hoisting);
 };
+
 
 SVGjsAnim.prototype.start = function()
 {
-  this.skip.go();
-  this.elevator.go();
 //    this.showBullets();
 //    this.dumpTruck.go();
 //    this.rockBreaker.go();
 //    this.jawCrusher.go();
-
-  this.layers.clouds.innerLayer
+/*
+  this.cloudGroup
     .animate(180000, '-', 0)
     .move(this.origSceneW, 0)
     .loop();
+   */
 };
 
 SVGjsAnim.prototype.scale = function(n) {
