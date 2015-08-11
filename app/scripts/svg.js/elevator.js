@@ -1,5 +1,5 @@
 'use strict';
-/*global SVG, Q */
+/*global SVG */
 
 SVG.Elevator = SVG.invent({
     create: 'g',

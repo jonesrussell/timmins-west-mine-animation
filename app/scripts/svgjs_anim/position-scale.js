@@ -1,5 +1,5 @@
 'use strict';
-/*global SVGjsAnim, mill */
+/*global SVGjsAnim */
 
 SVGjsAnim.prototype.positionAndScale = function()
 {
@@ -25,7 +25,7 @@ SVGjsAnim.prototype.positionAndScale = function()
   this.origSceneW = 1366;
   this.origSceneH = 700;
 
-  this.draw.viewbox(0, 0, this.origSceneW, this.origSceneH)
+  this.draw.viewbox(0, 0, this.origSceneW, this.origSceneH);
   this.draw.attr('preserveAspectRatio', 'xMidYMax meet');
   console.log(this.draw.viewbox());
 

@@ -1,5 +1,5 @@
 'use strict';
-/*global SVG, Q */
+/*global SVG */
 
 SVG.Skip = SVG.invent({
     create: 'g',
