@@ -1,10 +1,10 @@
 'use strict';
 /*global SVGjsAnim, mill */
 
-/*window.onresize = function() {
-  mill.positionAndScale();
-  mill.resize();
-};*/
+SVG.on(window, 'resize', function() {
+  console.log('resized');
+  mill.draw.spof()
+});
 
 SVGjsAnim.prototype.positionAndScale = function()
 {
@@ -31,7 +31,7 @@ SVGjsAnim.prototype.positionAndScale = function()
   this.origSceneH = 700;
 
   this.draw.viewbox(0, 0, this.origSceneW, this.origSceneH)
-  this.draw.attr('preserveAspectRatio', 'xMinYMax meet');
+  this.draw.attr('preserveAspectRatio', 'xMidYMax meet');
   console.log(this.draw.viewbox());
 
   this.transform.width = this.transform.defaultWidth = this.windowW;
