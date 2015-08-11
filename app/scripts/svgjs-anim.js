@@ -68,12 +68,11 @@ SVGjsAnim.prototype.start = function()
 //    this.dumpTruck.go();
 //    this.rockBreaker.go();
 //    this.jawCrusher.go();
-/*
+
   this.cloudGroup
-    .animate(180000, '-', 0)
+    .animate(380000, '-', 0)
     .move(this.origSceneW, 0)
     .loop();
-   */
 };
 
 SVGjsAnim.prototype.scale = function(n) {
