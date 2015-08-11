@@ -20,33 +20,19 @@ SVGjsAnim.prototype.Development = function() {
   this.scene.add(this.jumboDrill);
 
   var svgjsanim = this;
+
   this.headings.development = this.draw
     .use('Development_Video_1_', 'images/headings.svg')
     .move(-150, -667)
     .click(function(){
-      console.log('development');
       console.log(svgjsanim.scene.transform());
-      console.log(this);
       svgjsanim.scene
-        .move(-3700, -1100)
-        .scale(4);
+        .animate()
+        .transform({ scaleX: 4.9, scaleY: 4.9, cx: 1240, cy: 690 });
       console.log(svgjsanim.scene.transform());
     });
   this.scene
     .add(this.headings.development);
-
-  this.headings.mucking = this.draw
-    .use('Mucking', 'images/headings.svg')
-    .move(-150, -667)
-    .click(function(){
-      svgjsanim.scene
-        .move(-3700, -1100)
-        .scale(5);
-    });
-  this.scene
-    .add(this.headings.mucking);
-
-
 
   return this;
 };

@@ -53,6 +53,10 @@ SVGjsAnim.prototype.build = function() {
       .go();
 
     this.Development();
+    this.Haulage();
+    this.Skipping();
+    this.Shop();
+    this.Stoping();
 
     this.headings.hoisting = this.draw.use('Hoisting_Video_1_', 'images/headings.svg');
     this.headings.hoisting
