@@ -3,15 +3,19 @@
 
 function SVGjsAnim(id)
 {
-    this.draw = SVG(id)
-        .addClass('svg-content')
-        .spof();
+  this.draw = SVG(id)
+    .addClass('svg-content')
+    .spof();
 
-    this.scene = this.draw
-        .group()
-        .attr({ id: 'scene' });
+  this.scene = this.draw
+    .group()
+    .attr({ id: 'scene' });
 
-    this.positionAndScale();
+  this.origSceneW = 1366;
+  this.origSceneH = 700;
+
+  this.draw.viewbox(0, 0, this.origSceneW, this.origSceneH);
+  this.draw.attr('preserveAspectRatio', 'xMidYMax meet');
 }
 
 SVGjsAnim.prototype.headings = {};
@@ -29,8 +33,6 @@ SVGjsAnim.prototype.init = function() {
 };
 
 SVGjsAnim.prototype.build = function() {
-    this.transform.defaultX = this.scene.x();
-    this.transform.defaultY = this.scene.y();
     var w = this.origSceneW;
     var h = this.origSceneH;
 
@@ -57,42 +59,12 @@ SVGjsAnim.prototype.build = function() {
     this.Skipping();
     this.Shop();
     this.Stoping();
-
-    this.headings.hoisting = this.draw.use('Hoisting_Video_1_', 'images/headings.svg');
-    this.headings.hoisting
-      .move(-50, -1250);
-    this.scene
-      .add(this.headings.hoisting);
 };
-
 
 SVGjsAnim.prototype.start = function()
 {
-//    this.showBullets();
-//    this.dumpTruck.go();
-//    this.rockBreaker.go();
-//    this.jawCrusher.go();
-
   this.cloudGroup
     .animate(380000, '-', 0)
     .move(this.origSceneW, 0)
     .loop();
 };
-
-SVGjsAnim.prototype.scale = function(n) {
-    n = n || false;
-    return (n) ? this.scene.scale(n) : this.scene.attr('scale');
-};
-
-SVGjsAnim.prototype.move = function(x, y) {
-    this.scene.move(x, y);
-};
-
-SVGjsAnim.prototype.x = function(x) {
-    this.scene.x(x);
-};
-
-SVGjsAnim.prototype.y = function(y) {
-    this.scene.y(y);
-};
-
