@@ -1,11 +1,6 @@
 'use strict';
 /*global SVGjsAnim, mill */
 
-SVG.on(window, 'resize', function() {
-  console.log('resized');
-  mill.draw.spof()
-});
-
 SVGjsAnim.prototype.positionAndScale = function()
 {
   this.transform = {
