@@ -34,7 +34,7 @@ SVGjsAnim.prototype.Development = function() {
           .animate()
           .transform({ scaleX: 4.9, scaleY: 4.9, cx: 1240, cy: 690 })
           .after(function(){
-            anim.scene.addClass('zoom-out')
+            anim.scene.addClass('zoom-out');
             console.log('zoomed');
           })
         ;
