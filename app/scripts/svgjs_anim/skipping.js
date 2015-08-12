@@ -14,7 +14,7 @@ SVGjsAnim.prototype.Skipping = function() {
     .click(function(){
       svgjsanim.scene
         .animate()
-        .transform({ scaleX: 4.9, scaleY: 4.9, cx: 1240, cy: 690 });
+        .transform({ scaleX: 4.9, scaleY: 4.9, cx: 690, cy: 675 });
     });
   this.scene
     .add(this.headings.skipping);
