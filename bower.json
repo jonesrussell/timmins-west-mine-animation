@@ -7,6 +7,7 @@
     "classie": "~1.0.1",
     "q": "https://github.com/kriskowal/q.git#1.0.1",
     "svg.parser.js": "https://github.com/wout/svg.parser.js.git#~0.1.0",
-    "svg.import.js": "https://github.com/wout/svg.import.js.git#~1.0.1"
+    "svg.import.js": "https://github.com/wout/svg.import.js.git#~1.0.1",
+    "EventBus": "git://github.com/krasimir/EventBus#f59dca1cc7"
   }
 }
