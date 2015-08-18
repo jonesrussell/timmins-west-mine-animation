@@ -1,5 +1,5 @@
 'use strict';
-/*global SVG, mill */
+/*global SVG, mill, EventBus */
 
 function SVGjsAnim(id)
 {
@@ -17,6 +17,48 @@ function SVGjsAnim(id)
   this.draw.viewbox(0, 0, this.origSceneW, this.origSceneH);
   this.draw.attr('preserveAspectRatio', 'xMidYMax meet');
 }
+
+SVGjsAnim.prototype.Scene = function() {
+  this.scene.click(function(){
+    EventBus.dispatch('clicked_Scene');
+  });
+
+  EventBus.addEventListener('clicked_Scene', function(){
+    var scene = this.scene;
+    if (scene.hasClass('zoom-out')) {
+      scene.removeClass('zoom-out');
+      scene.animate()
+        .transform(new SVG.Matrix);
+
+      this.headings.development
+        .removeClass('action')
+        .addClass('zoom-in');
+    }
+  }, this);
+
+  EventBus.addEventListener('clicked_heading', function(e, headingName, scale, cx, cy){
+    var scene = this.scene;
+    var dev = this.headings[headingName];
+    if (dev.hasClass('zoom-in')) {
+      dev.removeClass('zoom-in')
+        .addClass('action');
+      scene
+        .animate()
+        .transform({ scaleX: scale, scaleY: scale, cx: cx, cy: cy })
+        .after(function(){
+          console.log('zoomed');
+          scene.addClass('zoom-out');
+        })
+      ;
+    } else {
+      EventBus.dispatch('play_video', this, 'development');
+      console.log('play video');
+    }
+    event.stopPropagation();
+  }, this);
+
+
+};
 
 SVGjsAnim.prototype.headings = {};
 
@@ -59,6 +101,8 @@ SVGjsAnim.prototype.build = function() {
     this.Skipping();
     this.Shop();
     this.Stoping();
+
+    this.Scene();
 };
 
 SVGjsAnim.prototype.start = function()
