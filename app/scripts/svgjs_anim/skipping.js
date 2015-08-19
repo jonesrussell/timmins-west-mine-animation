@@ -6,16 +6,8 @@ SVGjsAnim.prototype.Skipping = function() {
     .group()
     .attr('id', 'skipping');
 
-  var svgjsanim = this;
+  this.headings.skipping = this.Heading('ORE__x26__WASTE_SKIPPING_Video', 'skipping', 4.9, 690, 675);
 
-  this.headings.skipping = this.draw
-    .use('ORE__x26__WASTE_SKIPPING_Video', 'images/headings.svg')
-    .move(-150, -667)
-    .click(function(){
-      svgjsanim.scene
-        .animate()
-        .transform({ scaleX: 4.9, scaleY: 4.9, cx: 690, cy: 675 });
-    });
   this.scene
     .add(this.headings.skipping);
 

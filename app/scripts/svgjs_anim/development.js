@@ -19,16 +19,10 @@ SVGjsAnim.prototype.Development = function() {
   this.jumboDrill = this.draw.image('images/jumbo_drill.svg', w, h);
   this.scene.add(this.jumboDrill);
 
-  this.headings.development = this.draw
-    .use('Development_Video_1_', 'images/headings.svg')
-    .move(-150, -667)
-    .addClass('zoom-in')
-    .click(function(){
-      EventBus.dispatch('clicked_heading', this, 'development', 4.9, 1240, 690);
-    })
-  ;
+  this.headings.development = this.Heading('Development_Video_1_', 'development', 4.9, 1240, 690);
 
   this.scene
+    .add(this.development)
     .add(this.headings.development);
 
   return this;
