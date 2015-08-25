@@ -10,6 +10,9 @@ function SVGjsAnim(id)
   this.scene = this.draw
     .group()
     .attr({ id: 'scene' });
+  this.sceneHeadings = this.draw
+    .group()
+    .attr({ id: 'scene-headings' });
 
   this.origSceneW = 1366;
   this.origSceneH = 700;
@@ -72,7 +75,7 @@ SVGjsAnim.prototype.Scene = function() {
     event.stopPropagation();
   }, this);
 
-
+  this.scene.add(this.sceneHeadings);
 };
 
 SVGjsAnim.prototype.headings = {};

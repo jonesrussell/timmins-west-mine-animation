@@ -6,9 +6,34 @@ SVGjsAnim.prototype.Haulage = function() {
     .group()
     .attr('id', 'haulage');
 
-  this.headings.haulage = this.Heading('Haulage_Video', 'haulage', 4.9, 1240, 690);
+  // IE doesn't read image size
+  var w = this.origSceneW;
+  var h = this.origSceneH;
+
+  this.zimba = this.draw.image('images/zimba_longhole.svg', w, h);
+  this.scene.add(this.zimba);
+  this.zimba
+    .x(-30)
+    .animate(6000)
+    .x(6)
+    .loop()
+  ;
+
+  this.scooptram = this.draw.image('images/scooptram.svg', w, h);
+  this.scene.add(this.scooptram);
+  this.scooptram
+    .x(-30)
+    .animate(6000)
+    .x(6)
+    .loop()
+  ;
+
+  this.headings.haulage = this.Heading('Haulage_Video', 'haulage', 4.4, 325, 530);
 
   this.scene
+    .add(this.haulage);
+
+  this.sceneHeadings
     .add(this.headings.haulage);
 
   return this;
