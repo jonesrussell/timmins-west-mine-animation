@@ -9,8 +9,18 @@ SVG.Elevator = SVG.invent({
             this.startX = x;
             this.startY = y;
             this.move(x, y);
-            this.duration = 20000;
-            this.elevatorTo = -470;
+
+            this.transformer = this.doc().element('symbol');
+            var self = this;
+            this.transformer.el = self;
+            this.transformer.gos([
+               { y: -96, duration: 5000 }
+              , { y: -270, duration: 5000 }
+              , { y: -470, duration: 5000 }
+              , { y: -270, duration: 5000 }
+              , { y: -96, duration: 5000 }
+              , { y: 0, duration: 5000 }
+            ]);
 
             this.clip = this.doc()
               .rect(1366, 700)
@@ -29,25 +39,5 @@ SVG.Elevator = SVG.invent({
         elevator: function(x, y) {
             return this.put(new SVG.Elevator).build(x, y);
         }
-    }
-});
-
-SVG.extend(SVG.Elevator, {
-    go: function() {
-        var self = this;
-        this.elevatorBody.animate(this.duration)
-          .move(this.startX, this.elevatorTo)
-          .after(function(){
-            self.goBack();
-          });
-        return this;
-    },
-    goBack: function() {
-        var self = this;
-        this.elevatorBody.animate(this.duration)
-          .move(this.startX, this.startY)
-          .after(function(){
-              self.go();
-          });
     }
 });
