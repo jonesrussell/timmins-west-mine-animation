@@ -19,13 +19,16 @@ SVGjsAnim.prototype.Development = function() {
     .loop()
   ;
 
-  this.groundSupport = this.draw.image('images/ground_support.svg', w, h);
-  this.scene.add(this.groundSupport);
-  this.groundSupport
-    .x(-40)
-    .animate(6000)
-    .x(21)
-    .loop()
+//  this.groundSupport = this.draw.image('images/ground_support.svg', w, h);
+  var use  = this.draw.use('GS_Truck_Body', 'images/ground_support.svg', w, h)
+  console.log(use);
+  this.scene.add(use);
+//  this.scene.add(this.groundSupport);
+//  this.groundSupport
+//    .x(-30)
+//    .animate(6000)
+//    .x(21)
+//    .loop()
   ;
 
   this.jumboDrill = this.draw.image('images/jumbo_drill.svg', w, h);
