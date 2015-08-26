@@ -40,7 +40,7 @@ SVGjsAnim.prototype.Hoisting = function() {
 
   this.go = function() {
     this.skip.go();
-    this.elevator.go();
+    this.elevator.transformer.go();
 //    this.truck.go();
 //    this.rockBreaker.go();
   };

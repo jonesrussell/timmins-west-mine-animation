@@ -10,6 +10,9 @@ function SVGjsAnim(id)
   this.scene = this.draw
     .group()
     .attr({ id: 'scene' });
+  this.sceneHeadings = this.draw
+    .group()
+    .attr({ id: 'scene-headings' });
 
   this.origSceneW = 1366;
   this.origSceneH = 700;
@@ -25,12 +28,15 @@ SVGjsAnim.prototype.Scene = function() {
 
   EventBus.addEventListener('clicked_Scene', function(){
     var scene = this.scene;
+    var headingName = scene.data('active-heading');
+    scene.data('active-heading', null);
     if (scene.hasClass('zoom-out')) {
       scene.removeClass('zoom-out');
       scene.animate()
         .transform(new SVG.Matrix);
 
-      this.headings.development
+      console.log(headingName);
+      this.headings[headingName]
         .removeClass('action')
         .addClass('zoom-in');
     }
@@ -38,6 +44,7 @@ SVGjsAnim.prototype.Scene = function() {
 
   EventBus.addEventListener('clicked_heading', function(e, headingName, scale, cx, cy){
     var scene = this.scene;
+    scene.data('active-heading', headingName);
     var dev = this.headings[headingName];
     if (dev.hasClass('zoom-in')) {
       dev.removeClass('zoom-in')
@@ -57,7 +64,7 @@ SVGjsAnim.prototype.Scene = function() {
     event.stopPropagation();
   }, this);
 
-
+  this.scene.add(this.sceneHeadings);
 };
 
 SVGjsAnim.prototype.headings = {};
@@ -78,6 +85,8 @@ SVGjsAnim.prototype.build = function() {
     var w = this.origSceneW;
     var h = this.origSceneH;
 
+    this.HeadingsSVG();
+
     var background    = this.draw.image('images/background.svg', w, h);
     this.scene.add(background);
 
@@ -87,8 +96,8 @@ SVGjsAnim.prototype.build = function() {
       .add(clouds.clone().move(-w, 0));
     this.scene.add(this.cloudGroup);
 
-    var equipment    = this.draw.image('images/equipment.svg', w, h);
-    this.scene.add(equipment);
+/*    var equipment    = this.draw.image('images/equipment.svg', w, h);
+    this.scene.add(equipment);*/
 
     var text    = this.draw.image('images/text.svg', w, h);
     this.scene.add(text);

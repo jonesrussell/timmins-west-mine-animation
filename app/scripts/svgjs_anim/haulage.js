@@ -6,17 +6,34 @@ SVGjsAnim.prototype.Haulage = function() {
     .group()
     .attr('id', 'haulage');
 
-  var svgjsanim = this;
+  // IE doesn't read image size
+  var w = this.origSceneW;
+  var h = this.origSceneH;
 
-  this.headings.haulage = this.draw
-    .use('Haulage_Video', 'images/headings.svg')
-    .move(-150, -667)
-    .click(function(){
-      svgjsanim.scene
-        .animate()
-        .transform({ scaleX: 4.9, scaleY: 4.9, cx: 1240, cy: 690 });
-    });
+  this.zimba = this.draw.image('images/zimba_longhole.svg', w, h);
+  this.scene.add(this.zimba);
+  this.zimba
+    .x(-30)
+    .animate(6000)
+    .x(6)
+    .loop()
+  ;
+
+  this.scooptram = this.draw.image('images/scooptram.svg', w, h);
+  this.scene.add(this.scooptram);
+  this.scooptram
+    .x(-30)
+    .animate(6000)
+    .x(6)
+    .loop()
+  ;
+
+  this.headings.haulage = this.Heading('Haulage_Video', 'haulage', 4.4, 325, 530);
+
   this.scene
+    .add(this.haulage);
+
+  this.sceneHeadings
     .add(this.headings.haulage);
 
   return this;
