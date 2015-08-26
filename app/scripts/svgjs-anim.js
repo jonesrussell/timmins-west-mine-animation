@@ -21,17 +21,6 @@ function SVGjsAnim(id)
   this.draw.attr('preserveAspectRatio', 'xMidYMax meet');
 }
 
-SVGjsAnim.prototype.Heading = function(svgId, id, scale, cx, cy) {
-  return this.draw
-    .use(svgId, 'images/headings.svg')
-    .move(-150, -667)
-    .addClass('zoom-in')
-    .click(function(){
-      EventBus.dispatch('clicked_heading', this, id, scale, cx, cy);
-    })
-  ;
-};
-
 SVGjsAnim.prototype.Scene = function() {
   this.scene.click(function(){
     EventBus.dispatch('clicked_Scene');
@@ -96,6 +85,8 @@ SVGjsAnim.prototype.build = function() {
     var w = this.origSceneW;
     var h = this.origSceneH;
 
+    this.HeadingsSVG();
+
     var background    = this.draw.image('images/background.svg', w, h);
     this.scene.add(background);
 
@@ -105,8 +96,8 @@ SVGjsAnim.prototype.build = function() {
       .add(clouds.clone().move(-w, 0));
     this.scene.add(this.cloudGroup);
 
-    var equipment    = this.draw.image('images/equipment.svg', w, h);
-    this.scene.add(equipment);
+/*    var equipment    = this.draw.image('images/equipment.svg', w, h);
+    this.scene.add(equipment);*/
 
     var text    = this.draw.image('images/text.svg', w, h);
     this.scene.add(text);
