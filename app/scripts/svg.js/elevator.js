@@ -1,6 +1,9 @@
 'use strict';
 /*global SVG */
 
+// @TODO
+// - TRASH TRANSFORMER
+// - TRASH EventBus - Profile it
 SVG.Elevator = SVG.invent({
     create: 'g',
     inherit: SVG.G,
