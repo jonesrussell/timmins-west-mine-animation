@@ -2,13 +2,7 @@
 /*global SVGjsAnim, mill */
 
 SVGjsAnim.prototype.images = [
-    'images/arrow_left.svg',
-    'images/arrow_right.svg',
-    'images/background.svg',
-    'images/truck/truck_body.svg',
-    'images/truck/truck_dump.svg',
-    'images/truck/truck_tires.svg',
-    'images/video.svg'
+  'images/master.svg'
 ];
 
 SVGjsAnim.prototype.preloadedImages = false;
