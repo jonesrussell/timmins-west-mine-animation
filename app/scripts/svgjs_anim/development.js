@@ -21,17 +21,17 @@ SVGjsAnim.prototype.Development = function() {
 
   // Ground Support Bits
   this.gsBits = this.draw.group();
-  var gsBit1  = this.draw.use('GS_Bit_1', 'images/master.svg').opacity(0);
-  var gsBit2  = this.draw.use('GS_Bit_2', 'images/master.svg').opacity(0);
-  var gsBit3  = this.draw.use('GS_Bit_3', 'images/master.svg').opacity(0);
-  var gsBit4  = this.draw.use('GS_Bit_4', 'images/master.svg').opacity(0);
-  var gsBit5  = this.draw.use('GS_Bit_5', 'images/master.svg').opacity(0);
-  var gsBit6  = this.draw.use('GS_Bit_6', 'images/master.svg').opacity(0);
-  var gsBit7  = this.draw.use('GS_Bit_7', 'images/master.svg').opacity(0);
-  var gsBit8  = this.draw.use('GS_Bit_8', 'images/master.svg').opacity(0);
-  var gsBit9  = this.draw.use('GS_Bit_9', 'images/master.svg').opacity(0);
-  var gsBit10  = this.draw.use('GS_Bit_10', 'images/master.svg').opacity(0);
-  var gsBit11  = this.draw.use('GS_Bit_11', 'images/master.svg').opacity(0);
+  var gsBit1  = this.draw.use('GS_Bit_8', 'images/master.svg').opacity(0);
+  var gsBit2  = this.draw.use('GS_Bit_9', 'images/master.svg').opacity(0);
+  var gsBit3  = this.draw.use('GS_Bit_10', 'images/master.svg').opacity(0);
+  var gsBit4  = this.draw.use('GS_Bit_11', 'images/master.svg').opacity(0);
+  var gsBit5  = this.draw.use('GS_Bit_12', 'images/master.svg').opacity(0);
+  var gsBit6  = this.draw.use('GS_Bit_13', 'images/master.svg').opacity(0);
+  var gsBit7  = this.draw.use('GS_Bit_14', 'images/master.svg').opacity(0);
+  var gsBit8  = this.draw.use('GS_Bit_15', 'images/master.svg').opacity(0);
+  var gsBit9  = this.draw.use('GS_Bit_16', 'images/master.svg').opacity(0);
+  var gsBit10  = this.draw.use('GS_Bit_17', 'images/master.svg').opacity(0);
+  var gsBit11  = this.draw.use('GS_Bit_18', 'images/master.svg').opacity(0);
   this.gsBits
     .add(gsBit1)
     .add(gsBit2)
