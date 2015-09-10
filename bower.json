@@ -2,7 +2,7 @@
   "name": "bell-creek-mill",
   "private": true,
   "dependencies": {
-    "svg.js": "~2.0.1",
+    "svg.js": "https://github.com/wout/svg.js.git#ad9a503ba6526cbc066c01bc3199dd9b8c680b7a",
     "modernizr": "~2.8.3",
     "classie": "~1.0.1",
     "q": "https://github.com/kriskowal/q.git#1.0.1",
