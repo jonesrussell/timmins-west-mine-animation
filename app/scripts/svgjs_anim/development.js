@@ -20,7 +20,10 @@ SVGjsAnim.prototype.Development = function() {
   ;
 
   // Ground Support Truck
-  this.gsTruck = this.draw.group().x(-30);
+  this.gsTruck = this.draw
+    .group()
+    .x(-30)
+    .attr('id', 'gs-truck');
   this.gsTruckHole  = this.draw.use('GS_Truck_Hole', 'images/master.svg', w, h);
   this.gsTruckJacks  = this.draw.use('GS_Truck_Jacks', 'images/master.svg', w, h);
   this.gsTruckBody  = this.draw.use('GS_Truck_Body', 'images/master.svg', w, h);
@@ -104,7 +107,7 @@ SVGjsAnim.prototype.GSTruckForward = function() {
 
   return this.gsTruck
     .animate()
-    .dx(this.gsTruckForwardPath.shift());
+    .dx(this.gsTruckForwardPath.shift())
   ;
 };
 
