@@ -90,21 +90,16 @@ SVGjsAnim.prototype.build = function() {
     var background    = this.draw.image('images/background.svg', w, h);
     this.scene.add(background);
 
-    var clouds        = this.draw.image('images/clouds.svg', w, h);
+    var clouds = this.draw.image('images/clouds.svg', w, h);
     this.cloudGroup = this.draw.group().attr({ id: 'cloud-group' })
       .add(clouds)
       .add(clouds.clone().move(-w, 0));
     this.scene.add(this.cloudGroup);
 
-/*    var equipment    = this.draw.image('images/equipment.svg', w, h);
-    this.scene.add(equipment);*/
-
-    var text    = this.draw.image('images/text.svg', w, h);
+    var text = this.draw.image('images/text.svg', w, h);
     this.scene.add(text);
 
-    this.Hoisting()
-      .go();
-
+    this.Hoisting();
     this.Development();
     this.Haulage();
     this.Skipping();

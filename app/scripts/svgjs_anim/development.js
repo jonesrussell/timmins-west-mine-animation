@@ -146,9 +146,7 @@ SVGjsAnim.prototype.GSBitIn = function() {
   if (typeof this.gsCurrentBitIndex === 'undefined') {
     this.gsCurrentBitIndex = 0;
   }
-//  console.log(this.gsCurrentBitIndex);
   var bit = this.gsBits.get(this.gsCurrentBitIndex);
-//  console.log(bit);
   this.gsCurrentBitIndex++;
   return bit
     .animate()
@@ -175,8 +173,6 @@ SVGjsAnim.prototype.GSTiresForward = function() {
   var y = this.gsTruckTire2.bbox().y + 18.4;
   x = this.gsTruck.bbox().x + 3.9;
   y = this.gsTruck.bbox().y + 18.4;
-//  console.log(x);
-//  console.log(y);
   return this.gsTruckTire1
     .animate(1000)
     .rotate(360, x, y);
@@ -190,9 +186,6 @@ SVGjsAnim.prototype.GSTruckGo = function() {
   }
   this.GSDrillDown().after(function(){
     self.GSHoleFill();
-    console.log(self.GSTruckGoC);
-    console.log(self.GSTruckGoMax);
-    console.log('bar');
     self.GSBitIn().after(function(){
       if (self.GSTruckGoC >= self.GSTruckGoMax) { return; }
       self.GSJacksUp();
