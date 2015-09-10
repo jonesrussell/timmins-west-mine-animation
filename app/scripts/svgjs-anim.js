@@ -71,6 +71,7 @@ SVGjsAnim.prototype.headings = {};
 
 SVGjsAnim.prototype.init = function() {
     var svgjsAnim = mill;
+    // @TODO skip if no images to preload
     if (svgjsAnim.preloadedImages) {
         var loadingImage = document.getElementById('anim-loading');
         loadingImage.parentNode.removeChild(loadingImage);
@@ -82,22 +83,23 @@ SVGjsAnim.prototype.init = function() {
 };
 
 SVGjsAnim.prototype.build = function() {
-    var w = this.origSceneW;
-    var h = this.origSceneH;
+//    var w = this.origSceneW;
+//    var h = this.origSceneH;
 
     this.HeadingsSVG();
 
-    var background    = this.draw.image('images/background.svg', w, h);
+    var background = this.draw.use('Background', 'images/master.svg');
     this.scene.add(background);
 
-    var clouds = this.draw.image('images/clouds.svg', w, h);
-    this.cloudGroup = this.draw.group().attr({ id: 'cloud-group' })
-      .add(clouds)
-      .add(clouds.clone().move(-w, 0));
-    this.scene.add(this.cloudGroup);
-
-    var text = this.draw.image('images/text.svg', w, h);
-    this.scene.add(text);
+    // @TODO clouds linearGradient doesn't work
+    // may have to fall back to clouds.svg
+//    var clouds = this.draw.image('images/clouds.svg', w, h);
+    var clouds = this.draw.use('Clouds', 'images/master.svg');
+    this.scene.add(clouds);
+//    this.cloudGroup = this.draw.group().attr({ id: 'cloud-group' })
+//      .add(clouds);
+//      .add(clouds.clone().move(-w, 0));
+//    this.scene.add(this.cloudGroup);
 
     this.Hoisting();
     this.Development();
@@ -111,8 +113,8 @@ SVGjsAnim.prototype.build = function() {
 
 SVGjsAnim.prototype.start = function()
 {
-  this.cloudGroup
+/*  this.cloudGroup
     .animate(380000, '-', 0)
     .move(this.origSceneW, 0)
-    .loop();
+    .loop();*/
 };
