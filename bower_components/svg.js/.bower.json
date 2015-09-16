@@ -1,6 +1,5 @@
 {
   "name": "svg.js",
-  "version": "2.0.5",
   "homepage": "http://svgjs.com/",
   "authors": [
     "Wout Fierens <wout@impinc.co.uk>"
@@ -19,13 +18,12 @@
     "src/",
     "gulpfile.js"
   ],
-  "_release": "2.0.5",
+  "_release": "ad9a503ba6",
   "_resolution": {
-    "type": "version",
-    "tag": "2.0.5",
-    "commit": "d24424f8ea259027bd6275478d3cc05391b269bc"
+    "type": "commit",
+    "commit": "ad9a503ba6526cbc066c01bc3199dd9b8c680b7a"
   },
-  "_source": "git://github.com/wout/svg.js.git",
-  "_target": "~2.0.1",
-  "_originalSource": "svg.js"
+  "_source": "https://github.com/wout/svg.js.git",
+  "_target": "ad9a503ba6526cbc066c01bc3199dd9b8c680b7a",
+  "_originalSource": "https://github.com/wout/svg.js.git"
 }

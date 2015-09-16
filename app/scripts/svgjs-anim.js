@@ -71,6 +71,7 @@ SVGjsAnim.prototype.headings = {};
 
 SVGjsAnim.prototype.init = function() {
     var svgjsAnim = mill;
+    // @TODO skip if no images to preload
     if (svgjsAnim.preloadedImages) {
         var loadingImage = document.getElementById('anim-loading');
         loadingImage.parentNode.removeChild(loadingImage);
@@ -87,7 +88,7 @@ SVGjsAnim.prototype.build = function() {
 
     this.HeadingsSVG();
 
-    var background    = this.draw.image('images/background.svg', w, h);
+    var background = this.draw.use('Background', 'images/master.svg');
     this.scene.add(background);
 
     var clouds = this.draw.image('images/clouds.svg', w, h);
@@ -95,9 +96,7 @@ SVGjsAnim.prototype.build = function() {
       .add(clouds)
       .add(clouds.clone().move(-w, 0));
     this.scene.add(this.cloudGroup);
-
-    var text = this.draw.image('images/text.svg', w, h);
-    this.scene.add(text);
+    this.scene.add(this.cloudGroup);
 
     this.Hoisting();
     this.Development();
@@ -111,8 +110,9 @@ SVGjsAnim.prototype.build = function() {
 
 SVGjsAnim.prototype.start = function()
 {
-  this.cloudGroup
+  return this.cloudGroup
     .animate(380000, '-', 0)
     .move(this.origSceneW, 0)
-    .loop();
+    .loop()
+  ;
 };
