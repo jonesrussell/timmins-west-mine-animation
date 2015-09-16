@@ -105,6 +105,9 @@ SVGjsAnim.prototype.build = function() {
     this.Shop();
     this.Stoping();
 
+    var foreground = this.draw.use('Foreground', 'images/master.svg');
+    this.scene.add(foreground);
+
     this.Scene();
 };
 
