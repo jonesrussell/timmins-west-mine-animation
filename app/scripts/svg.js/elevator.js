@@ -34,7 +34,6 @@ SVG.Elevator = SVG.invent({
     elevator: function() {
       return this.put(new SVG.Elevator)
         .build();
-      ;
     }
   }
 });
