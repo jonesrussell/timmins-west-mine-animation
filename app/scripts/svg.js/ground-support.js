@@ -60,7 +60,7 @@ SVG.extend(SVG.GroundSupport, {
     this.bits.each(function(i, children) {
         this.opacity(0);
     });
-    return this.x(-41.1);
+    return this.x(0);
   }
   , jacksUp: function() {
     return this.truckJacks
