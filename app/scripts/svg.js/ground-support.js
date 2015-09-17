@@ -57,7 +57,7 @@ SVG.extend(SVG.GroundSupport, {
     this.goCounter = 1;
     this.bitIndex = 0;
     this.c = 1;
-    this.bits.each(function(i, children) {
+    this.bits.each(function() {
         this.opacity(0);
     });
     return this.x(0);
