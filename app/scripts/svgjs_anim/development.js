@@ -10,14 +10,8 @@ SVGjsAnim.prototype.Development = function() {
   var w = this.origSceneW;
   var h = this.origSceneH;
 
-  this.scooptramTimmins2 = this.draw.image('images/scooptram_timmins2.svg', w, h);
-  this.development.add(this.scooptramTimmins2);
-  this.scooptramTimmins2
-    .x(-40)
-    .animate(6000)
-    .x(6)
-    .loop()
-  ;
+  this.scooptramDevelopment = this.draw.scooptramDevelopment();
+  this.development.add(this.scooptramDevelopment);
 
   // Ground Support Bits
   this.gsBits = this.draw.group();
