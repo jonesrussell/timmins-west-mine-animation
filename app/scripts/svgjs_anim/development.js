@@ -51,14 +51,8 @@ SVGjsAnim.prototype.Development = function() {
   this.development.add(this.gsTruck);
   this.gsTruck.go();
 
-  this.jumboDrill = this.draw.image('images/jumbo_drill.svg', w, h);
+  this.jumboDrill = this.draw.jumboDrill();
   this.development.add(this.jumboDrill);
-  this.jumboDrill
-    .x(-50)
-    .animate(5000)
-    .x(0)
-    .loop()
-  ;
 
   this.headings.development = this.Heading('Development_Video_1_', 'development', 4.9, 1240, 690);
 
