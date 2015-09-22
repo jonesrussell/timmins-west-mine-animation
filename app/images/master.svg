@@ -4856,6 +4856,16 @@
 			<polygon fill="#BA8E2D" points="991.072,666.615 991.072,667.604 991.154,667.604 991.238,667.232 991.238,666.615 			"/>
 			<rect x="991.23" y="666.79" width="0.18" height="0.474"/>
 		</g>
+		<g id="Jumbo_Drill_Holes">
+			<polygon id="Jumbo_Drill_Hole_4" fill="#FFFFFF" points="1087.899,667.174 1077.221,667.192 1077.183,666.674 1087.862,666.655 
+							"/>
+			<polygon id="Jumbo_Drill_Hole_3" fill="#FFFFFF" points="1087.899,669.216 1077.221,669.234 1077.183,668.716 1087.862,668.697 
+							"/>
+			<polygon id="Jumbo_Drill_Hole_2" fill="#FFFFFF" points="1087.806,663.711 1077.127,663.729 1077.089,663.211 1087.769,663.192 
+							"/>
+			<polygon id="Jumbo_Drill_Hole_1" fill="#FFFFFF" points="1087.89,660.882 1077.211,660.9 1077.173,660.382 1087.853,660.363 			
+				"/>
+		</g>
 	</g>
 	<g id="Scooptram_Development">
 		<g id="Scooptram_Development_Parts">
