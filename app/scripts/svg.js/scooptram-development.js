@@ -20,8 +20,8 @@ SVG.ScooptramDevelopment = SVG.invent({
       ;
       this.scooptram = this.doc()
         .group()
-        .add(this.scooptramParts)
         .add(this.scooptramPile)
+        .add(this.scooptramParts)
 //        .clipWith(this.clip)
       ;
       this.add(this.scooptram);
@@ -43,7 +43,7 @@ SVG.extend(SVG.ScooptramDevelopment, {
     var self = this;
     this.scooptram
       .animate(12000)
-      .x(87)
+      .x(96)
       .loop(1000, true)
       .during(function(){
         var r = this.fx.situation.reversing;
