@@ -45,9 +45,9 @@ SVGjsAnim.prototype.Scene = function() {
   EventBus.addEventListener('clicked_heading', function(e, headingName, scale, cx, cy){
     var scene = this.scene;
     scene.data('active-heading', headingName);
-    var dev = this.headings[headingName];
-    if (dev.hasClass('zoom-in')) {
-      dev.removeClass('zoom-in')
+    var head = this.headings[headingName];
+    if (head.hasClass('zoom-in')) {
+      head.removeClass('zoom-in')
         .addClass('action');
       scene
         .animate()
