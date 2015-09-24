@@ -6,9 +6,32 @@ SVGjsAnim.prototype.Skipping = function() {
     .group()
     .attr('id', 'skipping');
 
-  this.headings.skipping = this.Heading('ORE__x26__WASTE_SKIPPING_Video', 'skipping', 4.9, 690, 675);
+  // IE doesn't read image size
+  var w = this.origSceneW;
+  var h = this.origSceneH;
 
-  this.scene.add(this.skipping);
+  this.holeDrill = this.draw.image('images/hole_drill.svg', w, h);
+  this.scene.add(this.holeDrill);
+  this.holeDrill
+    .x(-40)
+    .animate(6000)
+    .x(6)
+    .loop()
+  ;
+
+  this.scooptramTimmins = this.draw.image('images/scooptram_timmins.svg', w, h);
+  this.scene.add(this.scooptramTimmins);
+  this.scooptramTimmins
+    .x(-40)
+    .animate(6000)
+    .x(6)
+    .loop()
+  ;
+
+  this.headings.skipping = this.Heading('STOPING', 'skipping', 4.9, 1220, 525);
+
+  this.scene
+    .add(this.skipping);
   this.sceneHeadings
     .add(this.headings.skipping);
 

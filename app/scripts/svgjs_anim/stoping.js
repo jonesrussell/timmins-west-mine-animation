@@ -28,7 +28,7 @@ SVGjsAnim.prototype.Stoping = function() {
     .loop()
   ;
 
-  this.headings.stoping = this.Heading('STOPING', 'stoping', 4.9, 1240, 490);
+  this.headings.stoping = this.Heading('STOPING', 'stoping', 4.9, 1220, 525);
 
   this.scene
     .add(this.stoping);

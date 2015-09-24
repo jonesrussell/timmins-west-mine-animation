@@ -24,7 +24,8 @@ SVG.Elevator = SVG.invent({
       this.add(this.clip);
       this.elevatorBody = this.doc()
         .image('images/elevator.svg', 1366, 700)
-        .clipWith(this.clip);
+        .clipWith(this.clip)
+      ;
       this.add(this.elevatorBody);
 
       return this;
