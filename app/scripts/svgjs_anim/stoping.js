@@ -19,19 +19,17 @@ SVGjsAnim.prototype.Stoping = function() {
     .loop()
   ;
 
-  this.scooptramTimmins = this.draw.image('images/scooptram_timmins.svg', w, h);
-  this.scene.add(this.scooptramTimmins);
-  this.scooptramTimmins
-    .x(-40)
-    .animate(6000)
-    .x(6)
-    .loop()
+  this.scooptramStoping = this.draw.scooptram()
+    .move(0, -61.5)
+    .setX(54)
   ;
-
-  this.headings.stoping = this.Heading('STOPING', 'stoping', 4.9, 1220, 525);
+  this.stoping.add(this.scooptramStoping);
+  this.scooptramStoping.go();
 
   this.scene
     .add(this.stoping);
+
+  this.headings.stoping = this.Heading('STOPING', 'stoping', 4.9, 1220, 525);
   this.sceneHeadings
     .add(this.headings.stoping);
 
