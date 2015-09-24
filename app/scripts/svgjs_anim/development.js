@@ -6,10 +6,6 @@ SVGjsAnim.prototype.Development = function() {
     .group()
     .attr('id', 'development');
 
-  // IE doesn't read image size
-  var w = this.origSceneW;
-  var h = this.origSceneH;
-
   this.scooptramDevelopment = this.draw.scooptramDevelopment();
   this.development.add(this.scooptramDevelopment);
 
