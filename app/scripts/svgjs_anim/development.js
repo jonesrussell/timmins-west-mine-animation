@@ -6,8 +6,9 @@ SVGjsAnim.prototype.Development = function() {
     .group()
     .attr('id', 'development');
 
-  this.scooptramDevelopment = this.draw.scooptramDevelopment();
+  this.scooptramDevelopment = this.draw.scooptram();
   this.development.add(this.scooptramDevelopment);
+  this.scooptramDevelopment.go();
 
   // Ground Support Bits
   this.gsBits = this.draw.group();
