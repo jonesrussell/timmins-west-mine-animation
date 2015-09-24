@@ -19,14 +19,13 @@ SVGjsAnim.prototype.Haulage = function() {
     .loop()
   ;
 
-  this.scooptram = this.draw.image('images/scooptram.svg', w, h);
-  this.scene.add(this.scooptram);
-  this.scooptram
-    .x(-30)
-    .animate(6000)
-    .x(6)
-    .loop()
+  this.scooptramHaulage = this.draw.scooptram()
+    .move(-700, -42.5)
+    .setX(50)
   ;
+  this.haulage.add(this.scooptramHaulage);
+  this.scooptramHaulage.go();
+
 
   this.headings.haulage = this.Heading('Haulage_Video', 'haulage', 4.4, 325, 530);
 
