@@ -12,33 +12,62 @@ SVG.Skip = SVG.invent({
           this.duration = 20000;
           this.skipTo = -470;
 
-          // Skip
-          this.clip = this.doc()
-            .rect(1366, 700)
-            .move(0, 217);
-          this.add(this.clip);
-          this.skipBody = this.doc()
-            .image('images/skip.svg', 1366, 700)
-            .clipWith(this.clip);
-          this.add(this.skipBody);
-
+          var img = 'images/master.svg';
           // Chain
           this.chain = this.doc()
-            .use('Loading_Bin_Chain_1_', 'images/master.svg')
+            .use('Loading_Bin_Chain_1_', img)
           ;
           this.add(this.chain);
 
           // Gate upper
           this.gateUpper = this.doc()
-            .use('Feed_Chute_Knife_Gate', 'images/master.svg')
+            .use('Feed_Chute_Knife_Gate', img)
           ;
           this.add(this.gateUpper);
 
           // Gate lower
           this.gateLower = this.doc()
-            .use('Measuring_Flask_Knife_Gate', 'images/master.svg')
+            .use('Measuring_Flask_Knife_Gate', img)
           ;
           this.add(this.gateLower);
+
+          // Measuring box rocks
+          this.rocks1 = this.doc().use('Measuring_Pocket_Rocks_1', img);
+          this.rocks2 = this.doc().use('Measuring_Pocket_Rocks_2', img);
+          this.rocks3 = this.doc().use('Measuring_Pocket_Rocks_3', img);
+          this.rocks4 = this.doc().use('Measuring_Pocket_Rocks_4', img);
+          this.add(this.rocks1)
+            .add(this.rocks2)
+            .add(this.rocks3)
+            .add(this.rocks4)
+          ;
+
+          // Skip
+          this.rocks5 = this.doc().use('Skip_Rocks_1', img);
+          this.rocks6 = this.doc().use('Skip_Rocks_2', img);
+          this.rocks7 = this.doc().use('Skip_Rocks_3', img);
+          this.rocks8 = this.doc().use('Skip_Rocks_4', img);
+          this.skipRocks = this.doc()
+            .group()
+            .add(this.rocks5)
+            .add(this.rocks6)
+            .add(this.rocks7)
+            .add(this.rocks8)
+          ;
+          this.clip = this.doc().rect(1366, 700).move(0, 217);
+          this.skipBody = this.doc().use('Skip_1_', img);
+          this.skipBodyWrapper = this.doc()
+            .group()
+            .add(this.skipBody)
+            .add(this.skipRocks)
+          ;
+          this.skipWrapper = this.doc()
+            .group()
+            .add(this.clip)
+            .add(this.skipBodyWrapper)
+            .clipWith(this.clip)
+          ;
+          this.add(this.skipWrapper);
 
           // Ore falling in skipping
           this.rocksClip = this.doc()
@@ -46,7 +75,7 @@ SVG.Skip = SVG.invent({
             .move(771, 613)
           ;
           this.rocks = this.doc()
-            .use('Rocks_from_ore_bin_to_skip', 'images/master.svg')
+            .use('Rocks_from_ore_bin_to_skip', img)
           ;
           this.rocksWrapper = this.doc()
             .group()
@@ -77,7 +106,7 @@ SVG.extend(SVG.Skip, {
     , go: function() {
         var self = this;
         self.spillRocks();
-        self.skipBody.animate(this.duration)
+        self.skipBodyWrapper.animate(this.duration)
           .move(this.startX, this.skipTo)
           .after(function(){
             self.goBack();
@@ -86,7 +115,7 @@ SVG.extend(SVG.Skip, {
     }
     , goBack: function() {
         var self = this;
-        this.skipBody.animate(this.duration)
+        this.skipBodyWrapper.animate(this.duration)
           .move(this.startX, this.startY)
           .after(function(){
               self.go();
