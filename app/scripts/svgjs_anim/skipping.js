@@ -7,6 +7,10 @@ SVGjsAnim.prototype.Skipping = function() {
     .attr('id', 'skipping');
   this.scene.add(this.skipping);
 
+  this.skip = this.draw.skip();
+  this.skipping.add(this.skip);
+  this.skip.go();
+
   this.headings.skipping = this.Heading('ORE__x26__WASTE_SKIPPING_Video', 'skipping', 4.9, 690, 700);
   this.sceneHeadings.add(this.headings.skipping);
 
