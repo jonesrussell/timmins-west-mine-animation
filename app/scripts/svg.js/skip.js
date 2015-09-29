@@ -5,44 +5,68 @@ SVG.Skip = SVG.invent({
     create: 'g',
     inherit: SVG.G,
     extend: {
-       build: function(x, y) {
-            this.startX = x;
-            this.startY = y;
-            this.move(x, y);
-            this.duration = 20000;
-            this.skipTo = -470;
+       build: function() {
+         this.attr('id', 'animation-skipping');
+         this.startX = 0;
+         this.startY = 0;
+         this.duration = 20000;
+         this.skipTo = -470;
 
-            this.clip = this.doc()
-              .rect(1366, 700)
-              .move(0, 217);
-            this.add(this.clip);
-            this.skipBody = this.doc()
-              .image('images/skip.svg', 1366, 700)
-              .clipWith(this.clip);
+         // Skip
+         this.clip = this.doc()
+           .rect(1366, 700)
+           .move(0, 217);
+         this.add(this.clip);
+         this.skipBody = this.doc()
+           .image('images/skip.svg', 1366, 700)
+           .clipWith(this.clip);
+         this.add(this.skipBody);
 
-            this.add(this.skipBody);
+         // Ore falling in skipping
+         this.rocksClip = this.doc()
+           .rect(10, 10)
+           .move(771, 613)
+         ;
+         this.rocks = this.doc()
+           .use('Rocks_from_ore_bin_to_skip', 'images/master.svg')
+         ;
+         this.rocksWrapper = this.doc()
+           .group()
+           .add(this.rocksClip)
+           .add(this.rocks)
+           .clipWith(this.rocksClip)
+         ;
+         this.add(this.rocksWrapper);
 
-            return this;
-        }
+         return this;
+       }
     },
     construct: {
-        skip: function(x, y) {
-            return this.put(new SVG.Skip).build(x, y);
+        skip: function() {
+            return this.put(new SVG.Skip).build();
         }
     }
 });
 
 SVG.extend(SVG.Skip, {
-    go: function() {
+    spillRocks: function() {
+      this.rocks
+        .animate(10000)
+        .move(85, 75)
+      ;
+      return this;
+    }
+    , go: function() {
         var self = this;
-        this.skipBody.animate(this.duration)
+        self.spillRocks();
+        self.skipBody.animate(this.duration)
           .move(this.startX, this.skipTo)
           .after(function(){
             self.goBack();
           });
         return this;
-    },
-    goBack: function() {
+    }
+    , goBack: function() {
         var self = this;
         this.skipBody.animate(this.duration)
           .move(this.startX, this.startY)
