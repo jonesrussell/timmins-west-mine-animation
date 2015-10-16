@@ -48,6 +48,7 @@ SVGjsAnim.prototype.Scene = function() {
     for(name in this.videos) {
       this.videos[name].container.style.display = 'none';
       this.videos[name].pause();
+      this.videos[name].time(0);
     }
   }, this);
 
