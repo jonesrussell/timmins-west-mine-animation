@@ -27,7 +27,7 @@ SVGjsAnim.prototype.Haulage = function() {
   this.scooptramHaulage.go();
 
 
-  this.headings.haulage = this.Heading('Haulage_Video', 'haulage', 4.4, 325, 530);
+  this.headings.haulage = this.Heading('Haulage_Video', 'haulage', 3.65, 560, 600);
 
   this.scene
     .add(this.haulage);
