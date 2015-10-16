@@ -6,7 +6,7 @@ SVGjsAnim.prototype.Shop = function() {
     .group()
     .attr('id', 'shop');
 
-  this.headings.shop = this.Heading('Shop_Video', 'shop', 4.9, 1240, 690);
+  this.headings.shop = this.Heading('Shop_Video', 'shop', 4.9, 650, 550);
 
   this.scene
     .add(this.shop);

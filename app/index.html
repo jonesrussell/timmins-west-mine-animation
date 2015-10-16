@@ -24,8 +24,8 @@
     <script src="bower_components/EventBus/src/EventBus.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
-<!--    <script charset="ISO-8859-1" src="http://fast.wistia.com/assets/external/E-v1.js"
-async></script>-->
+    <script charset="ISO-8859-1" src="http://fast.wistia.com/assets/external/E-v1.js"
+async></script>
 
     <!-- build:js scripts/animation.js -->
     <script src="scripts/svgjs-anim.js"></script>
@@ -61,7 +61,16 @@ async></script>-->
               SVG.on(window, 'resize', function() {
                 mill.draw.spof();
               });
+
+              // Load wistia videos
+              mill.videos = {};
+              mill.videos.development = Wistia.embed('mnu1eklx4c', { videoFoam: true });
+              mill.videos.shop = Wistia.embed('ll5z0qrodq', { videoFoam: true });
+              mill.videos.skipping = Wistia.embed('w54mvkkt53', { videoFoam: true });
+              mill.videos.haulage = Wistia.embed('s7i9cf2rpc', { videoFoam: true });
+              mill.videos.stoping = Wistia.embed('gbjly4ff3x', { videoFoam: true });
             }
+
         }, false);
         </script>
     </head>
@@ -84,15 +93,13 @@ async></script>-->
         </div><!-- /container -->
 
         <div class="overlay overlay-door">
-            <button type="button" class="overlay-close">Close</button>
+            <button type="button" class="overlay-close" onclick="EventBus.dispatch('stop_video');">Close</button>
             <div class="video-container">
-                <div id="wistia_wy0jb1fb5d" class="wistia_embed video video-receiving"></div>
-                <div id="wistia_3nnwthrq6m" class="wistia_embed video video-crushing"></div>
-                <div id="wistia_snve0g1j7h" class="wistia_embed video video-storage"></div>
-                <div id="wistia_c8zdqadrm5" class="wistia_embed video video-grinding"></div>
-                <div id="wistia_aktom82zan" class="wistia_embed video video-extraction"></div>
-                <div id="wistia_zlgqw4faj4" class="wistia_embed video video-electrowinning"></div>
-                <div id="wistia_ovdskmla9a" class="wistia_embed video video-refining"></div>
+                <div id="wistia_mnu1eklx4c" class="wistia_embed video video-development"></div>
+                <div id="wistia_ll5z0qrodq" class="wistia_embed video video-shop"></div>
+                <div id="wistia_w54mvkkt53" class="wistia_embed video video-skipping"></div>
+                <div id="wistia_s7i9cf2rpc" class="wistia_embed video video-haulage"></div>
+                <div id="wistia_gbjly4ff3x" class="wistia_embed video video-longhole"></div>
             </div>
         </div>
 
