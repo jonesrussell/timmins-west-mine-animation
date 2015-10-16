@@ -35,7 +35,6 @@ SVGjsAnim.prototype.Scene = function() {
       scene.animate()
         .transform(new SVG.Matrix);
 
-      console.log(headingName);
       this.headings[headingName]
         .removeClass('action')
         .addClass('zoom-in');
@@ -59,13 +58,11 @@ SVGjsAnim.prototype.Scene = function() {
         .animate()
         .transform({ scaleX: scale, scaleY: scale, cx: cx, cy: cy })
         .after(function(){
-          console.log('zoomed');
           scene.addClass('zoom-out');
         })
       ;
     } else {
       EventBus.dispatch('play_video', this, headingName);
-      console.log('play video');
     }
     event.stopPropagation();
   }, this);
