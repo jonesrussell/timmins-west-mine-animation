@@ -42,6 +42,12 @@ SVGjsAnim.prototype.Scene = function() {
     }
   }, this);
 
+  EventBus.addEventListener('play_video', function(e, name){
+    this.videos[name].container.style.display = 'block';
+    document.getElementById('trigger-overlay').click();
+    this.videos[name].play();
+  }, this);
+
   EventBus.addEventListener('clicked_heading', function(e, headingName, scale, cx, cy){
     var scene = this.scene;
     scene.data('active-heading', headingName);
@@ -58,7 +64,7 @@ SVGjsAnim.prototype.Scene = function() {
         })
       ;
     } else {
-      EventBus.dispatch('play_video', this, 'development');
+      EventBus.dispatch('play_video', this, headingName);
       console.log('play video');
     }
     event.stopPropagation();
