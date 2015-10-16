@@ -226,6 +226,11 @@ module.exports = function (grunt) {
     },
 
     svgmin: {
+      options: {
+        plugins: [
+          { cleanupIDs: false }
+        ]
+      },
       dist: {
         files: [{
           expand: true,
@@ -352,9 +357,9 @@ module.exports = function (grunt) {
         'copy:styles'
       ],
       dist: [
-        'copy:styles',
-        'imagemin',
-        'svgmin'
+        'copy:styles'
+        , 'imagemin'
+        , 'svgmin'
       ]
     }
   });
