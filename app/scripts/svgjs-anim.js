@@ -22,50 +22,48 @@ function SVGjsAnim(id)
 }
 
 SVGjsAnim.prototype.Scene = function() {
-  EventBus.addEventListener('clicked_Scene', function(){
-    var scene = this.scene;
-    var headingName = scene.data('active-heading');
-    scene.data('active-heading', null);
-    if (scene.hasClass('zoom-out')) {
-      scene.removeClass('zoom-out');
-      scene.animate()
-        .transform(new SVG.Matrix);
-
-      this.headings[headingName]
-        .removeClass('action')
-        .addClass('zoom-in');
-    }
-  }, this);
-
+  EventBus.addEventListener('clicked_heading', this.zoomIn, this);
+  EventBus.addEventListener('clicked_Scene', this.zoomOut, this);
   EventBus.addEventListener('play_video', this.playVideo, this);
-
   EventBus.addEventListener('stop_video', this.stopVideo, this);
 
-  EventBus.addEventListener('clicked_heading', function(e, headingName, scale, cx, cy){
-    var scene = this.scene;
-    scene.data('active-heading', headingName);
-    var head = this.headings[headingName];
-    if (head.hasClass('zoom-in')) {
-      head.removeClass('zoom-in')
-        .addClass('action');
-      scene
-        .animate()
-        .transform({ scaleX: scale, scaleY: scale, cx: cx, cy: cy })
-        .after(function(){
-          scene.addClass('zoom-out');
-        })
-      ;
-    } else {
-      EventBus.dispatch('play_video', this, headingName);
-    }
-    event.stopPropagation();
-  }, this);
-
-  this.scene.click(function(){
-    EventBus.dispatch('clicked_Scene');
-  });
-
+  this.scene.click(function(){ EventBus.dispatch('clicked_Scene'); });
   this.scene.add(this.sceneHeadings);
+};
+
+SVGjsAnim.prototype.zoomIn = function(e, headingName, scale, cx, cy){
+  var scene = this.scene;
+  scene.data('active-heading', headingName);
+  var head = this.headings[headingName];
+  if (head.hasClass('zoom-in')) {
+    head.removeClass('zoom-in')
+      .addClass('action');
+    scene
+      .animate()
+      .transform({ scaleX: scale, scaleY: scale, cx: cx, cy: cy })
+      .after(function(){
+        scene.addClass('zoom-out');
+      })
+    ;
+  } else {
+    EventBus.dispatch('play_video', this, headingName);
+  }
+  event.stopPropagation();
+};
+
+SVGjsAnim.prototype.zoomOut = function() {
+  var scene = this.scene;
+  var headingName = scene.data('active-heading');
+  scene.data('active-heading', null);
+  if (scene.hasClass('zoom-out')) {
+    scene.removeClass('zoom-out');
+    scene.animate()
+      .transform(new SVG.Matrix);
+
+    this.headings[headingName]
+      .removeClass('action')
+      .addClass('zoom-in');
+  }
 };
 
 SVGjsAnim.prototype.playVideo = function(e, name) {
