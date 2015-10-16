@@ -22,10 +22,6 @@ function SVGjsAnim(id)
 }
 
 SVGjsAnim.prototype.Scene = function() {
-  this.scene.click(function(){
-    EventBus.dispatch('clicked_Scene');
-  });
-
   EventBus.addEventListener('clicked_Scene', function(){
     var scene = this.scene;
     var headingName = scene.data('active-heading');
@@ -47,6 +43,14 @@ SVGjsAnim.prototype.Scene = function() {
     this.videos[name].play();
   }, this);
 
+  EventBus.addEventListener('stop_video', function(){
+    var name;
+    for(name in this.videos) {
+      this.videos[name].container.style.display = 'none';
+      this.videos[name].pause();
+    }
+  }, this);
+
   EventBus.addEventListener('clicked_heading', function(e, headingName, scale, cx, cy){
     var scene = this.scene;
     scene.data('active-heading', headingName);
@@ -66,6 +70,10 @@ SVGjsAnim.prototype.Scene = function() {
     }
     event.stopPropagation();
   }, this);
+
+  this.scene.click(function(){
+    EventBus.dispatch('clicked_Scene');
+  });
 
   this.scene.add(this.sceneHeadings);
 };
