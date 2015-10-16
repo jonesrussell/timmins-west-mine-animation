@@ -37,20 +37,9 @@ SVGjsAnim.prototype.Scene = function() {
     }
   }, this);
 
-  EventBus.addEventListener('play_video', function(e, name){
-    this.videos[name].container.style.display = 'block';
-    document.getElementById('trigger-overlay').click();
-    this.videos[name].play();
-  }, this);
+  EventBus.addEventListener('play_video', this.playVideo, this);
 
-  EventBus.addEventListener('stop_video', function(){
-    var name;
-    for(name in this.videos) {
-      this.videos[name].container.style.display = 'none';
-      this.videos[name].pause();
-      this.videos[name].time(0);
-    }
-  }, this);
+  EventBus.addEventListener('stop_video', this.stopVideo, this);
 
   EventBus.addEventListener('clicked_heading', function(e, headingName, scale, cx, cy){
     var scene = this.scene;
@@ -77,6 +66,21 @@ SVGjsAnim.prototype.Scene = function() {
   });
 
   this.scene.add(this.sceneHeadings);
+};
+
+SVGjsAnim.prototype.playVideo = function(e, name) {
+  this.videos[name].container.style.display = 'block';
+  document.getElementById('trigger-overlay').click();
+  this.videos[name].play();
+};
+
+SVGjsAnim.prototype.stopVideo = function() {
+  var name;
+  for(name in this.videos) {
+    this.videos[name].container.style.display = 'none';
+    this.videos[name].pause();
+    this.videos[name].time(0);
+  }
 };
 
 SVGjsAnim.prototype.headings = {};
