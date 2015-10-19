@@ -5,7 +5,9 @@ SVGjsAnim.prototype.ThunderCreek = function() {
   this.thunderCreek = this.draw
     .group()
     .attr('id', 'thunderCreek');
+  this.scene.add(this.thunderCreek);
 
+  /* Zimba */
   this.zimbaDrill = this.draw.use('TC_Zimba_Longhole_Drill', 'images/master.svg');
   this.zimbaParts = this.draw.use('TC_Zimba_Longhole_Parts', 'images/master.svg');
   this.zimba = this.draw
@@ -20,6 +22,7 @@ SVGjsAnim.prototype.ThunderCreek = function() {
     .loop()
   ;
 
+  /* Scooptram */
   this.scooptramTC = this.draw.scooptram()
     .move(-700, -42.5)
     .setX(50)
@@ -27,12 +30,7 @@ SVGjsAnim.prototype.ThunderCreek = function() {
   this.thunderCreek.add(this.scooptramTC);
   this.scooptramTC.go();
 
-
   this.headings.thunderCreek = this.Heading('Haulage_Video', 'thunderCreek', 3.65, 560, 600);
-
-  this.scene
-    .add(this.thunderCreek);
-
   this.sceneHeadings
     .add(this.headings.thunderCreek);
 
