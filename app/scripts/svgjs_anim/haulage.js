@@ -6,16 +6,17 @@ SVGjsAnim.prototype.Haulage = function() {
     .group()
     .attr('id', 'haulage');
 
-  // IE doesn't read image size
-  var w = this.origSceneW;
-  var h = this.origSceneH;
-
-  this.zimba = this.draw.image('images/zimba_longhole.svg', w, h);
+  this.zimbaDrill = this.draw.use('TC_Zimba_Longhole_Drill', 'images/master.svg');
+  this.zimbaParts = this.draw.use('TC_Zimba_Longhole_Parts', 'images/master.svg');
+  this.zimba = this.draw
+    .group()
+    .add(this.zimbaDrill)
+    .add(this.zimbaParts)
+  ;
   this.scene.add(this.zimba);
   this.zimba
-    .x(-30)
     .animate(6000)
-    .x(6)
+    .x(100)
     .loop()
   ;
 

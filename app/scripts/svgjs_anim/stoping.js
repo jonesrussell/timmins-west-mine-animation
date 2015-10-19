@@ -6,18 +6,8 @@ SVGjsAnim.prototype.Stoping = function() {
     .group()
     .attr('id', 'stoping');
 
-  // IE doesn't read image size
-  var w = this.origSceneW;
-  var h = this.origSceneH;
-
-  this.holeDrill = this.draw.image('images/hole_drill.svg', w, h);
-  this.scene.add(this.holeDrill);
-  this.holeDrill
-    .x(-40)
-    .animate(6000)
-    .x(6)
-    .loop()
-  ;
+  this.ithStoping = this.draw.ithDrill();
+  this.stoping.add(this.ithStoping);
 
   this.scooptramStoping = this.draw.scooptram()
     .move(0, -61.5)
