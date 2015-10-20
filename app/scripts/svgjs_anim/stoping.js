@@ -4,20 +4,21 @@
 SVGjsAnim.prototype.Stoping = function() {
   this.stoping = this.draw
     .group()
-    .attr('id', 'stoping');
+    .attr('id', 'stoping')
+  ;
+  this.scene.add(this.stoping);
 
+  /* In the hole drill */
   this.ithStoping = this.draw.ithDrill();
   this.stoping.add(this.ithStoping);
 
+  /* Scooptram */
   this.scooptramStoping = this.draw.scooptram()
     .move(0, -61.5)
     .setX(54)
   ;
   this.stoping.add(this.scooptramStoping);
   this.scooptramStoping.go();
-
-  this.scene
-    .add(this.stoping);
 
   /* Longholes */
   var longholes = this.draw.use('Loading_Longholes_Static', 'images/master.svg');
