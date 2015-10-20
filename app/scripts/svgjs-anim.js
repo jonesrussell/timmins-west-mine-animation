@@ -114,6 +114,7 @@ SVGjsAnim.prototype.build = function() {
 
     this.Hoisting();
     this.Development();
+    this.ThunderCreek();
     this.Haulage();
     this.Skipping();
     this.Shop();
