@@ -8,9 +8,34 @@ SVGjsAnim.prototype.Stoping = function() {
   ;
   this.scene.add(this.stoping);
 
+  // ITH Drill holes
+  this.ithBits = this.draw.group();
+  var ithBit1  = this.draw.use('Timmins_Loading_Longholes_1', 'images/master.svg').opacity(1);
+  var ithBit2  = this.draw.use('Timmins_Loading_Longholes_2', 'images/master.svg').opacity(1);
+  var ithBit3  = this.draw.use('Timmins_Loading_Longholes_3', 'images/master.svg').opacity(1);
+  var ithBit4  = this.draw.use('Timmins_Loading_Longholes_4', 'images/master.svg').opacity(1);
+  var ithBit5  = this.draw.use('Timmins_Loading_Longholes_5', 'images/master.svg').opacity(1);
+  var ithBit6  = this.draw.use('Timmins_Loading_Longholes_6', 'images/master.svg').opacity(1);
+  var ithBit7  = this.draw.use('Timmins_Loading_Longholes_7', 'images/master.svg').opacity(1);
+  var ithBit8  = this.draw.use('Timmins_Loading_Longholes_8', 'images/master.svg').opacity(1);
+  var ithBit9  = this.draw.use('Timmins_Loading_Longholes_9', 'images/master.svg').opacity(1);
+  this.ithBits
+    .add(ithBit1)
+    .add(ithBit2)
+    .add(ithBit3)
+    .add(ithBit4)
+    .add(ithBit5)
+    .add(ithBit6)
+    .add(ithBit7)
+    .add(ithBit8)
+    .add(ithBit9)
+  ;
+  this.stoping.add(this.ithBits);
+
   /* In the hole drill */
-  this.ithStoping = this.draw.ithDrill();
+  this.ithStoping = this.draw.ithDrill(this.ithBits);
   this.stoping.add(this.ithStoping);
+  this.ithStoping.go();
 
   /* Scooptram */
   this.scooptramStoping = this.draw.scooptram()
