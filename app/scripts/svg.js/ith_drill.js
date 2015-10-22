@@ -10,10 +10,11 @@ SVG.ITHDrill = SVG.invent({
       this.driveToX = 96;
       this.t = 2000;
       this.clip = this.doc()
-        .rect(366, 300)
-        .move(900, 448)
+        .rect(266, 50)
+        .move(1006, 448)
       ;
       this.add(this.clip);
+      this.clipWith(this.clip);
 
       this.parts = this.doc().use('In_The_Hole_Drill_Parts', 'images/master.svg');
       this.drill = this.doc().use('In_The_Hole_Drill_Bits', 'images/master.svg');
@@ -22,7 +23,6 @@ SVG.ITHDrill = SVG.invent({
         .group()
         .add(this.drill)
         .add(this.parts)
-        .clipWith(this.clip)
       ;
       this.add(this.body);
 
@@ -57,20 +57,20 @@ SVG.extend(SVG.ITHDrill, {
     return this;
   }
  , getInPosition: function() {
-    return this
+    return this.body
       .animate(3000)
       .x(20)
     ;
   }
  , forward: function() {
     this.c++;
-    return this
+    return this.body
       .animate(this.t)
       .dx(this.forwardPath.shift())
     ;
   }
   , backward: function() {
-    return this
+    return this.body
       .animate(5000)
       .x(0)
     ;
