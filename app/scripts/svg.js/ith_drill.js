@@ -132,13 +132,12 @@ SVG.extend(SVG.ITHDrill, {
       self.drillDown().after(function(){
         self.drillUp().after(function(){
           self.goCounter++;
-          console.log('isEnded()', self.isEnded());
           if (self.isEnded()) {
             self.backward().after(function(){
               self.hideHoles().after(function(){
                 self.reset();
                 self.getInPosition().after(function(){
-                  self.go(true);
+                  self.go();
                 });
               });
             });
