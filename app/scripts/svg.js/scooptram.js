@@ -1,11 +1,12 @@
 'use strict';
 /*global SVG */
 
-SVG.ScooptramDevelopment = SVG.invent({
+SVG.Scooptram = SVG.invent({
   create: 'g',
   inherit: SVG.G,
   extend: {
     build: function() {
+      this.driveToX = 96;
 /*      this.clip = this.doc()
         .rect(1366, 700)
         .move(1000, 0)
@@ -26,24 +27,27 @@ SVG.ScooptramDevelopment = SVG.invent({
       ;
       this.add(this.scooptram);
 
-      this.go();
       return this;
     }
   }
   , construct: {
-    scooptramDevelopment: function() {
-      return this.put(new SVG.ScooptramDevelopment)
+    scooptram: function() {
+      return this.put(new SVG.Scooptram)
         .build();
     }
   }
 });
 
-SVG.extend(SVG.ScooptramDevelopment, {
-  go: function() {
+SVG.extend(SVG.Scooptram, {
+  setX: function(x) {
+    this.driveToX = x;
+    return this;
+  }
+  , go: function() {
     var self = this;
     this.scooptram
       .animate(12000)
-      .x(96)
+      .x(self.driveToX)
       .loop(1000, true)
       .during(function(){
         var r = this.fx.situation.reversing;
