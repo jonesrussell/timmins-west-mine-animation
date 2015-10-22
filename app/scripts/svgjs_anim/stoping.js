@@ -10,15 +10,14 @@ SVGjsAnim.prototype.Stoping = function() {
 
   // ITH Drill holes
   this.ithBits = this.draw.group();
-  var ithBit1  = this.draw.use('Timmins_Loading_Longholes_1', 'images/master.svg').opacity(1);
-  var ithBit2  = this.draw.use('Timmins_Loading_Longholes_2', 'images/master.svg').opacity(1);
-  var ithBit3  = this.draw.use('Timmins_Loading_Longholes_3', 'images/master.svg').opacity(1);
-  var ithBit4  = this.draw.use('Timmins_Loading_Longholes_4', 'images/master.svg').opacity(1);
-  var ithBit5  = this.draw.use('Timmins_Loading_Longholes_5', 'images/master.svg').opacity(1);
-  var ithBit6  = this.draw.use('Timmins_Loading_Longholes_6', 'images/master.svg').opacity(1);
-  var ithBit7  = this.draw.use('Timmins_Loading_Longholes_7', 'images/master.svg').opacity(1);
-  var ithBit8  = this.draw.use('Timmins_Loading_Longholes_8', 'images/master.svg').opacity(1);
-  var ithBit9  = this.draw.use('Timmins_Loading_Longholes_9', 'images/master.svg').opacity(1);
+  var ithBit1  = this.draw.use('Timmins_Loading_Longholes_1', 'images/master.svg');
+  var ithBit2  = this.draw.use('Timmins_Loading_Longholes_2', 'images/master.svg');
+  var ithBit3  = this.draw.use('Timmins_Loading_Longholes_3', 'images/master.svg');
+  var ithBit4  = this.draw.use('Timmins_Loading_Longholes_4', 'images/master.svg');
+  var ithBit5  = this.draw.use('Timmins_Loading_Longholes_5', 'images/master.svg');
+  var ithBit6  = this.draw.use('Timmins_Loading_Longholes_6', 'images/master.svg');
+  var ithBit7  = this.draw.use('Timmins_Loading_Longholes_7', 'images/master.svg');
+  var ithBit8  = this.draw.use('Timmins_Loading_Longholes_8', 'images/master.svg');
   this.ithBits
     .add(ithBit1)
     .add(ithBit2)
