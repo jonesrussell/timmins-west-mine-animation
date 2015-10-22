@@ -9,6 +9,13 @@ SVG.JumboDrill = SVG.invent({
       this.attr('id', 'jumbo-drill');
       var img = 'images/master.svg';
 
+      this.clip = this.doc()
+        .rect(166, 100)
+        .move(1000, 600)
+      ;
+      this.add(this.clip);
+      this.clipWith(this.clip);
+
       this.topDrillBody = this.doc().use('Jumbo_Drill_Top_Body', img);
       this.topDrillBit = this.doc().use('Jumbo_Drill_Top_Drill_Bit_Group', img);
       this.topDrill = this.doc().group()
