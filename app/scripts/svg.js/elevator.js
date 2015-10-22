@@ -22,11 +22,14 @@ SVG.Elevator = SVG.invent({
         .rect(1366, 700)
         .move(0, 217);
       this.add(this.clip);
-      this.elevatorBody = this.doc()
-        .image('images/elevator.svg', 1366, 700)
+
+      this.elevator = this.doc().use('Elevator', 'images/master.svg');
+
+      this.body = this.doc()
+        .group()
+        .add(this.elevator)
         .clipWith(this.clip)
       ;
-      this.add(this.elevatorBody);
 
       return this;
     }
@@ -47,7 +50,7 @@ SVG.extend(SVG.Elevator, {
       this.pathCounter = 0;
     }
     var self = this;
-    return this.elevatorBody
+    return this.elevator
       .animate(self.pathPoints[i].duration)
       .y(self.pathPoints[i].y)
       .after(function() {
