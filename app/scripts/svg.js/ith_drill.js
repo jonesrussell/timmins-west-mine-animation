@@ -8,12 +8,12 @@ SVG.ITHDrill = SVG.invent({
     build: function(bits) {
       this.bits = bits;
       this.driveToX = 96;
-/*      this.clip = this.doc()
-        .rect(1366, 700)
-        .move(1000, 0)
       this.t = 2000;
+      this.clip = this.doc()
+        .rect(366, 300)
+        .move(900, 448)
       ;
-      this.add(this.clip);*/
+      this.add(this.clip);
 
       this.parts = this.doc().use('In_The_Hole_Drill_Parts', 'images/master.svg');
       this.drill = this.doc().use('In_The_Hole_Drill_Bits', 'images/master.svg');
@@ -22,7 +22,7 @@ SVG.ITHDrill = SVG.invent({
         .group()
         .add(this.drill)
         .add(this.parts)
-//        .clipWith(this.clip)
+        .clipWith(this.clip)
       ;
       this.add(this.body);
 
