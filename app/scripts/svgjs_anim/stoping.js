@@ -27,7 +27,6 @@ SVGjsAnim.prototype.Stoping = function() {
     .add(ithBit6)
     .add(ithBit7)
     .add(ithBit8)
-    .add(ithBit9)
   ;
   this.stoping.add(this.ithBits);
 
