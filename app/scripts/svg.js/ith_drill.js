@@ -38,11 +38,7 @@ SVG.ITHDrill = SVG.invent({
 });
 
 SVG.extend(SVG.ITHDrill, {
-  setX: function(x) {
-    this.driveToX = x;
-    return this;
-  }
-  , reset: function() {
+  reset: function() {
     this.forwardPath = [
       25.9 // bit 1
       , 10.3 // bit 2
