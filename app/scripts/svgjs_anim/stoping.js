@@ -33,7 +33,10 @@ SVGjsAnim.prototype.Stoping = function() {
   /* In the hole drill */
   this.ithStoping = this.draw.ithDrill(this.ithBits);
   this.stoping.add(this.ithStoping);
-  this.ithStoping.go();
+  var self = this;
+  this.ithStoping.getInPosition().after(function(){
+    self.ithStoping.go();
+  });
 
   /* Scooptram */
   this.scooptramStoping = this.draw.scooptram()

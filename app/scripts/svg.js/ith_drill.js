@@ -40,7 +40,7 @@ SVG.ITHDrill = SVG.invent({
 SVG.extend(SVG.ITHDrill, {
   reset: function() {
     this.forwardPath = [
-      25.9 // bit 1
+      5.9 // bit 1
       , 10.3 // bit 2
       , 8.3 // bit 3
       , 8.2 // bit 4
@@ -48,13 +48,19 @@ SVG.extend(SVG.ITHDrill, {
       , 8.5 // bit 6
       , 8.5 // bit 7
       , 8.6 // bit 8
-      , 8.5 // bit 9
     ];
-    this.goMax = 9;
-    this.goCounter = 1;
+    this.goMax = this.forwardPath.length;
+    this.goCounter = 0;
     this.bitIndex = 0;
-    this.c = 1;
-    return this.x(0);
+    this.c = 0;
+    this.showHoles();
+    return this;
+  }
+ , getInPosition: function() {
+    return this
+      .animate(3000)
+      .x(20)
+    ;
   }
  , forward: function() {
     this.c++;
@@ -125,12 +131,21 @@ SVG.extend(SVG.ITHDrill, {
       self.holeDown();
       self.drillDown().after(function(){
         self.drillUp().after(function(){
-          console.log('isEnded()', self.isEnded());
           self.goCounter++;
+          console.log('isEnded()', self.isEnded());
           if (self.isEnded()) {
-            self.reset();
+            self.backward().after(function(){
+              self.hideHoles().after(function(){
+                self.reset();
+                self.getInPosition().after(function(){
+                  self.go(true);
+                });
+              });
+            });
           }
-          self.go();
+          else {
+            self.go();
+          }
         });
       });
     });
