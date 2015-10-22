@@ -9,7 +9,13 @@ SVGjsAnim.prototype.Stoping = function() {
   this.scene.add(this.stoping);
 
   // ITH Drill holes
+  this.ithHolesClip = this.draw
+    .rect(1366, 700)
+    .move(1000, 450)
+  ;
+  this.scene.add(this.ithHolesClip);
   this.ithBits = this.draw.group();
+  this.ithBits.clipWith(this.ithHolesClip);
   var ithBit1  = this.draw.use('Timmins_Loading_Longholes_1', 'images/master.svg');
   var ithBit2  = this.draw.use('Timmins_Loading_Longholes_2', 'images/master.svg');
   var ithBit3  = this.draw.use('Timmins_Loading_Longholes_3', 'images/master.svg');
