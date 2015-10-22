@@ -95,6 +95,21 @@ SVG.extend(SVG.ITHDrill, {
       .cx(0)
     ;
   }
+  , showHoles: function() {
+    this.bits.each(function() {
+      this.move(0, 0);
+    });
+    return this.bits.opacity(1);
+  }
+  , hideHoles: function() {
+    return this.bits.animate(1000, '>', 2000).opacity(0);
+/*    this.bits.each(function() {
+      var self = this;
+      self.animate().opacity(0).after(function(){
+        self.move(0, 0);
+      });
+    });*/
+  }
   , isEnded: function() {
     return this.goCounter >= this.goMax;
   }
