@@ -8,10 +8,10 @@ SVG.ITHDrill = SVG.invent({
     build: function(bits) {
       this.bits = bits;
       this.driveToX = 96;
-      this.t = 500;
 /*      this.clip = this.doc()
         .rect(1366, 700)
         .move(1000, 0)
+      this.t = 2000;
       ;
       this.add(this.clip);*/
 
