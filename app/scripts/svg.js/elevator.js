@@ -30,6 +30,7 @@ SVG.Elevator = SVG.invent({
         .add(this.elevator)
         .clipWith(this.clip)
       ;
+      this.add(this.body);
 
       return this;
     }
