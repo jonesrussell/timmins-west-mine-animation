@@ -63,6 +63,12 @@ SVG.extend(SVG.ITHDrill, {
       .dx(this.forwardPath.shift())
     ;
   }
+  , backward: function() {
+    return this
+      .animate(5000)
+      .x(0)
+    ;
+  }
   , drillDown: function() {
     return this.drill
       .animate(this.t)
