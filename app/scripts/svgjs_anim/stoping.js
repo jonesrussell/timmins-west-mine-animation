@@ -48,6 +48,7 @@ SVGjsAnim.prototype.Stoping = function() {
   this.scooptramStoping = this.draw.scooptram()
     .move(0, -61.5)
     .setX(54)
+    .moveClip(980, 550)
   ;
   this.stoping.add(this.scooptramStoping);
   this.scooptramStoping.go();

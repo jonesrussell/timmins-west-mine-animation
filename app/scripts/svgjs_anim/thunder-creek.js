@@ -45,6 +45,7 @@ SVGjsAnim.prototype.ThunderCreek = function() {
   this.scooptramTC = this.draw.scooptram()
     .move(-700, -42.5)
     .setX(50)
+    .moveClip(975, 550)
   ;
   this.thunderCreek.add(this.scooptramTC);
   this.scooptramTC.go();
