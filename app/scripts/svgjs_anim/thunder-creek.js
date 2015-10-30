@@ -7,20 +7,35 @@ SVGjsAnim.prototype.ThunderCreek = function() {
     .attr('id', 'thunderCreek');
   this.scene.add(this.thunderCreek);
 
+  // Zimba Drill holes
+  this.zimbaHolesClip = this.draw
+    .rect(266, 100)
+    .move(200, 434)
+  ;
+  this.scene.add(this.zimbaHolesClip);
+  this.zimbaBits = this.draw.group();
+  this.zimbaBits.clipWith(this.zimbaHolesClip);
+  var zimbaBit1  = this.draw.use('TC_Loading_Longholes_Top_1', 'images/master.svg');
+  var zimbaBit2  = this.draw.use('TC_Loading_Longholes_Top_2', 'images/master.svg');
+  var zimbaBit3  = this.draw.use('TC_Loading_Longholes_Top_3', 'images/master.svg');
+  var zimbaBit4  = this.draw.use('TC_Loading_Longholes_Top_4', 'images/master.svg');
+  var zimbaBit5  = this.draw.use('TC_Loading_Longholes_Top_5', 'images/master.svg');
+  this.zimbaBits
+    .add(zimbaBit1)
+    .add(zimbaBit2)
+    .add(zimbaBit3)
+    .add(zimbaBit4)
+    .add(zimbaBit5)
+  ;
+  this.thunderCreek.add(this.zimbaBits);
+
   /* Zimba */
-  this.zimbaDrill = this.draw.use('TC_Zimba_Longhole_Drill', 'images/master.svg');
-  this.zimbaParts = this.draw.use('TC_Zimba_Longhole_Parts', 'images/master.svg');
-  this.zimba = this.draw
-    .group()
-    .add(this.zimbaDrill)
-    .add(this.zimbaParts)
-  ;
+  this.zimba = this.draw.zimba(this.zimbaBits);
   this.thunderCreek.add(this.zimba);
-  this.zimba
-    .animate(6000)
-    .x(100)
-    .loop()
-  ;
+  var self = this;
+  this.zimba.getInPosition().after(function(){
+    self.zimba.go();
+  });
 
   /* Longholes */
   var longholesTC = this.draw.use('TC_Loading_Longholes_Static', 'images/master.svg');
