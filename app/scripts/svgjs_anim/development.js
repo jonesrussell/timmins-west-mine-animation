@@ -6,7 +6,9 @@ SVGjsAnim.prototype.Development = function() {
     .group()
     .attr('id', 'development');
 
-  this.scooptramDevelopment = this.draw.scooptram();
+  this.scooptramDevelopment = this.draw.scooptram()
+    .moveClip(1000, 550)
+  ;
   this.development.add(this.scooptramDevelopment);
   this.scooptramDevelopment.go();
 
