@@ -40,8 +40,8 @@ SVG.Zimba = SVG.invent({
 SVG.extend(SVG.Zimba, {
   reset: function() {
     this.forwardPath = [
-      5.9 // bit 1
-      , 5.3 // bit 2
+      //0.9 // bit 1
+      11.2 // bit 2
       , 7.3 // bit 3
       , 10 // bit 4
       , 6 // bit 5

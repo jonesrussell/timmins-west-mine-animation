@@ -15,13 +15,11 @@ SVGjsAnim.prototype.ThunderCreek = function() {
   this.scene.add(this.zimbaHolesClip);
   this.zimbaBits = this.draw.group();
   this.zimbaBits.clipWith(this.zimbaHolesClip);
-  var zimbaBit1  = this.draw.use('TC_Loading_Longholes_Top_1', 'images/master.svg');
   var zimbaBit2  = this.draw.use('TC_Loading_Longholes_Top_2', 'images/master.svg');
   var zimbaBit3  = this.draw.use('TC_Loading_Longholes_Top_3', 'images/master.svg');
   var zimbaBit4  = this.draw.use('TC_Loading_Longholes_Top_4', 'images/master.svg');
   var zimbaBit5  = this.draw.use('TC_Loading_Longholes_Top_5', 'images/master.svg');
   this.zimbaBits
-    .add(zimbaBit1)
     .add(zimbaBit2)
     .add(zimbaBit3)
     .add(zimbaBit4)
