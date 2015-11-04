@@ -936,6 +936,23 @@ element.parent()
 
 __`returns`: `element`__
 
+Alternatively a class or css selector can be passed as the first argument:
+
+```javascript
+var draw   = SVG('drawing')
+var nested = draw.nested().addClass('test')
+var group  = nested.group()
+var rect   = group.rect(100, 100)
+
+rect.parent()           //-> returns group
+rect.parent(SVG.Doc)    //-> returns draw
+rect.parent(SVG.Nested) //-> returns nested
+rect.parent(SVG.G)      //-> returns group
+rect.parent('.test')    //-> returns nested
+```
+
+__`returns`: `element`__
+
 Even the main svg document:
 
 ```javascript
@@ -948,7 +965,7 @@ __`returns`: `HTMLNode`__
 
 
 ### doc()
-For more specific parent filtering the `doc()` method can be used:
+For retrieving the root svg you can use `doc()`
 
 ```javascript
 var draw = SVG('drawing')
@@ -957,20 +974,20 @@ var rect = draw.rect(100, 100)
 rect.doc() //-> returns draw
 ```
 
-Alternatively a class can be passed as the first argument:
+### parents()
+To get all ancestors of the element filtered by type or css selector (see `parent()` method)
 
 ```javascript
-var draw   = SVG('drawing')
-var nested = draw.nested()
-var group  = nested.group()
-var rect   = group.rect(100, 100)
-
-rect.doc()           //-> returns draw
-rect.doc(SVG.Doc)    //-> returns draw
-rect.doc(SVG.Nested) //-> returns nested
-rect.doc(SVG.G)      //-> returns group
+var group1 = draw.group().addClass('test')
+  , group2 = group1.group()
+  , rect   = group2.rect(100,100)
+  
+rect.parents()        // returns [group1, group2, draw]
+rect.parents('.test') // returns [group1]
+rect.parents(SVG.G)   // returns [group1, group2]
 ```
-__`returns`: `element`__
+
+__`returns`: `Array`__
 
 ## Child references
 
@@ -1571,6 +1588,43 @@ rect.putIn(group) //-> returns group
 
 __`returns`: `element`__
 
+### toParent()
+Moves an element to another parent (similar to add) but remains the visual representation. All transformations are merged and applied to the element.
+
+```javascript
+rect.toParent(group) // looks the same as before
+```
+
+__`returns`: `itself`__
+
+### toDoc()
+Same as `toParent()` but with the root-node as parent
+
+__`returns`: `itself`__
+
+### ungroup() / flatten()
+Break up the group/container and places all elements in the given parent while remaining their visual representation. The result is a flat svg structure e.g. for exporting
+
+```javascript
+// ungroups all elements in this group recursively and places them into the given parent
+// (default: parent container of the calling element)
+group.ungroup(parent, depth)
+
+// call it on the whole document to get a flat svg structure
+drawing.ungroup()
+
+// breaks up the group and places all elements in drawing
+group.ungroup(drawing)
+
+// breaks up all groups until it reaches a depth of 3
+drawing.ungroup(null, 3)
+
+// flat and export svg
+var svgString = drawing.ungroup().svg()
+```
+
+__`returns`: `itself`__
+
 ## Geometry
 
 ### viewbox()
@@ -1685,10 +1739,19 @@ __Important__: Mozilla browsers include stroke widths where other browsers do no
 __`returns`: `SVG.RBox`__
 
 ### ctm()
-Retreives the current transform matrix of the element to the root coordinate system:
+Retreives the current transform matrix of the element relative to the nearest viewport parent:
 
 ```javascript
 path.ctm()
+```
+
+__`returns`: `SVG.Matrix`__
+
+### screenCTM()
+Retreives the current transform matrix of the element relative to the screen:
+
+```javascript
+path.screenCTM()
 ```
 
 __`returns`: `SVG.Matrix`__
@@ -2873,6 +2936,12 @@ var click = function() {
 rect.on('click', click)
 ```
 
+**Note:** The context of `this` in the callback is bound to the element. You can change this context by applying your own object:
+
+```javascript
+rect.on('click', click, window) // context of this is window
+```
+
 __`returns`: `itself`__
 
 Unbinding events is just as easy:
@@ -3242,7 +3311,7 @@ array.morph('100,0 0,100 200,200')
 
 This method will prepare the array ensuring both the source and destination arrays have the same length.
 
-Note that this method is currently not available on `SVG.PathArray` but will be soon.
+In order to morph paths you need to include the [svg.pathmorphing.js](https://github.com/wout/svg.pathmorphing.js) extension.
 
 __`returns`: `itself`__
 
@@ -3623,7 +3692,7 @@ Svg.js uses the `SVG.invent()` function to create all internal elements, so have
 
 
 ### SVG.extend()
-SVG.js has a modular structure. It is very easy to add you own methods at different levels. Let's say we want to add a method to all shape types then we would add our method to SVG.Shape:
+SVG.js has a modular structure. It is very easy to add your own methods at different levels. Let's say we want to add a method to all shape types then we would add our method to SVG.Shape:
 
 ```javascript
 SVG.extend(SVG.Shape, {
@@ -3671,6 +3740,9 @@ SVG.extend(SVG.Ellipse, SVG.Path, SVG.Polygon, {
 
 ## Plugins
 Here are a few nice plugins that are available for SVG.js:
+
+### pathmorphing
+[svg.pathmorphing.js](https://github.com/wout/svg.pathmorphing.js) to make path animateable
 
 ** Caution: Not tested for SVG.js 2.0 **
 

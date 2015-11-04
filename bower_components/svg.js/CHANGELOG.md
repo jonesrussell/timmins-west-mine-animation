@@ -1,19 +1,34 @@
-# 2.0.0-rc.2 (?/11/2014)
+# 3.0.0
 
-- added `morph()` method to `SVG.PathArray` -> __TODO!__
-- added `rotate()` method to linear gradients -> __TODO!__
+- make transform-methods relative as default (breaking change)
 - added `'random'` option and `randomize()` method to `SVG.Color` -> __TODO!__
-- added `parents()` method to get an array of all parenting elements -> __TODO!__
-- added support for css selectors with the `parent()` method -> __TODO!__
 - added `enqueue()` method to `SVG.FX` -> __TODO!__
-- added `ungroup()` method -> __TODO!__ [thanks to Peter Uithoven]
-
-# 2.0.0-rc.1 (?/10/2014)
-
-- added specs for `SVG.FX` -> __TODO!__
 - fixed a bug in clipping and masking where empty nodes persists after removal -> __TODO!__
 - fixed a bug in IE11 with `mouseenter` and `mouseleave` -> __TODO!__
 - added `precision()` method to round numeric element attributes -> __TODO!__
+- added specs for `SVG.FX` -> __TODO!__
+
+# 2.2.0 (??/??/2015)
+
+- fixed pattern and gradient animation (#385)
+- fixed mask animation in Firefox (#287)
+- added `ungroup()/flatten()` (#238), `toParent()` and `toDoc()`
+- added UMD-Wrapper with possibility to pass custom window object (#352)
+- added `morph()` method via plugin [svg.pathmorphing.js](https://github.com/Fuzzyma/svg.pathmorphing.js)
+- added support for css selectors within the `parent()` method
+- added `parents()` method to get an array of all parenting elements
+
+# 2.1.1 (03/10/2015)
+
+- added custom context binding to event callback (default is the element the event is bound to)
+
+# 2.1.0 (20/09/2015)
+
+- added transform to pattern and gradients (#383)
+- fixed clone of textnodes (#369)
+- fixed transformlists in IE (#372)
+- fixed typo that leads to broken gradients (#370)
+- fixed animate radius for circles (#367)
 
 # 2.0.2 (22/06/2015)
 
