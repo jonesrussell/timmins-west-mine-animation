@@ -7,10 +7,12 @@ SVG.Zimba = SVG.invent({
   extend: {
     build: function(bits) {
       this.bits = bits;
+      this.bitsToX = -8.8;
+      this.bitsToY = 46.9;
       this.driveToX = 96;
       this.t = 2000;
       this.clip = this.doc()
-        .rect(90, 50)
+        .rect(90, 70)
         .move(295, 423)
       ;
       this.add(this.clip);
@@ -75,8 +77,8 @@ SVG.extend(SVG.Zimba, {
   , drillDown: function() {
     return this.drill
       .animate(this.t)
-      .cy(22.2)
-      .cx(-4.5)
+      .cy(this.bitsToY)
+      .cx(this.bitsToX)
     ;
   }
   , drillUp: function() {
@@ -92,8 +94,8 @@ SVG.extend(SVG.Zimba, {
     this.bitIndex++;
     return bit
       .animate(this.t)
-      .cy(22.2)
-      .cx(-4.5)
+      .cy(this.bitsToY)
+      .cx(this.bitsToX)
     ;
   }
   , holeUp: function() {
