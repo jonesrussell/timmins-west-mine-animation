@@ -1,22 +1,25 @@
 'use strict';
 /*global SVG */
 
-SVG.ITHDrill = SVG.invent({
+SVG.Zimba = SVG.invent({
   create: 'g',
   inherit: SVG.G,
   extend: {
     build: function(bits) {
       this.bits = bits;
+      this.bitsToX = -8.8;
+      this.bitsToY = 46.9;
       this.driveToX = 96;
       this.t = 2000;
-      this.clip = this.doc().rect(100, 40)
-          .move(1000, 448)
+      this.clip = this.doc()
+        .rect(90, 70)
+        .move(295, 423)
       ;
       this.add(this.clip);
       this.clipWith(this.clip);
 
-      this.parts = this.doc().use('In_The_Hole_Drill_Parts', 'images/master.svg');
-      this.drill = this.doc().use('In_The_Hole_Drill_Bits', 'images/master.svg');
+      this.parts = this.doc().use('TC_Zimba_Longhole_Parts', 'images/master.svg');
+      this.drill = this.doc().use('TC_Zimba_Longhole_Drill', 'images/master.svg');
 
       this.body = this.doc()
         .group()
@@ -30,23 +33,20 @@ SVG.ITHDrill = SVG.invent({
     }
   }
   , construct: {
-    ithDrill: function(bits) {
-      return this.put(new SVG.ITHDrill).build(bits);
+    zimba: function(bits) {
+      return this.put(new SVG.Zimba).build(bits);
     }
   }
 });
 
-SVG.extend(SVG.ITHDrill, {
+SVG.extend(SVG.Zimba, {
   reset: function() {
     this.forwardPath = [
-      5.9 // bit 1
-      , 10.3 // bit 2
-      , 8.3 // bit 3
-      , 8.2 // bit 4
-      , 9.7 // bit 5
-      , 8.5 // bit 6
-      , 8.5 // bit 7
-      , 8.6 // bit 8
+      //0.9 // bit 1
+      11.2 // bit 2
+      , 7.3 // bit 3
+      , 10 // bit 4
+      , 6 // bit 5
     ];
     this.goMax = this.forwardPath.length;
     this.goCounter = 0;
@@ -57,8 +57,8 @@ SVG.extend(SVG.ITHDrill, {
   }
  , getInPosition: function() {
     return this.body
-      .animate(3000)
-      .x(20)
+      .animate(5000)
+      .x(55)
     ;
   }
  , forward: function() {
@@ -77,8 +77,8 @@ SVG.extend(SVG.ITHDrill, {
   , drillDown: function() {
     return this.drill
       .animate(this.t)
-      .cy(25)
-      .cx(-5)
+      .cy(this.bitsToY)
+      .cx(this.bitsToX)
     ;
   }
   , drillUp: function() {
@@ -94,8 +94,8 @@ SVG.extend(SVG.ITHDrill, {
     this.bitIndex++;
     return bit
       .animate(this.t)
-      .cy(25)
-      .cx(-5)
+      .cy(this.bitsToY)
+      .cx(this.bitsToX)
     ;
   }
   , holeUp: function() {

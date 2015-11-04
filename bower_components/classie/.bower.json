@@ -32,6 +32,5 @@
   },
   "_source": "git://github.com/desandro/classie.git",
   "_target": "~1.0.1",
-  "_originalSource": "classie",
-  "_direct": true
+  "_originalSource": "classie"
 }

@@ -75,16 +75,30 @@ SVG.Skip = SVG.invent({
             .rect(10, 10)
             .move(771, 613)
           ;
-          this.rocks = this.doc()
-            .use('Rocks_from_ore_bin_to_skip', img)
-          ;
+          this.add(this.rocksClip);
+          this.rocksSkip = this.doc().use('Rocks_from_ore_bin_to_skip', img);
           this.rocksWrapper = this.doc()
             .group()
-            .add(this.rocksClip)
-            .add(this.rocks)
+            .add(this.rocksSkip)
             .clipWith(this.rocksClip)
+            .hide()
           ;
           this.add(this.rocksWrapper);
+
+          // Second rock slide
+          this.rocksClip2 = this.doc()
+            .rect(10, 14)
+            .move(784, 638)
+          ;
+          this.add(this.rocksClip2);
+          this.rocksSkip2 = this.doc().use('Rocks_from_ore_bin_to_skip', img);
+          this.rocksWrapper2 = this.doc()
+            .group()
+            .add(this.rocksSkip2)
+            .clipWith(this.rocksClip2)
+            .hide()
+          ;
+          this.add(this.rocksWrapper2);
 
           // Headframe
           this.headframeRock1 = this.doc().use('Rockpile_from_headframe_1_1_', img).opacity(0);
@@ -131,12 +145,16 @@ SVG.extend(SVG.Skip, {
       return this.gateUpper.animate(2000).y(0);
     }
     , gateUpperDown: function() {
+      this.rocksWrapper2.hide();
+      this.rocksWrapper.show();
       return this.gateUpper.animate(2000).y(9);
     }
     , gateLowerUp: function() {
       return this.gateLower.animate(2000).y(0);
     }
     , gateLowerDown: function() {
+      this.rocksWrapper.hide();
+      this.rocksWrapper2.show();
       return this.gateLower.animate(2000).y(15);
     }
     , chainDown: function() {
@@ -266,13 +284,15 @@ SVG.extend(SVG.Skip, {
       ;
     }
     , spillRocks: function() {
-      return this.rocks
+      this.rocksSkip2.animate(2500).move(85, 75);
+      return this.rocksSkip
         .animate(2500)
         .move(85, 75)
       ;
     }
     , spillRocksReset: function() {
-      this.rocks.move(0, 0);
+      this.rocksSkip.move(0, 0);
+      this.rocksSkip2.move(0, 0);
       return this;
     }
     , up: function() {
@@ -303,6 +323,7 @@ SVG.extend(SVG.Skip, {
                   self.measuringPileHide();
                   self.skipPileShow();
                   self.spillRocks().after(function(){
+                    self.spillRocksReset();
                     self.gateLowerUp().after(function(){
                       self.up().after(function(){
                         self.skipPileHide();

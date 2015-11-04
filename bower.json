@@ -2,9 +2,9 @@
   "name": "bell-creek-mill",
   "private": true,
   "dependencies": {
-    "svg.js": "https://github.com/wout/svg.js.git#ad9a503ba6526cbc066c01bc3199dd9b8c680b7a",
+    "svg.js": "https://github.com/wout/svg.js.git#2bcd57ca3776a026786c0812206a17d4f1aeae19",
     "modernizr": "~2.8.3",
     "classie": "~1.0.1",
-    "EventBus": "git://github.com/krasimir/EventBus#f59dca1cc7"
+    "EventBus": "git://github.com/krasimir/EventBus#f59dca1cc7a5105a310296d4cc3eb6da49633e02"
   }
 }

@@ -52,7 +52,6 @@ SVG.extend(SVG.GroundSupport, {
       , 4.6 // bit 12
 //        , 5 // bit 13
     ];
-    this.c = 1;
     this.truckGoMax = 13;
     this.goCounter = 1;
     this.bitIndex = 0;

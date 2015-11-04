@@ -7,11 +7,13 @@ SVG.Scooptram = SVG.invent({
   extend: {
     build: function() {
       this.driveToX = 96;
-/*      this.clip = this.doc()
-        .rect(1366, 700)
-        .move(1000, 0)
+      this.clip = this.doc()
+        .rect(100, 50)
+        .move(0, 0)
       ;
-      this.add(this.clip);*/
+      this.add(this.clip);
+      this.clipWith(this.clip);
+
       this.scooptramPile = this.doc()
         .use('Scooptram_Development_Pile', 'images/master.svg')
         .opacity(0)
@@ -23,7 +25,6 @@ SVG.Scooptram = SVG.invent({
         .group()
         .add(this.scooptramPile)
         .add(this.scooptramParts)
-//        .clipWith(this.clip)
       ;
       this.add(this.scooptram);
 
@@ -32,8 +33,7 @@ SVG.Scooptram = SVG.invent({
   }
   , construct: {
     scooptram: function() {
-      return this.put(new SVG.Scooptram)
-        .build();
+      return this.put(new SVG.Scooptram).build();
     }
   }
 });
@@ -41,6 +41,10 @@ SVG.Scooptram = SVG.invent({
 SVG.extend(SVG.Scooptram, {
   setX: function(x) {
     this.driveToX = x;
+    return this;
+  }
+  , moveClip: function(x, y) {
+    this.clip.move(x, y);
     return this;
   }
   , go: function() {

@@ -18,12 +18,12 @@
     "src/",
     "gulpfile.js"
   ],
-  "_release": "ad9a503ba6",
+  "_release": "2bcd57ca37",
   "_resolution": {
     "type": "commit",
-    "commit": "ad9a503ba6526cbc066c01bc3199dd9b8c680b7a"
+    "commit": "2bcd57ca3776a026786c0812206a17d4f1aeae19"
   },
   "_source": "https://github.com/wout/svg.js.git",
-  "_target": "ad9a503ba6526cbc066c01bc3199dd9b8c680b7a",
+  "_target": "2bcd57ca3776a026786c0812206a17d4f1aeae19",
   "_originalSource": "https://github.com/wout/svg.js.git"
 }
