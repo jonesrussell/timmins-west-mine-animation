@@ -9,9 +9,8 @@ SVG.ITHDrill = SVG.invent({
       this.bits = bits;
       this.driveToX = 96;
       this.t = 2000;
-      this.clip = this.doc()
-        .rect(266, 50)
-        .move(1006, 448)
+      this.clip = this.doc().rect(100, 40)
+          .move(1000, 448)
       ;
       this.add(this.clip);
       this.clipWith(this.clip);
@@ -78,8 +77,8 @@ SVG.extend(SVG.ITHDrill, {
   , drillDown: function() {
     return this.drill
       .animate(this.t)
-      .cy(22.2)
-      .cx(-4.5)
+      .cy(25)
+      .cx(-5)
     ;
   }
   , drillUp: function() {
@@ -95,8 +94,8 @@ SVG.extend(SVG.ITHDrill, {
     this.bitIndex++;
     return bit
       .animate(this.t)
-      .cy(22.2)
-      .cx(-4.5)
+      .cy(25)
+      .cx(-5)
     ;
   }
   , holeUp: function() {

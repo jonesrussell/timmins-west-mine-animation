@@ -1,13 +1,12 @@
 {
   "name": "EventBus",
-  "main": "src/EventBus.js",
   "homepage": "https://github.com/krasimir/EventBus",
   "_release": "f59dca1cc7",
   "_resolution": {
     "type": "commit",
-    "commit": "f59dca1cc7"
+    "commit": "f59dca1cc7a5105a310296d4cc3eb6da49633e02"
   },
   "_source": "git://github.com/krasimir/EventBus.git",
-  "_target": "f59dca1cc7",
+  "_target": "f59dca1cc7a5105a310296d4cc3eb6da49633e02",
   "_originalSource": "git://github.com/krasimir/EventBus"
 }
