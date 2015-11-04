@@ -1,6 +1,5 @@
 {
   "name": "EventBus",
-  "main": "src/EventBus.js",
   "homepage": "https://github.com/krasimir/EventBus",
   "_release": "f59dca1cc7",
   "_resolution": {
