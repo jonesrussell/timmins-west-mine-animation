@@ -54,11 +54,9 @@ SVGjsAnim.prototype.ThunderCreek = function() {
   this.scene.add(this.tcLongholeBits);
 
   /* Longhole Loading */
-  var longholesTCMan = this.draw.longhole(this.tcLongholeBits);
-  this.thunderCreek
-    .add(longholesTCMan)
-  ;
-  longholesTCMan.go();
+  this.tcLongholesMan = this.draw.longhole(this.tcLongholeBits);
+  this.thunderCreek.add(this.tcLongholesMan);
+  this.tcLongholesMan.go();
 
   /* Scooptram */
   this.scooptramTC = this.draw.scooptram()
