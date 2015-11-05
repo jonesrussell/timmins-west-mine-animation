@@ -9,8 +9,13 @@ SVG.Longhole = SVG.invent({
       this.bits = bits;
       this.bitsToX = 8.8;
       this.bitsToY = -46.9;
-      this.driveToX = 96;
       this.t = 2000;
+
+      this.forwardPathMaster = [
+        5.4 // dynamite 1
+        , 7.3 // dynamite 2
+      ];
+      this.forwardPath = [];
 
       var longholesPartsTC = this.doc().use('TC_Loading_Longholes_Parts', 'images/master.svg');
       this.longholesTCLegs1 = this.doc().use('TC_Loading_Longholes_Legs_1', 'images/master.svg');
@@ -18,13 +23,21 @@ SVG.Longhole = SVG.invent({
       this.longholesTCLegs3 = this.doc().use('TC_Loading_Longholes_Legs_3', 'images/master.svg');
       this.longholesTCLegs4 = this.doc().use('TC_Loading_Longholes_Legs_4', 'images/master.svg');
 
-      var longholesTCMan = this.doc().group()
+      var longholesTCMan = this.doc()
+        .group()
         .add(longholesPartsTC)
         .add(this.longholesTCLegs1)
         .add(this.longholesTCLegs2)
         .add(this.longholesTCLegs3)
         .add(this.longholesTCLegs4)
       ;
+
+      this.clip = this.doc()
+        .rect(50, 20)
+        .move(317, 480)
+      ;
+      this.add(this.clip);
+      this.clipWith(this.clip);
 
       this.body = this.doc()
         .group()
@@ -44,20 +57,36 @@ SVG.Longhole = SVG.invent({
 });
 
 SVG.extend(SVG.Longhole, {
-  reset: function() {
-    this.forwardPath = [
-      5.4 // dynamite 1
-      , 7.3 // dynamite 2
-    ];
+  setForwardPathMaster(path) {
+    this.forwardPathMaster = path;
+    this.reset();
+    return this;
+  }
+  , setForwardPath() {
+    this.forwardPath = this.forwardPathMaster.slice();
+    return this;
+  }
+  , moveClip: function(x, y) {
+    this.clip.move(x, y);
+    return this;
+  }
+  , setBitsToX: function(n) {
+    this.bitsToX = n;
+    return this;
+  }
+  , setBitsToY: function(n) {
+    this.bitsToY = n;
+    return this;
+  }
+  , reset: function() {
+    this.setForwardPath();
     this.goMax = this.forwardPath.length;
     this.goCounter = 0;
     this.bitIndex = 0;
-    this.c = 0;
     this.showHoles();
     return this;
   }
  , forward: function() {
-    this.c++;
     return this.body
       .animate(this.t)
       .dx(this.forwardPath.shift())
@@ -69,22 +98,13 @@ SVG.extend(SVG.Longhole, {
       .x(0)
     ;
   }
-  , holeDown: function() {
-    console.log('holeDown()');
+  , holeIn: function() {
     var bit = this.bits.get(this.bitIndex);
     this.bitIndex++;
     return bit
       .animate(this.t)
       .cy(this.bitsToY)
       .cx(this.bitsToX)
-    ;
-  }
-  , holeUp: function() {
-    return this.drill
-      .animate(this.t)
-      .opacity(1)
-      .cy(0)
-      .cx(0)
     ;
   }
   , showHoles: function() {
@@ -97,28 +117,26 @@ SVG.extend(SVG.Longhole, {
     return this.bits.animate(1000, '>', 2000).opacity(0);
   }
   , isEnded: function() {
-    return this.goCounter >= this.goMax;
+    return this.goCounter > this.goMax;
   }
   , go: function() {
     var self = this;
-//    self.forward().after(function(){
-      self.holeDown().after(function(){
-        self.forward().after(function(){
-          self.goCounter++;
-          if (self.isEnded()) {
-            self.backward().after(function(){
-              self.hideHoles().after(function(){
-                self.reset();
-                  self.go();
-              });
-            });
-          }
-          else {
+    self.holeIn().after(function(){
+      self.goCounter++;
+      if (self.isEnded()) {
+        self.backward().after(function(){
+          self.hideHoles().after(function(){
+            self.reset();
             self.go();
-          }
+          });
         });
-      });
-//    });
+      }
+      else {
+        self.forward().after(function(){
+          self.go();
+        });
+      }
+    });
   }
 
 });
