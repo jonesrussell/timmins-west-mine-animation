@@ -53,24 +53,36 @@ SVGjsAnim.prototype.Stoping = function() {
   this.stoping.add(this.scooptramStoping);
   this.scooptramStoping.go();
 
-  /* Longholes */
-  var longholes = this.draw.use('Loading_Longholes_Static', 'images/master.svg');
-  var longholesParts = this.draw.use('Loading_Longholes_Parts', 'images/master.svg');
-  this.longholesLegs1 = this.draw.use('Loading_Longholes_Legs_1', 'images/master.svg');
-  this.longholesLegs2 = this.draw.use('Loading_Longholes_Legs_2', 'images/master.svg');
-  this.longholesLegs3 = this.draw.use('Loading_Longholes_Legs_3', 'images/master.svg');
-  this.longholesLegs4 = this.draw.use('Loading_Longholes_Legs_4', 'images/master.svg');
-  var longholesLegs = this.draw.group()
-    .add(this.longholesLegs1)
-    .add(this.longholesLegs2)
-    .add(this.longholesLegs3)
-    .add(this.longholesLegs4)
+  // Longholes
+  this.longholesClip = this.draw
+    .rect(266, 30)
+    .move(1000, 492)
   ;
-  this.stoping
-    .add(longholes)
-    .add(longholesParts)
-    .add(longholesLegs)
+  this.scene.add(this.longholesClip);
+  this.longholeBits = this.draw.group();
+  this.longholeBits.clipWith(this.longholesClip);
+  var longholes1  = this.draw.use('Yellow_Holes_1', 'images/master.svg');
+  var longholes2  = this.draw.use('Yellow_Holes_2', 'images/master.svg');
+  var longholes3  = this.draw.use('Yellow_Holes_3', 'images/master.svg');
+  var longholes4  = this.draw.use('Yellow_Holes_4', 'images/master.svg');
+  this.longholeBits
+    .add(longholes1)
+    .add(longholes2)
+    .add(longholes3)
+    .add(longholes4)
   ;
+  this.scene.add(this.longholeBits);
+
+  /* Longhole Loading */
+  var forwardPath = [ 9.5, 9.5, 7 ];
+  this.longholesMan = this.draw.longhole(this.longholeBits)
+    .move(682, 2.6)
+    .setBitsToX(4.8)
+    .setBitsToY(-25.3)
+    .setForwardPathMaster(forwardPath)
+    ;
+  this.stoping.add(this.longholesMan);
+  this.longholesMan.go();
 
   this.headings.stoping = this.Heading('STOPING', 'stoping', 4.9, 1220, 525);
   this.sceneHeadings
