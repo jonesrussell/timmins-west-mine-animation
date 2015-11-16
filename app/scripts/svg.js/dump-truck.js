@@ -6,7 +6,7 @@ SVG.DumpTruck = SVG.invent({
   inherit: SVG.G,
   extend: {
     build: function() {
-      this.t = 1000;
+      this.t = 5000;
 
       this.body = this.doc().use('Haulage_Dump_Truck_1', 'images/master.svg');
       this.add(this.body);
@@ -26,21 +26,23 @@ SVG.extend(SVG.DumpTruck, {
   forward: function() {
     return this
       .animate(this.t)
-      .dx(-100)
+      .x(0)
+      .y(0)
     ;
   }
 
   , backward: function() {
     return this
       .animate(this.t)
-      .dx(0)
+      .x(42)
+      .y(-2)
     ;
   }
 
   , go: function() {
     var self = this;
-    self.forward().after(function(){
-      self.backward().after(function(){
+    self.backward().after(function(){
+      self.forward().after(function(){
         self.go();
       });
     });
