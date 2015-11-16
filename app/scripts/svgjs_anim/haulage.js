@@ -7,6 +7,10 @@ SVGjsAnim.prototype.Haulage = function() {
     .attr('id', 'haulage')
   ;
 
+  this.dumpTruckHaul = this.draw.dumpTruckHaul();
+  this.haulage.add(this.dumpTruckHaul);
+  this.dumpTruckHaul.go();
+
   this.dumpTruckDump = this.draw.dumpTruck();
   this.haulage.add(this.dumpTruckDump);
   this.dumpTruckDump.go();
