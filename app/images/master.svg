@@ -4156,7 +4156,7 @@
 		<stop  offset="0.6316" style="stop-color:#45A0D4"/>
 		<stop  offset="0.7239" style="stop-color:#1688C9"/>
 	</linearGradient>
-	<path id="Cloud_10_1_" opacity="0.2" fill="url(#Cloud_10_2_)" enable-background="new    " d="M1080.268,31.233
+	<path id="Cloud_10_1_" display="none" opacity="0.2" fill="url(#Cloud_10_2_)" enable-background="new    " d="M1080.268,31.233
 		c0,0,26.982,1.733,26.982-21.887c0-3.243-3.772-9.317-3.772-9.317l-81.516,0.032l-2.399,8.815c0,0-14.36-0.946-14.36,11.492
 		c0,7.716,8.473,10.718,16.607,10.718C1024.232,31.084,1080.268,31.233,1080.268,31.233z"/>
 	
@@ -4173,7 +4173,7 @@
 		<stop  offset="0.8014" style="stop-color:#1789C9"/>
 		<stop  offset="0.8037" style="stop-color:#1688C9"/>
 	</linearGradient>
-	<path id="Cloud_9_1_" opacity="0.2" fill="url(#Cloud_9_2_)" enable-background="new    " d="M965.193,36.527
+	<path id="Cloud_9_1_" display="none" opacity="0.2" fill="url(#Cloud_9_2_)" enable-background="new    " d="M965.193,36.527
 		c0,0-27.253,1.536-27.253-19.399c0-7.398,9.956-15.074,20.091-15.074c0,0,6.989,0.559,7.162,0.559c0.053,0,0.776-2.583,0.776-2.583
 		l36.231,0.013l0.896,2.292c0,0,10.656-2.096,17.298,2.79c6.64,4.886,6.112,11.585,6.112,11.585s14.507-0.838,14.507,10.188
 		c0,6.838-8.565,9.498-16.781,9.498C1021.792,36.395,965.193,36.527,965.193,36.527z"/>
