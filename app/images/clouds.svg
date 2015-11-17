@@ -3,7 +3,21 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Clouds" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="1366px" height="700px" viewBox="0 0 1366 700" enable-background="new 0 0 1366 700" xml:space="preserve">
-<linearGradient id="Cloud_12_2_" gradientUnits="userSpaceOnUse" x1="1328.71" y1="202.4805" x2="1436.6094" y2="202.4805" gradientTransform="matrix(-1 0 0 -1 2657.8301 243)">
+<linearGradient id="Cloud_14_1_" gradientUnits="userSpaceOnUse" x1="1129.916" y1="199.5254" x2="1205.0566" y2="199.5254" gradientTransform="matrix(1 0 0 -1 287 243)">
+	<stop  offset="0" style="stop-color:#FFFFFF"/>
+	<stop  offset="0.0575" style="stop-color:#F0F7FC"/>
+	<stop  offset="0.1678" style="stop-color:#CAE4F3"/>
+	<stop  offset="0.3193" style="stop-color:#8BC4E4"/>
+	<stop  offset="0.5045" style="stop-color:#3698D0"/>
+	<stop  offset="0.5706" style="stop-color:#1688C9"/>
+	<stop  offset="0.8466" style="stop-color:#1688C9"/>
+</linearGradient>
+<path id="Cloud_14" opacity="0.2" fill="url(#Cloud_14_1_)" enable-background="new    " d="M1472.188,61.846
+	c0,0,19.868,1.208,19.868-15.248c0-5.812-7.26-11.847-14.646-11.847c0,0-5.095,0.438-5.222,0.438
+	c-0.128,0-1.528-10.105-14.647-10.105c-10.57,0-12.988,9.886-12.988,9.886s-7.77-1.646-12.609,2.193
+	c-4.839,3.839-4.458,9.104-4.458,9.104s-10.569-0.658-10.569,8.008c0,5.375,6.24,7.465,12.229,7.465
+	C1430.93,61.742,1472.188,61.846,1472.188,61.846z"/>
+<linearGradient id="Cloud_13_1_" gradientUnits="userSpaceOnUse" x1="1328.71" y1="202.4805" x2="1436.6094" y2="202.4805" gradientTransform="matrix(-1 0 0 -1 2657.8301 243)">
 	<stop  offset="0" style="stop-color:#FFFFFF"/>
 	<stop  offset="0.1266" style="stop-color:#FCFEFE"/>
 	<stop  offset="0.2079" style="stop-color:#F4F9FC"/>
@@ -16,11 +30,29 @@
 	<stop  offset="0.5828" style="stop-color:#1688C9"/>
 	<stop  offset="0.8037" style="stop-color:#1688C9"/>
 </linearGradient>
-<path id="Cloud_12_1_" opacity="0.2" fill="url(#Cloud_12_2_)" enable-background="new    " d="M1249.752,62.021
+<path id="Cloud_13" opacity="0.2" fill="url(#Cloud_13_1_)" enable-background="new    " d="M1249.752,62.021
 	c0,0-28.531,1.412-28.531-17.848c0-6.805,10.422-13.864,21.025-13.864c0,0,7.318,0.513,7.506,0.513
 	c0.183,0,2.195-11.827,21.025-11.827c15.184,0,18.653,11.569,18.653,11.569s11.15-1.926,18.107,2.567
 	c6.95,4.495,6.399,10.657,6.399,10.657s15.183-0.771,15.183,9.373c0,6.291-8.962,8.736-17.559,8.736
 	C1309.003,61.899,1249.752,62.021,1249.752,62.021z"/>
+<linearGradient id="Cloud_12_1_" gradientUnits="userSpaceOnUse" x1="2677.1426" y1="202.4805" x2="2785.042" y2="202.4805" gradientTransform="matrix(-1 0 0 -1 2657.8301 243)">
+	<stop  offset="0" style="stop-color:#FFFFFF"/>
+	<stop  offset="0.1266" style="stop-color:#FCFEFE"/>
+	<stop  offset="0.2079" style="stop-color:#F4F9FC"/>
+	<stop  offset="0.2764" style="stop-color:#E5F2F9"/>
+	<stop  offset="0.3378" style="stop-color:#D0E7F4"/>
+	<stop  offset="0.3945" style="stop-color:#B5D9EE"/>
+	<stop  offset="0.4478" style="stop-color:#93C8E6"/>
+	<stop  offset="0.4983" style="stop-color:#6CB4DD"/>
+	<stop  offset="0.5455" style="stop-color:#3F9DD3"/>
+	<stop  offset="0.5828" style="stop-color:#1688C9"/>
+	<stop  offset="0.8037" style="stop-color:#1688C9"/>
+</linearGradient>
+<path id="Cloud_12_2_" opacity="0.2" fill="url(#Cloud_12_1_)" enable-background="new    " d="M-98.681,62.021
+	c0,0-28.531,1.412-28.531-17.848c0-6.805,10.422-13.864,21.025-13.864c0,0,7.318,0.513,7.506,0.513
+	c0.183,0,2.195-11.827,21.025-11.827c15.184,0,18.653,11.569,18.653,11.569s11.15-1.926,18.107,2.567
+	c6.95,4.495,6.399,10.657,6.399,10.657s15.183-0.771,15.183,9.373c0,6.291-8.962,8.736-17.559,8.736
+	C-39.43,61.899-98.681,62.021-98.681,62.021z"/>
 <linearGradient id="Cloud_11_2_" gradientUnits="userSpaceOnUse" x1="1513.9688" y1="213.3916" x2="1582.4258" y2="213.3916" gradientTransform="matrix(-1 0 0 -1 2657.8301 243)">
 	<stop  offset="0" style="stop-color:#FFFFFF"/>
 	<stop  offset="0.8037" style="stop-color:#1688C9"/>
@@ -40,7 +72,7 @@
 	<stop  offset="0.6316" style="stop-color:#45A0D4"/>
 	<stop  offset="0.7239" style="stop-color:#1688C9"/>
 </linearGradient>
-<path id="Cloud_10_1_" opacity="0.2" fill="url(#Cloud_10_2_)" enable-background="new    " d="M1080.268,31.233
+<path id="Cloud_10_1_" display="none" opacity="0.2" fill="url(#Cloud_10_2_)" enable-background="new    " d="M1080.268,31.233
 	c0,0,26.982,1.733,26.982-21.887c0-3.243-3.772-9.317-3.772-9.317l-81.516,0.032l-2.399,8.815c0,0-14.36-0.946-14.36,11.492
 	c0,7.716,8.473,10.718,16.607,10.718C1024.232,31.084,1080.268,31.233,1080.268,31.233z"/>
 <linearGradient id="Cloud_9_2_" gradientUnits="userSpaceOnUse" x1="1616.8154" y1="224.709" x2="1719.8896" y2="224.709" gradientTransform="matrix(-1 0 0 -1 2657.8301 243)">
@@ -56,11 +88,11 @@
 	<stop  offset="0.8014" style="stop-color:#1789C9"/>
 	<stop  offset="0.8037" style="stop-color:#1688C9"/>
 </linearGradient>
-<path id="Cloud_9_1_" opacity="0.2" fill="url(#Cloud_9_2_)" enable-background="new    " d="M965.193,36.527
+<path id="Cloud_9_1_" display="none" opacity="0.2" fill="url(#Cloud_9_2_)" enable-background="new    " d="M965.193,36.527
 	c0,0-27.253,1.536-27.253-19.399c0-7.398,9.956-15.074,20.091-15.074c0,0,6.989,0.559,7.162,0.559c0.053,0,0.776-2.583,0.776-2.583
 	l36.231,0.013l0.896,2.292c0,0,10.656-2.096,17.298,2.79c6.64,4.886,6.112,11.585,6.112,11.585s14.507-0.838,14.507,10.188
 	c0,6.838-8.565,9.498-16.781,9.498C1021.792,36.395,965.193,36.527,965.193,36.527z"/>
-<linearGradient id="Cloud_8_2_" gradientUnits="userSpaceOnUse" x1="358.0469" y1="202.3403" x2="487.2783" y2="202.3403" gradientTransform="matrix(1 0 0 -1 344.6982 243)">
+<linearGradient id="Cloud_8_2_" gradientUnits="userSpaceOnUse" x1="362.7139" y1="202.3403" x2="491.9453" y2="202.3403" gradientTransform="matrix(1 0 0 -1 344.6982 243)">
 	<stop  offset="0" style="stop-color:#FFFFFF"/>
 	<stop  offset="0.0434" style="stop-color:#FFFFFF"/>
 	<stop  offset="0.3067" style="stop-color:#FFFFFF"/>
@@ -73,10 +105,10 @@
 	<stop  offset="0.6834" style="stop-color:#3598D0"/>
 	<stop  offset="0.7117" style="stop-color:#1688C9"/>
 </linearGradient>
-<path id="Cloud_8_1_" opacity="0.2" fill="url(#Cloud_8_2_)" enable-background="new    " d="M797.806,62.11
+<path id="Cloud_8_1_" opacity="0.2" fill="url(#Cloud_8_2_)" enable-background="new    " d="M802.473,62.11
 	c0,0,34.171,1.41,34.171-17.804c0-6.789-12.484-13.834-25.191-13.834c0,0-8.762,0.513-8.979,0.513c-0.219,0-2.63-11.8-25.188-11.8
 	c-18.184,0-22.341,11.543-22.341,11.543s-13.36-1.92-21.684,2.562c-8.324,4.482-7.665,10.632-7.665,10.632s-18.184-0.77-18.184,9.35
-	c0,6.276,10.729,8.717,21.032,8.717C726.848,61.99,797.806,62.11,797.806,62.11z"/>
+	c0,6.276,10.729,8.717,21.032,8.717C731.515,61.99,802.473,62.11,802.473,62.11z"/>
 <linearGradient id="Cloud_7_2_" gradientUnits="userSpaceOnUse" x1="1912.4902" y1="203.9756" x2="1988.8633" y2="203.9756" gradientTransform="matrix(-1 0 0 -1 2657.8301 243)">
 	<stop  offset="0" style="stop-color:#FFFFFF"/>
 	<stop  offset="0.0805" style="stop-color:#F9FCFE"/>
@@ -169,7 +201,7 @@
 	c0,0-27.255,1.223-27.255-15.439c0-5.889,9.958-11.998,20.093-11.998c0,0,6.988,0.444,7.162,0.444s2.097-10.232,20.09-10.232
 	c14.502,0,17.819,10.012,17.819,10.012s10.656-1.667,17.296,2.221c6.639,3.887,6.111,9.219,6.111,9.219s14.502-0.667,14.502,8.106
 	c0,5.444-8.56,7.562-16.774,7.562C304.473,55.92,247.874,56.024,247.874,56.024z"/>
-<linearGradient id="Cloud_1_2_" gradientUnits="userSpaceOnUse" x1="-253.7412" y1="199.5254" x2="-178.6001" y2="199.5254" gradientTransform="matrix(1 0 0 -1 287 243)">
+<linearGradient id="Cloud_1_1_" gradientUnits="userSpaceOnUse" x1="-253.7412" y1="199.5254" x2="-178.6001" y2="199.5254" gradientTransform="matrix(1 0 0 -1 287 243)">
 	<stop  offset="0" style="stop-color:#FFFFFF"/>
 	<stop  offset="0.0575" style="stop-color:#F0F7FC"/>
 	<stop  offset="0.1678" style="stop-color:#CAE4F3"/>
@@ -178,7 +210,7 @@
 	<stop  offset="0.5706" style="stop-color:#1688C9"/>
 	<stop  offset="0.8466" style="stop-color:#1688C9"/>
 </linearGradient>
-<path id="Cloud_1_1_" opacity="0.2" fill="url(#Cloud_1_2_)" enable-background="new    " d="M88.532,61.846
+<path id="Cloud_1_2_" opacity="0.2" fill="url(#Cloud_1_1_)" enable-background="new    " d="M88.532,61.846
 	c0,0,19.868,1.208,19.868-15.248c0-5.812-7.26-11.847-14.646-11.847c0,0-5.095,0.438-5.222,0.438
 	c-0.128,0-1.528-10.105-14.647-10.105c-10.571,0-12.989,9.886-12.989,9.886s-7.769-1.646-12.609,2.193
 	c-4.839,3.839-4.458,9.104-4.458,9.104s-10.57-0.658-10.57,8.008c0,5.375,6.241,7.465,12.23,7.465
