@@ -113,7 +113,6 @@ SVGjsAnim.prototype.build = function() {
       .add(clouds)
       .add(clouds.clone().move(-w, 0));
     this.scene.add(this.cloudGroup);
-    this.scene.add(this.cloudGroup);
 
     this.Hoisting();
     this.Development();
