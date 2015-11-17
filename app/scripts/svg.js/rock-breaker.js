@@ -1,11 +1,13 @@
 'use strict';
-/*global SVG, Q */
+/*global SVG */
 
 SVG.RockBreaker = SVG.invent({
     create: 'g',
     inherit: SVG.G,
     extend: {
         build: function() {
+          this.t = 500;
+          this.strike = 250;
           this.rbArm = this.doc().use('Rock_Breaker_Arm', 'images/master.svg');
           this.rbBit = this.doc().use('Rock_Breaker_Bit', 'images/master.svg');
           var rbCircle = this.doc().use('Rock_Breaker_Circle', 'images/master.svg');
@@ -23,39 +25,49 @@ SVG.RockBreaker = SVG.invent({
 
 SVG.extend(SVG.RockBreaker, {
     up: function() {
-        var defer = Q.defer();
-        this.rbArm.animate(500).transform({ rotation: 5, x: 1, y: -5 })
-            .after(function(){
-                defer.resolve();
-            });
-        this.rbBit.animate(500).transform({ rotation: 5, x: -5, y: -10 })
-            .after(function(){
-            });
-        return defer.promise;
+      this.rbArm
+        .animate(this.t)
+        .rotate(-0.02)
+        .x(0.1)
+        .y(-0.1)
+      ;
+      return this.rbBit
+        .animate(this.t)
+        .rotate(-0.05)
+      ;
     },
     down: function() {
-        var defer = Q.defer();
-        this.rbArm.animate(250).transform({ rotation: -10, x: -1, y: 5 });
-        this.rbBit.animate(250).transform({ rotation: -10, x: 5, y: 10 })
-            .after(function(){
-                defer.resolve();
-            });
-        return defer.promise;
+      this.rbArm
+        .animate(this.t)
+        .rotate(0.02)
+        .x(-0.1)
+        .y(0.1)
+      ;
+      return this.rbBit
+        .animate(this.t)
+        .rotate(0.05)
+      ;
     },
     reset: function() {
-        var defer = Q.defer();
-        this.rbArm.animate(500).transform({ rotation: 0, x: 0, y: 0 });
-        this.rbBit.animate(500).transform({ rotation: 0, x: 0, y: 0 })
-            .after(function(){defer.resolve('good');});
-        return defer.promise;
+      this.rbArm
+        .animate(this.t)
+        .rotate(0)
+        .x(0)
+        .y(0)
+      ;
+      return this.rbBit
+        .animate(this.t)
+        .rotate(0)
+      ;
     },
     go: function() {
-        var self = this;
-        this.up(self)
-            .then(function(){ return self.down(); })
-            .then(function(){ return self.reset(); })
-            .done(function(){
-                self.go();
-            });
+      var self = this;
+      self.up().after(function(){
+        self.down().after(function(){
+          self.reset().after(function() {
+            self.go();
+          });
+        });
+      });
     }
 });

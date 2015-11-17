@@ -16,6 +16,7 @@ SVGjsAnim.prototype.Hoisting = function() {
   ;
 
   this.elevator.go();
+  this.rockBreaker.go();
 
   return this;
 };
