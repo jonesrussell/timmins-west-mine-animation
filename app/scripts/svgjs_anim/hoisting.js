@@ -4,23 +4,23 @@
 SVGjsAnim.prototype.Hoisting = function() {
   this.hoisting = this.draw
     .group()
-    .attr('id', 'hoisting');
+    .attr('id', 'hoisting')
+  ;
   this.scene.add(this.hoisting);
 
-  // IE doesn't read image size
-  var w = this.origSceneW;
-  var h = this.origSceneH;
-
   this.elevator = this.draw.elevator();
-  this.dumpTruck = this.draw.image('images/truck.svg', w, h);
-  this.rockBreaker = this.draw.use('Rock_Breaker', 'images/master.svg');
+  this.rockBreaker = this.draw.rockBreaker();
+  this.rockBreakerRocks = this.draw.rockBreakerRocks();
 
   this.hoisting
-    .add(this.dumpTruck)
     .add(this.rockBreaker)
-    .add(this.elevator);
+    .add(this.rockBreakerRocks)
+    .add(this.elevator)
+  ;
 
   this.elevator.go();
+  this.rockBreaker.go();
+  this.rockBreakerRocks.go();
 
   return this;
 };

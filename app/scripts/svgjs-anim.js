@@ -19,6 +19,9 @@ function SVGjsAnim(id)
 
   this.draw.viewbox(0, 0, this.origSceneW, this.origSceneH);
   this.draw.attr('preserveAspectRatio', 'xMidYMax meet');
+
+//  this.scene.scale(4);
+//  this.scene.move(-130, -320);
 }
 
 SVGjsAnim.prototype.Scene = function() {
@@ -109,7 +112,6 @@ SVGjsAnim.prototype.build = function() {
     this.cloudGroup = this.draw.group().attr({ id: 'cloud-group' })
       .add(clouds)
       .add(clouds.clone().move(-w, 0));
-    this.scene.add(this.cloudGroup);
     this.scene.add(this.cloudGroup);
 
     this.Hoisting();
