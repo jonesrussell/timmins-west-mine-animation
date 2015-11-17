@@ -6,6 +6,7 @@ SVGjsAnim.prototype.Haulage = function() {
     .group()
     .attr('id', 'haulage')
   ;
+  this.scene.add(this.haulage);
 
   this.dumpTruckHaul = this.draw.dumpTruckHaul();
   this.haulage.add(this.dumpTruckHaul);
@@ -14,10 +15,6 @@ SVGjsAnim.prototype.Haulage = function() {
   this.dumpTruckDump = this.draw.dumpTruck();
   this.haulage.add(this.dumpTruckDump);
   this.dumpTruckDump.go();
-
-  this.scene
-    .add(this.haulage)
-  ;
 
   this.headings.haulage = this.Heading('Haulage_Video', 'haulage', 3.65, 560, 600);
   this.sceneHeadings.add(this.headings.haulage);
