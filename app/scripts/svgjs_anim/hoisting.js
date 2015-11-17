@@ -8,7 +8,7 @@ SVGjsAnim.prototype.Hoisting = function() {
   this.scene.add(this.hoisting);
 
   this.elevator = this.draw.elevator();
-  this.rockBreaker = this.draw.use('Rock_Breaker', 'images/master.svg');
+  this.rockBreaker = this.draw.rockBreaker();
 
   this.hoisting
     .add(this.rockBreaker)

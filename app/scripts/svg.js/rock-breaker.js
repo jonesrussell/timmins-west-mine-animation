@@ -5,27 +5,19 @@ SVG.RockBreaker = SVG.invent({
     create: 'g',
     inherit: SVG.G,
     extend: {
-        build: function(x, y) {
-            this.attr({ id: 'eq-rock-breaker' })
-                .move(x, y);
-//                .scale(params.scale);
+        build: function() {
+          this.rbArm = this.doc().use('Rock_Breaker_Arm', 'images/master.svg');
+          this.rbBit = this.doc().use('Rock_Breaker_Bit', 'images/master.svg');
+          var rbCircle = this.doc().use('Rock_Breaker_Circle', 'images/master.svg');
+          this.add(this.rbArm)
+              .add(this.rbBit)
+              .add(rbCircle);
 
-            this.rbArm = this.doc().image('images/rock_breaker/rock_breaker_arm.svg', 26, 26)
-                .move(75, -64)
-                .addClass('inject-me');
-            this.rbBit = this.doc().image('images/rock_breaker/rock_breaker_bit.svg', 33, 106)
-                .move(44, -73);
-            var rbCircle = this.doc().image('images/rock_breaker/rock_breaker_circle.svg', 15, 33)
-                .move(95, -60);
-            this.add(this.rbArm)
-                .add(this.rbBit)
-                .add(rbCircle);
-
-            return this;
-        }
+          return this;
+      }
     },
     construct: {
-        rockBreaker: function(x, y) { return this.put(new SVG.RockBreaker).build(x, y); }
+      rockBreaker: function() { return this.put(new SVG.RockBreaker).build(); }
     }
 });
 
