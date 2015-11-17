@@ -19,6 +19,9 @@ function SVGjsAnim(id)
 
   this.draw.viewbox(0, 0, this.origSceneW, this.origSceneH);
   this.draw.attr('preserveAspectRatio', 'xMidYMax meet');
+
+//  this.scene.scale(4);
+//  this.scene.move(-130, -320);
 }
 
 SVGjsAnim.prototype.Scene = function() {
