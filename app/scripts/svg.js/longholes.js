@@ -57,12 +57,12 @@ SVG.Longhole = SVG.invent({
 });
 
 SVG.extend(SVG.Longhole, {
-  setForwardPathMaster(path) {
+  setForwardPathMaster: function(path) {
     this.forwardPathMaster = path;
     this.reset();
     return this;
   }
-  , setForwardPath() {
+  , setForwardPath: function() {
     this.forwardPath = this.forwardPathMaster.slice();
     return this;
   }
@@ -103,8 +103,8 @@ SVG.extend(SVG.Longhole, {
     this.bitIndex++;
     return bit
       .animate(this.t)
-      .cy(this.bitsToY)
-      .cx(this.bitsToX)
+      .y(this.bitsToY)
+      .x(this.bitsToX)
     ;
   }
   , showHoles: function() {

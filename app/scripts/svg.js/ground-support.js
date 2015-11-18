@@ -129,15 +129,15 @@ SVG.extend(SVG.GroundSupport, {
     return this.gsDrill
       .animate(this.t)
       .opacity(1)
-      .cy(0)
-      .cx(0);
+      .y(0)
+      .x(0);
   }
 
   , drillDown: function() {
     return this.gsDrill
       .animate(this.t)
-      .cy(2.2)
-      .cx(-0.3);
+      .y(2.2)
+      .x(-0.3);
   }
 
   , tiresForward: function() {

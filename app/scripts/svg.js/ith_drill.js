@@ -77,16 +77,16 @@ SVG.extend(SVG.ITHDrill, {
   , drillDown: function() {
     return this.drill
       .animate(this.t)
-      .cy(25)
-      .cx(-5)
+      .y(25)
+      .x(-5)
     ;
   }
   , drillUp: function() {
     return this.drill
       .animate(this.t)
       .opacity(1)
-      .cy(0)
-      .cx(0)
+      .y(0)
+      .x(0)
     ;
   }
   , holeDown: function() {
@@ -94,16 +94,16 @@ SVG.extend(SVG.ITHDrill, {
     this.bitIndex++;
     return bit
       .animate(this.t)
-      .cy(25)
-      .cx(-5)
+      .y(25)
+      .x(-5)
     ;
   }
   , holeUp: function() {
     return this.drill
       .animate(this.t)
       .opacity(1)
-      .cy(0)
-      .cx(0)
+      .y(0)
+      .x(0)
     ;
   }
   , showHoles: function() {
