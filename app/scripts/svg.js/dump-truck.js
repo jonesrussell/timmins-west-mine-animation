@@ -6,15 +6,31 @@ SVG.DumpTruck = SVG.invent({
   inherit: SVG.G,
   extend: {
     build: function() {
-      this.t = 8000;
+      this.t = 1000;
 
-      this.clip = this.doc().rect(100, 50);
-      this.clip.move(700, 530);
+      this.clip = this.doc().rect(60, 29)
+        .move(700, 531)
+        .rotate(-3)
+      ;
       this.add(this.clip);
       this.clipWith(this.clip);
 
-      this.body = this.doc().use('Haulage_Dump_Truck_1', 'images/master.svg');
+      this.body = this.group();
       this.add(this.body);
+      this.bodyParts = this.doc().use('Haulage_Dump_Truck_1_Body', 'images/master.svg');
+      this.pile = this.doc().use('Haulage_Dump_Truck_1_Pile', 'images/master.svg');
+      this.bucketGroup = this.doc().group();
+      this.bucket = this.doc().use('Haulage_Dump_Truck_1_Bucket', 'images/master.svg');
+      this.bucketGroup
+        .add(this.pile)
+        .add(this.bucket)
+      ;
+      this.body
+        .add(this.bodyParts)
+        .add(this.bucketGroup)
+      ;
+
+      this._transform = this.bucket.transform();
 
       return this;
     }
@@ -30,7 +46,7 @@ SVG.DumpTruck = SVG.invent({
 SVG.extend(SVG.DumpTruck, {
   forward: function() {
     return this.body
-      .animate(this.t)
+      .animate(5000)
       .x(0)
       .y(0)
     ;
@@ -38,17 +54,43 @@ SVG.extend(SVG.DumpTruck, {
 
   , backward: function() {
     return this.body
-      .animate(this.t)
+      .animate(5000)
       .x(90)
       .y(-4)
     ;
   }
 
+  , showPile: function() {
+    this.pile.show();
+    return this;
+  }
+
+  , hidePile: function() {
+    this.pile.hide();
+    return this;
+  }
+
+  , dump: function() {
+    this.pile.animate(700, '-', this.t).move(15, 4);
+    return this.bucketGroup.animate(this.t).rotate(10, 668, 557).loop(1, true);
+  }
+
+  , resetPile: function() {
+    this.pile.move(0, 0);
+    return this;
+  }
+
   , go: function() {
     var self = this;
+//    self.showPile();
     self.backward().after(function(){
-      self.forward().after(function(){
-        self.go();
+      self.dump().after(function(){
+        self.hidePile();
+        self.forward().after(function(){
+          self.resetPile();
+          self.showPile();
+          self.go();
+        });
       });
     });
   }
