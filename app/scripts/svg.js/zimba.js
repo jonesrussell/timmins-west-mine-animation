@@ -77,16 +77,16 @@ SVG.extend(SVG.Zimba, {
   , drillDown: function() {
     return this.drill
       .animate(this.t)
-      .cy(this.bitsToY)
-      .cx(this.bitsToX)
+      .y(this.bitsToY)
+      .x(this.bitsToX)
     ;
   }
   , drillUp: function() {
     return this.drill
       .animate(this.t)
       .opacity(1)
-      .cy(0)
-      .cx(0)
+      .y(0)
+      .x(0)
     ;
   }
   , holeDown: function() {
@@ -94,16 +94,16 @@ SVG.extend(SVG.Zimba, {
     this.bitIndex++;
     return bit
       .animate(this.t)
-      .cy(this.bitsToY)
-      .cx(this.bitsToX)
+      .y(this.bitsToY)
+      .x(this.bitsToX)
     ;
   }
   , holeUp: function() {
     return this.drill
       .animate(this.t)
       .opacity(1)
-      .cy(0)
-      .cx(0)
+      .y(0)
+      .x(0)
     ;
   }
   , showHoles: function() {

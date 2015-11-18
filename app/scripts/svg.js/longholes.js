@@ -103,8 +103,8 @@ SVG.extend(SVG.Longhole, {
     this.bitIndex++;
     return bit
       .animate(this.t)
-      .cy(this.bitsToY)
-      .cx(this.bitsToX)
+      .y(this.bitsToY)
+      .x(this.bitsToX)
     ;
   }
   , showHoles: function() {
