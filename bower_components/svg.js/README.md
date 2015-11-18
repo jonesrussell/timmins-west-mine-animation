@@ -23,9 +23,9 @@ This will generate the following output:
 
 ```html
 <div id="drawing">
-	<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="300" height="300">
-		<rect width="100" height="100" fill="#f06"></rect>
-	</svg>
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="300" height="300">
+    <rect width="100" height="100" fill="#f06"></rect>
+  </svg>
 </div>
 ```
 
@@ -888,13 +888,13 @@ var elements = group.select('rect.my-class').fill('#f06')
 Another way is to use [jQuery](http://jquery.com/) or [Zepto](http://zeptojs.com/). Here is an example:
 
 ```javascript
-/* add elements */
+// add elements 
 var draw   = SVG('drawing')
 var group  = draw.group().addClass('my-group')
 var rect   = group.rect(100,100).addClass('my-element')
 var circle = group.circle(100).addClass('my-element').move(100, 100)
 
-/* get elements in group */
+// get elements in group 
 var elements = $('#drawing g.my-group .my-element').each(function() {
   this.instance.animate().fill('#f09')
 })
@@ -3742,9 +3742,10 @@ SVG.extend(SVG.Ellipse, SVG.Path, SVG.Polygon, {
 Here are a few nice plugins that are available for SVG.js:
 
 ### pathmorphing
-[svg.pathmorphing.js](https://github.com/wout/svg.pathmorphing.js) to make path animateable
+[svg.pathmorphing.js](https://github.com/wout/svg.pathmorphing.js) to make path animatable
 
-** Caution: Not tested for SVG.js 2.0 **
+### textmorphing
+[svg.textmorph.js](https://github.com/wout/svg.textmorph.js) to make text animatable
 
 ### absorb
 [svg.absorb.js](https://github.com/wout/svg.absorb.js) absorb raw SVG data into an SVG.js instance.
@@ -3777,6 +3778,9 @@ Here are a few nice plugins that are available for SVG.js:
 
 ### path
 [svg.path.js](https://github.com/otm/svg.path.js) for manually drawing paths (by Nils Lagerkvist).
+
+## screenBBox
+[svg.screenbbox.js](https://github.com/fuzzyma/svg.screenbbox.js) to get the bbox in screen coordinates from transformed path/polygon/polyline
 
 ### shapes
 [svg.shapes.js](https://github.com/wout/svg.shapes.js) for more polygon based shapes.
@@ -3823,7 +3827,7 @@ for (var i = 0; i < 5; i++)
 
 __Bad__:
 ```javascript
-var text = draw.text("with single quotes here");
+var text = draw.text("with double quotes here");
 var nest = draw.nested().attr("x", "50%");
 
 for (var i = 0; i < 5; i++) {
