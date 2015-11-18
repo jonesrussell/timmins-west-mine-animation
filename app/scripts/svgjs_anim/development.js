@@ -2,18 +2,6 @@
 /*global SVGjsAnim */
 
 SVGjsAnim.prototype.Development = function() {
-  this.development = this.draw
-    .group()
-    .attr('id', 'development');
-
-  this.scooptramDevelopment = this.draw.scooptram()
-    .moveClip(1000, 550)
-  ;
-  this.development.add(this.scooptramDevelopment);
-  this.scooptramDevelopment.go();
-
-  // Ground Support Bits
-  this.gsBits = this.draw.group();
   var gsBit1  = this.draw.use('GS_Bit_6', 'images/master.svg').opacity(0);
   var gsBit2  = this.draw.use('GS_Bit_7', 'images/master.svg').opacity(0);
   var gsBit3  = this.draw.use('GS_Bit_8', 'images/master.svg').opacity(0);
@@ -27,6 +15,19 @@ SVGjsAnim.prototype.Development = function() {
   var gsBit11  = this.draw.use('GS_Bit_16', 'images/master.svg').opacity(0);
   var gsBit12  = this.draw.use('GS_Bit_17', 'images/master.svg').opacity(0);
   var gsBit13  = this.draw.use('GS_Bit_18', 'images/master.svg').opacity(0);
+
+  this.development = this.draw
+    .group()
+    .attr('id', 'development');
+
+  this.scooptramDevelopment = this.draw.scooptram()
+    .moveClip(1000, 550)
+  ;
+  this.development.add(this.scooptramDevelopment);
+  this.scooptramDevelopment.go();
+
+  // Ground Support Bits
+  this.gsBits = this.draw.group();
   this.gsBits
     .add(gsBit1)
     .add(gsBit2)

@@ -6,6 +6,8 @@ SVG.RockBreakerRocks = SVG.invent({
     inherit: SVG.G,
     extend: {
         build: function() {
+          this.rocks = this.doc().use('Rock_Breaker_Rocks', 'images/master.svg');
+
           this.clip = this.doc()
             .rect(20, 40)
             .move(750, 559)
@@ -13,7 +15,6 @@ SVG.RockBreakerRocks = SVG.invent({
           this.add(this.clip);
           this.clipWith(this.clip);
 
-          this.rocks = this.doc().use('Rock_Breaker_Rocks', 'images/master.svg');
           this.add(this.rocks);
 
           return this;

@@ -6,15 +6,15 @@ SVG.DumpTruckHaul = SVG.invent({
   inherit: SVG.G,
   extend: {
     build: function() {
+      this.body = this.doc().use('Haulage_Dump_Truck_2', 'images/master.svg');
+      this.add(this.body);
+
       this.t = 13000;
 
       this.clip = this.doc().rect(210, 100);
       this.clip.move(320, 500);
       this.add(this.clip);
       this.clipWith(this.clip);
-
-      this.body = this.doc().use('Haulage_Dump_Truck_2', 'images/master.svg');
-      this.add(this.body);
 
       return this;
     }

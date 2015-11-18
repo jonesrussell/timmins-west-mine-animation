@@ -6,12 +6,13 @@ SVG.RockBreaker = SVG.invent({
     inherit: SVG.G,
     extend: {
         build: function() {
-          this.t = 500;
-          this.strike = 250;
-
           this.arm = this.doc().use('Rock_Breaker_Arm', 'images/master.svg');
           this.bit = this.doc().use('Rock_Breaker_Bit', 'images/master.svg');
           var circle = this.doc().use('Rock_Breaker_Circle', 'images/master.svg');
+
+          this.t = 500;
+          this.strike = 250;
+
           this.add(this.arm)
             .add(this.bit)
             .add(circle)

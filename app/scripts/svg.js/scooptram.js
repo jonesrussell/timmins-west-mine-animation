@@ -6,6 +6,9 @@ SVG.Scooptram = SVG.invent({
   inherit: SVG.G,
   extend: {
     build: function() {
+      this.scooptramPile = this.doc().use('Scooptram_Development_Pile', 'images/master.svg').opacity(0);
+      this.scooptramParts = this.doc().use('Scooptram_Development_Parts', 'images/master.svg');
+
       this.driveToX = 96;
       this.clip = this.doc()
         .rect(100, 50)
@@ -14,13 +17,6 @@ SVG.Scooptram = SVG.invent({
       this.add(this.clip);
       this.clipWith(this.clip);
 
-      this.scooptramPile = this.doc()
-        .use('Scooptram_Development_Pile', 'images/master.svg')
-        .opacity(0)
-      ;
-      this.scooptramParts = this.doc()
-        .use('Scooptram_Development_Parts', 'images/master.svg')
-      ;
       this.scooptram = this.doc()
         .group()
         .add(this.scooptramPile)

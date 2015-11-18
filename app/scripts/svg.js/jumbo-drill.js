@@ -6,8 +6,19 @@ SVG.JumboDrill = SVG.invent({
   inherit: SVG.G,
   extend: {
     build: function() {
-      this.attr('id', 'jumbo-drill');
       var img = 'images/master.svg';
+      this.topDrillBody = this.doc().use('Jumbo_Drill_Top_Body', img);
+      this.topDrillBit = this.doc().use('Jumbo_Drill_Top_Drill_Bit_Group', img);
+      this.jumboBody = this.doc().use('Jumbo_Drill_Body', img);
+      this.topDrillHole1 = this.doc().use('Jumbo_Drill_Holes_1', img).opacity(0);
+      this.topDrillHole2 = this.doc().use('Jumbo_Drill_Holes_2', img).opacity(0);
+      this.bottomDrillBody = this.doc().use('Jumbo_Drill_Bottom_Body', img);
+      this.bottomDrillBit = this.doc().use('Jumbo_Drill_Bottom_Drill_Bit_Group', img);
+      this.bottomDrillHole = this.doc().use('Bottom_Drill_Hole', img);
+      this.bottomDrillHole1 = this.doc().use('Jumbo_Drill_Holes_3', img).opacity(0);
+      this.bottomDrillHole2 = this.doc().use('Jumbo_Drill_Holes_4', img).opacity(0);
+
+      this.attr('id', 'jumbo-drill');
 
       this.clip = this.doc()
         .rect(166, 100)
@@ -16,32 +27,22 @@ SVG.JumboDrill = SVG.invent({
       this.add(this.clip);
       this.clipWith(this.clip);
 
-      this.topDrillBody = this.doc().use('Jumbo_Drill_Top_Body', img);
-      this.topDrillBit = this.doc().use('Jumbo_Drill_Top_Drill_Bit_Group', img);
       this.topDrill = this.doc().group()
         .add(this.topDrillBit)
         .add(this.topDrillBody);
-      this.jumboBody = this.doc().use('Jumbo_Drill_Body', img);
 
-      this.topDrillHole1 = this.doc().use('Jumbo_Drill_Holes_1', img).opacity(0);
-      this.topDrillHole2 = this.doc().use('Jumbo_Drill_Holes_2', img).opacity(0);
       this.topDrillHoles = this.doc().group()
         .add(this.topDrillHole1)
         .add(this.topDrillHole2)
       ;
       this.add(this.topDrillHoles);
 
-      this.bottomDrillBody = this.doc().use('Jumbo_Drill_Bottom_Body', img);
-      this.bottomDrillBit = this.doc().use('Jumbo_Drill_Bottom_Drill_Bit_Group', img);
-      this.bottomDrillHole = this.doc().use('Bottom_Drill_Hole', img);
       this.bottomDrill = this.doc().group()
         .add(this.bottomDrillHole)
         .add(this.bottomDrillBit)
         .add(this.bottomDrillBody)
       ;
 
-      this.bottomDrillHole1 = this.doc().use('Jumbo_Drill_Holes_3', img).opacity(0);
-      this.bottomDrillHole2 = this.doc().use('Jumbo_Drill_Holes_4', img).opacity(0);
       this.bottomDrillHoles = this.doc().group()
         .add(this.bottomDrillHole1)
         .add(this.bottomDrillHole2)

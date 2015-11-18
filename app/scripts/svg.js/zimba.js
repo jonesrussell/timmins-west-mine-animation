@@ -6,6 +6,9 @@ SVG.Zimba = SVG.invent({
   inherit: SVG.G,
   extend: {
     build: function(bits) {
+      this.parts = this.doc().use('TC_Zimba_Longhole_Parts', 'images/master.svg');
+      this.drill = this.doc().use('TC_Zimba_Longhole_Drill', 'images/master.svg');
+
       this.bits = bits;
       this.bitsToX = -8.8;
       this.bitsToY = 46.9;
@@ -17,9 +20,6 @@ SVG.Zimba = SVG.invent({
       ;
       this.add(this.clip);
       this.clipWith(this.clip);
-
-      this.parts = this.doc().use('TC_Zimba_Longhole_Parts', 'images/master.svg');
-      this.drill = this.doc().use('TC_Zimba_Longhole_Drill', 'images/master.svg');
 
       this.body = this.doc()
         .group()

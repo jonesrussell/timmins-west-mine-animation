@@ -6,6 +6,9 @@ SVG.ITHDrill = SVG.invent({
   inherit: SVG.G,
   extend: {
     build: function(bits) {
+      this.parts = this.doc().use('In_The_Hole_Drill_Parts', 'images/master.svg');
+      this.drill = this.doc().use('In_The_Hole_Drill_Bits', 'images/master.svg');
+
       this.bits = bits;
       this.driveToX = 96;
       this.t = 2000;
@@ -14,9 +17,6 @@ SVG.ITHDrill = SVG.invent({
       ;
       this.add(this.clip);
       this.clipWith(this.clip);
-
-      this.parts = this.doc().use('In_The_Hole_Drill_Parts', 'images/master.svg');
-      this.drill = this.doc().use('In_The_Hole_Drill_Bits', 'images/master.svg');
 
       this.body = this.doc()
         .group()

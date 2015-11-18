@@ -2,6 +2,20 @@
 /*global SVGjsAnim */
 
 SVGjsAnim.prototype.Stoping = function() {
+  var ithBit1  = this.draw.use('Timmins_Loading_Longholes_1', 'images/master.svg');
+  var ithBit2  = this.draw.use('Timmins_Loading_Longholes_2', 'images/master.svg');
+  var ithBit3  = this.draw.use('Timmins_Loading_Longholes_3', 'images/master.svg');
+  var ithBit4  = this.draw.use('Timmins_Loading_Longholes_4', 'images/master.svg');
+  var ithBit5  = this.draw.use('Timmins_Loading_Longholes_5', 'images/master.svg');
+  var ithBit6  = this.draw.use('Timmins_Loading_Longholes_6', 'images/master.svg');
+  var ithBit7  = this.draw.use('Timmins_Loading_Longholes_7', 'images/master.svg');
+  var ithBit8  = this.draw.use('Timmins_Loading_Longholes_8', 'images/master.svg');
+
+  var longholes1  = this.draw.use('Yellow_Holes_1', 'images/master.svg');
+  var longholes2  = this.draw.use('Yellow_Holes_2', 'images/master.svg');
+  var longholes3  = this.draw.use('Yellow_Holes_3', 'images/master.svg');
+  var longholes4  = this.draw.use('Yellow_Holes_4', 'images/master.svg');
+
   this.stoping = this.draw
     .group()
     .attr('id', 'stoping')
@@ -16,14 +30,6 @@ SVGjsAnim.prototype.Stoping = function() {
   this.scene.add(this.ithHolesClip);
   this.ithBits = this.draw.group();
   this.ithBits.clipWith(this.ithHolesClip);
-  var ithBit1  = this.draw.use('Timmins_Loading_Longholes_1', 'images/master.svg');
-  var ithBit2  = this.draw.use('Timmins_Loading_Longholes_2', 'images/master.svg');
-  var ithBit3  = this.draw.use('Timmins_Loading_Longholes_3', 'images/master.svg');
-  var ithBit4  = this.draw.use('Timmins_Loading_Longholes_4', 'images/master.svg');
-  var ithBit5  = this.draw.use('Timmins_Loading_Longholes_5', 'images/master.svg');
-  var ithBit6  = this.draw.use('Timmins_Loading_Longholes_6', 'images/master.svg');
-  var ithBit7  = this.draw.use('Timmins_Loading_Longholes_7', 'images/master.svg');
-  var ithBit8  = this.draw.use('Timmins_Loading_Longholes_8', 'images/master.svg');
   this.ithBits
     .add(ithBit1)
     .add(ithBit2)
@@ -61,10 +67,6 @@ SVGjsAnim.prototype.Stoping = function() {
   this.scene.add(this.longholesClip);
   this.longholeBits = this.draw.group();
   this.longholeBits.clipWith(this.longholesClip);
-  var longholes1  = this.draw.use('Yellow_Holes_1', 'images/master.svg');
-  var longholes2  = this.draw.use('Yellow_Holes_2', 'images/master.svg');
-  var longholes3  = this.draw.use('Yellow_Holes_3', 'images/master.svg');
-  var longholes4  = this.draw.use('Yellow_Holes_4', 'images/master.svg');
   this.longholeBits
     .add(longholes1)
     .add(longholes2)
