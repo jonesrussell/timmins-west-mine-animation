@@ -2,19 +2,19 @@
 /*global SVGjsAnim */
 
 SVGjsAnim.prototype.Stoping = function() {
-  var ithBit1  = this.draw.use('Timmins_Loading_Longholes_1', 'images/master.svg');
-  var ithBit2  = this.draw.use('Timmins_Loading_Longholes_2', 'images/master.svg');
-  var ithBit3  = this.draw.use('Timmins_Loading_Longholes_3', 'images/master.svg');
-  var ithBit4  = this.draw.use('Timmins_Loading_Longholes_4', 'images/master.svg');
-  var ithBit5  = this.draw.use('Timmins_Loading_Longholes_5', 'images/master.svg');
-  var ithBit6  = this.draw.use('Timmins_Loading_Longholes_6', 'images/master.svg');
-  var ithBit7  = this.draw.use('Timmins_Loading_Longholes_7', 'images/master.svg');
-  var ithBit8  = this.draw.use('Timmins_Loading_Longholes_8', 'images/master.svg');
+  var ithBit1  = this.draw.image('images/Timmins_Loading_Longholes_1.svg', 1366, 700);
+  var ithBit2  = this.draw.image('images/Timmins_Loading_Longholes_2.svg', 1366, 700);
+  var ithBit3  = this.draw.image('images/Timmins_Loading_Longholes_3.svg', 1366, 700);
+  var ithBit4  = this.draw.image('images/Timmins_Loading_Longholes_4.svg', 1366, 700);
+  var ithBit5  = this.draw.image('images/Timmins_Loading_Longholes_5.svg', 1366, 700);
+  var ithBit6  = this.draw.image('images/Timmins_Loading_Longholes_6.svg', 1366, 700);
+  var ithBit7  = this.draw.image('images/Timmins_Loading_Longholes_7.svg', 1366, 700);
+  var ithBit8  = this.draw.image('images/Timmins_Loading_Longholes_8.svg', 1366, 700);
 
-  var longholes1  = this.draw.use('Yellow_Holes_1', 'images/master.svg');
-  var longholes2  = this.draw.use('Yellow_Holes_2', 'images/master.svg');
-  var longholes3  = this.draw.use('Yellow_Holes_3', 'images/master.svg');
-  var longholes4  = this.draw.use('Yellow_Holes_4', 'images/master.svg');
+  var longholes1  = this.draw.image('images/Yellow_Holes_1.svg', 1366, 700);
+  var longholes2  = this.draw.image('images/Yellow_Holes_2.svg', 1366, 700);
+  var longholes3  = this.draw.image('images/Yellow_Holes_3.svg', 1366, 700);
+  var longholes4  = this.draw.image('images/Yellow_Holes_4.svg', 1366, 700);
 
   this.stoping = this.draw
     .group()

@@ -6,8 +6,8 @@ SVG.Zimba = SVG.invent({
   inherit: SVG.G,
   extend: {
     build: function(bits) {
-      this.parts = this.doc().use('TC_Zimba_Longhole_Parts', 'images/master.svg');
-      this.drill = this.doc().use('TC_Zimba_Longhole_Drill', 'images/master.svg');
+      this.parts = this.doc().image('images/TC_Zimba_Longhole_Parts.svg', 1366, 700);
+      this.drill = this.doc().image('images/TC_Zimba_Longhole_Drill.svg', 1366, 700);
 
       this.bits = bits;
       this.bitsToX = -8.8;

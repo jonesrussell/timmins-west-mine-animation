@@ -6,17 +6,16 @@ SVG.JumboDrill = SVG.invent({
   inherit: SVG.G,
   extend: {
     build: function() {
-      var img = 'images/master.svg';
-      this.topDrillBody = this.doc().use('Jumbo_Drill_Top_Body', img);
-      this.topDrillBit = this.doc().use('Jumbo_Drill_Top_Drill_Bit_Group', img);
-      this.jumboBody = this.doc().use('Jumbo_Drill_Body', img);
-      this.topDrillHole1 = this.doc().use('Jumbo_Drill_Holes_1', img).opacity(0);
-      this.topDrillHole2 = this.doc().use('Jumbo_Drill_Holes_2', img).opacity(0);
-      this.bottomDrillBody = this.doc().use('Jumbo_Drill_Bottom_Body', img);
-      this.bottomDrillBit = this.doc().use('Jumbo_Drill_Bottom_Drill_Bit_Group', img);
-      this.bottomDrillHole = this.doc().use('Bottom_Drill_Hole', img);
-      this.bottomDrillHole1 = this.doc().use('Jumbo_Drill_Holes_3', img).opacity(0);
-      this.bottomDrillHole2 = this.doc().use('Jumbo_Drill_Holes_4', img).opacity(0);
+      this.topDrillBody = this.doc().image('images/Jumbo_Drill_Top_Body.svg', 1366, 700);
+      this.topDrillBit = this.doc().image('images/Jumbo_Drill_Top_Drill_Bit_Group.svg', 1366, 700);
+      this.jumboBody = this.doc().image('images/Jumbo_Drill_Body.svg', 1366, 700);
+      this.topDrillHole1 = this.doc().image('images/Jumbo_Drill_Holes_1.svg', 1366, 700).opacity(0);
+      this.topDrillHole2 = this.doc().image('images/Jumbo_Drill_Holes_2.svg', 1366, 700).opacity(0);
+      this.bottomDrillBody = this.doc().image('images/Jumbo_Drill_Bottom_Body.svg', 1366, 700);
+      this.bottomDrillBit = this.doc().image('images/Jumbo_Drill_Bottom_Drill_Bit_Group.svg', 1366, 700);
+      this.bottomDrillHole = this.doc().image('images/Bottom_Drill_Hole.svg', 1366, 700);
+      this.bottomDrillHole1 = this.doc().image('images/Jumbo_Drill_Holes_3.svg', 1366, 700).opacity(0);
+      this.bottomDrillHole2 = this.doc().image('images/Jumbo_Drill_Holes_4.svg', 1366, 700).opacity(0);
 
       this.attr('id', 'jumbo-drill');
 

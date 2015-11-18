@@ -6,8 +6,8 @@ SVG.Scooptram = SVG.invent({
   inherit: SVG.G,
   extend: {
     build: function() {
-      this.scooptramPile = this.doc().use('Scooptram_Development_Pile', 'images/master.svg').opacity(0);
-      this.scooptramParts = this.doc().use('Scooptram_Development_Parts', 'images/master.svg');
+      this.scooptramPile = this.doc().image('images/Scooptram_Development_Pile.svg', 1366, 700).opacity(0);
+      this.scooptramParts = this.doc().image('images/Scooptram_Development_Parts.svg', 1366, 700);
 
       this.driveToX = 96;
       this.clip = this.doc()

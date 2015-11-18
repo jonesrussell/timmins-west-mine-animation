@@ -2,13 +2,13 @@
 /*global SVGjsAnim */
 
 SVGjsAnim.prototype.ThunderCreek = function() {
-  var zimbaBit2  = this.draw.use('TC_Loading_Longholes_Top_2', 'images/master.svg');
-  var zimbaBit3  = this.draw.use('TC_Loading_Longholes_Top_3', 'images/master.svg');
-  var zimbaBit4  = this.draw.use('TC_Loading_Longholes_Top_4', 'images/master.svg');
-  var zimbaBit5  = this.draw.use('TC_Loading_Longholes_Top_5', 'images/master.svg');
-  var tcLongholes1  = this.draw.use('TC_Yellow_Holes_1', 'images/master.svg');
-  var tcLongholes2  = this.draw.use('TC_Yellow_Holes_2', 'images/master.svg');
-  var tcLongholes3  = this.draw.use('TC_Yellow_Holes_3', 'images/master.svg');
+  var zimbaBit2  = this.draw.image('images/TC_Loading_Longholes_Top_2.svg', 1366, 700);
+  var zimbaBit3  = this.draw.image('images/TC_Loading_Longholes_Top_3.svg', 1366, 700);
+  var zimbaBit4  = this.draw.image('images/TC_Loading_Longholes_Top_4.svg', 1366, 700);
+  var zimbaBit5  = this.draw.image('images/TC_Loading_Longholes_Top_5.svg', 1366, 700);
+  var tcLongholes1  = this.draw.image('images/TC_Yellow_Holes_1.svg', 1366, 700);
+  var tcLongholes2  = this.draw.image('images/TC_Yellow_Holes_2.svg', 1366, 700);
+  var tcLongholes3  = this.draw.image('images/TC_Yellow_Holes_3.svg', 1366, 700);
 
   this.thunderCreek = this.draw
     .group()

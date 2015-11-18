@@ -8,25 +8,25 @@ SVG.Skip = SVG.invent({
        build: function() {
           var img = 'images/master.svg';
 
-          this.chain = this.doc().use('Loading_Bin_Chain_1_', img);
-          this.gateUpper = this.doc().use('Feed_Chute_Knife_Gate', img);
-          this.gateLower = this.doc().use('Measuring_Flask_Knife_Gate', img);
-          this.rocks1 = this.doc().use('Measuring_Pocket_Rocks_1', img).opacity(0);
-          this.rocks2 = this.doc().use('Measuring_Pocket_Rocks_2', img).opacity(0);
-          this.rocks3 = this.doc().use('Measuring_Pocket_Rocks_3', img).opacity(0);
-          this.rocks4 = this.doc().use('Measuring_Pocket_Rocks_4', img).opacity(0);
-          this.rocks5 = this.doc().use('Skip_Rocks_1', img).opacity(0);
-          this.rocks6 = this.doc().use('Skip_Rocks_2', img).opacity(0);
-          this.rocks7 = this.doc().use('Skip_Rocks_3', img).opacity(0);
-          this.rocks8 = this.doc().use('Skip_Rocks_4', img).opacity(0);
-          this.skipBody = this.doc().use('Skip_1_', img);
-          this.rocksSkip = this.doc().use('Rocks_from_ore_bin_to_skip', img);
-          this.rocksSkip2 = this.doc().use('Rocks_from_ore_bin_to_skip', img);
-          this.headframeRock1 = this.doc().use('Rockpile_from_headframe_1_1_', img).opacity(0);
-          this.headframeRock2 = this.doc().use('Rockpile_from_headframe_2_2_', img).opacity(0);
-          this.headframeRock3 = this.doc().use('Rockpile_from_headframe_3_1_', img).opacity(0);
-          this.headframeRock4 = this.doc().use('Rockpile_from_headframe_4_2_', img).opacity(0);
-          this.headframeRocks = this.doc().use('Rocks_from_Headframe_to_box', img);
+          this.chain = this.doc().image('images/Loading_Bin_Chain_1_.svg', 1366, 700);
+          this.gateUpper = this.doc().image('images/Feed_Chute_Knife_Gate.svg', 1366, 700);
+          this.gateLower = this.doc().image('images/Measuring_Flask_Knife_Gate.svg', 1366, 700);
+          this.rocks1 = this.doc().image('images/Measuring_Pocket_Rocks_1.svg', 1366, 700).opacity(0);
+          this.rocks2 = this.doc().image('images/Measuring_Pocket_Rocks_2.svg', 1366, 700).opacity(0);
+          this.rocks3 = this.doc().image('images/Measuring_Pocket_Rocks_3.svg', 1366, 700).opacity(0);
+          this.rocks4 = this.doc().image('images/Measuring_Pocket_Rocks_4.svg', 1366, 700).opacity(0);
+          this.rocks5 = this.doc().image('images/Skip_Rocks_1.svg', 1366, 700).opacity(0);
+          this.rocks6 = this.doc().image('images/Skip_Rocks_2.svg', 1366, 700).opacity(0);
+          this.rocks7 = this.doc().image('images/Skip_Rocks_3.svg', 1366, 700).opacity(0);
+          this.rocks8 = this.doc().image('images/Skip_Rocks_4.svg', 1366, 700).opacity(0);
+          this.skipBody = this.doc().image('images/Skip_1_.svg', 1366, 700);
+          this.rocksSkip = this.doc().image('images/Rocks_from_ore_bin_to_skip.svg', 1366, 700);
+          this.rocksSkip2 = this.doc().image('images/Rocks_from_ore_bin_to_skip.svg', 1366, 700);
+          this.headframeRock1 = this.doc().image('images/Rockpile_from_headframe_1_1_.svg', 1366, 700).opacity(0);
+          this.headframeRock2 = this.doc().image('images/Rockpile_from_headframe_2_2_.svg', 1366, 700).opacity(0);
+          this.headframeRock3 = this.doc().image('images/Rockpile_from_headframe_3_1_.svg', 1366, 700).opacity(0);
+          this.headframeRock4 = this.doc().image('images/Rockpile_from_headframe_4_2_.svg', 1366, 700).opacity(0);
+          this.headframeRocks = this.doc().image('images/Rocks_from_Headframe_to_box.svg', 1366, 700);
 
           this.attr('id', 'animation-skipping');
           this.startX = 0;

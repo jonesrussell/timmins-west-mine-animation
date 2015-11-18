@@ -6,11 +6,11 @@ SVG.Longhole = SVG.invent({
   inherit: SVG.G,
   extend: {
     build: function(bits) {
-      var longholesPartsTC = this.doc().use('TC_Loading_Longholes_Parts', 'images/master.svg');
-      this.longholesTCLegs1 = this.doc().use('TC_Loading_Longholes_Legs_1', 'images/master.svg');
-      this.longholesTCLegs2 = this.doc().use('TC_Loading_Longholes_Legs_2', 'images/master.svg');
-      this.longholesTCLegs3 = this.doc().use('TC_Loading_Longholes_Legs_3', 'images/master.svg');
-      this.longholesTCLegs4 = this.doc().use('TC_Loading_Longholes_Legs_4', 'images/master.svg');
+      var longholesPartsTC = this.doc().image('images/TC_Loading_Longholes_Parts.svg', 1366, 700);
+      this.longholesTCLegs1 = this.doc().image('images/TC_Loading_Longholes_Legs_1.svg', 1366, 700);
+      this.longholesTCLegs2 = this.doc().image('images/TC_Loading_Longholes_Legs_2.svg', 1366, 700);
+      this.longholesTCLegs3 = this.doc().image('images/TC_Loading_Longholes_Legs_3.svg', 1366, 700);
+      this.longholesTCLegs4 = this.doc().image('images/TC_Loading_Longholes_Legs_4.svg', 1366, 700);
 
       this.bits = bits;
       this.bitsToX = 8.8;

@@ -6,12 +6,12 @@ SVG.GroundSupport = SVG.invent({
   inherit: SVG.G,
   extend: {
     build: function(bits) {
-      this.truckHole = this.doc().use('GS_Truck_Hole', 'images/master.svg');
-      this.truckJacks = this.doc().use('GS_Truck_Jacks', 'images/master.svg');
-      this.truckBody = this.doc().use('GS_Truck_Body', 'images/master.svg');
-      this.truckTire1 = this.doc().use('GS_Truck_Tire_1', 'images/master.svg');
-      this.truckTire2 = this.doc().use('GS_Truck_Tire_2', 'images/master.svg');
-      this.gsDrill = this.doc().use('GS_Drill', 'images/master.svg');
+      this.truckHole = this.doc().image('images/GS_Truck_Hole.svg', 1366, 700);
+      this.truckJacks = this.doc().image('images/GS_Truck_Jacks.svg', 1366, 700);
+      this.truckBody = this.doc().image('images/GS_Truck_Body.svg', 1366, 700);
+      this.truckTire1 = this.doc().image('images/GS_Truck_Tire_1.svg', 1366, 700);
+      this.truckTire2 = this.doc().image('images/GS_Truck_Tire_2.svg', 1366, 700);
+      this.gsDrill = this.doc().image('images/GS_Drill.svg', 1366, 700);
       this.bits = bits;
       this.t = 1000;
 

@@ -6,9 +6,9 @@ SVG.DumpTruck = SVG.invent({
   inherit: SVG.G,
   extend: {
     build: function() {
-      this.bodyParts = this.doc().use('Haulage_Dump_Truck_1_Body', 'images/master.svg');
-      this.pile = this.doc().use('Haulage_Dump_Truck_1_Pile', 'images/master.svg');
-      this.bucket = this.doc().use('Haulage_Dump_Truck_1_Bucket', 'images/master.svg');
+      this.bodyParts = this.doc().image('images/Haulage_Dump_Truck_1_Body.svg', 1366, 700);
+      this.pile = this.doc().image('images/Haulage_Dump_Truck_1_Pile.svg', 1366, 700);
+      this.bucket = this.doc().image('images/Haulage_Dump_Truck_1_Bucket.svg', 1366, 700);
 
       this.t = 1000;
 

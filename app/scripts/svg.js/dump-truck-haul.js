@@ -6,7 +6,7 @@ SVG.DumpTruckHaul = SVG.invent({
   inherit: SVG.G,
   extend: {
     build: function() {
-      this.body = this.doc().use('Haulage_Dump_Truck_2', 'images/master.svg');
+      this.body = this.doc().image('images/Haulage_Dump_Truck_2.svg', 1366, 700);
       this.add(this.body);
 
       this.t = 13000;

@@ -105,7 +105,7 @@ SVGjsAnim.prototype.build = function() {
 
     this.HeadingsSVG();
 
-    var background = this.draw.use('Background', 'images/master.svg');
+    var background = this.draw.image('images/Background.svg', 1366, 700);
     this.scene.add(background);
 
     var clouds = this.draw.image('images/clouds.svg', w, h);
@@ -122,7 +122,7 @@ SVGjsAnim.prototype.build = function() {
     this.Shop();
     this.Stoping();
 
-    var foreground = this.draw.use('Foreground', 'images/master.svg');
+    var foreground = this.draw.image('images/Foreground.svg', 1366, 700);
     this.scene.add(foreground);
 
     this.Scene();
