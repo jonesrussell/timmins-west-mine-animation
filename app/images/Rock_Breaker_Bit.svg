@@ -1,14 +1,1 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
-<!-- Generator: Adobe Illustrator 16.0.4, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1366px"
-	 height="700px" viewBox="0 0 1366 700" style="enable-background:new 0 0 1366 700;" xml:space="preserve">
-<g id="Rock_Breaker_Bit">
-	<polygon style="fill:#BA8E2D;" points="764.475,548.632 763.238,548.635 762.572,552.431 762.572,554.358 763.532,554.358 
-		763.532,552.403 764.934,549.794 	"/>
-	<polygon points="764.22,548.468 764.104,548.246 763.622,548.246 763.504,548.469 	"/>
-	<polygon points="762.907,554.521 762.907,555.318 763.072,555.783 763.237,555.3 763.237,554.521 	"/>
-</g>
-<g id="Layer_1">
-</g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="1366" height="700" viewBox="0 0 1366 700"><path fill="#ba8e2d" d="M764.475 548.632l-1.237.003-.666 3.796v1.928h.96v-1.955l1.402-2.61z"/><path d="M764.22 548.468l-.116-.222h-.482l-.118.223zM762.907 554.52v.798l.165.465.165-.483v-.78z"/></svg>

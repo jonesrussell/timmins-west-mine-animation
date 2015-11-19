@@ -1,13 +1,1 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
-<!-- Generator: Adobe Illustrator 16.0.4, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1366px"
-	 height="700px" viewBox="0 0 1366 700" style="enable-background:new 0 0 1366 700;" xml:space="preserve">
-<g id="TC_Yellow_Holes_1">
-	<path style="fill:#FFCB05;" d="M309.828,587.457c-0.036,0.199-0.229,0.334-0.429,0.296l-1.282-0.24
-		c-0.2-0.039-0.331-0.229-0.292-0.433l8.719-46.318c0.037-0.199,0.23-0.333,0.43-0.296l1.283,0.241
-		c0.199,0.037,0.33,0.23,0.291,0.432L309.828,587.457z"/>
-</g>
-<g id="Layer_1">
-</g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="1366" height="700" viewBox="0 0 1366 700"><path d="M309.828 587.457a.368.368 0 0 1-.43.296l-1.28-.24a.368.368 0 0 1-.293-.433l8.72-46.318a.37.37 0 0 1 .43-.296l1.282.24c.2.038.33.23.29.433l-8.72 46.317z" fill="#ffcb05"/></svg>

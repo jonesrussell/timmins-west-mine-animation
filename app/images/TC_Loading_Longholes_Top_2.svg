@@ -1,13 +1,1 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
-<!-- Generator: Adobe Illustrator 16.0.4, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1366px"
-	 height="700px" viewBox="0 0 1366 700" style="enable-background:new 0 0 1366 700;" xml:space="preserve">
-<g id="TC_Loading_Longholes_Top_2">
-	<path style="fill:#FFFFFF;" d="M329.195,434.105c-0.038,0.198-0.231,0.329-0.43,0.293l-1.284-0.248
-		c-0.199-0.038-0.33-0.231-0.292-0.433l8.8-46.245c0.037-0.196,0.229-0.33,0.43-0.293l1.284,0.248
-		c0.2,0.038,0.331,0.231,0.292,0.433L329.195,434.105z"/>
-</g>
-<g id="Layer_1">
-</g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="1366" height="700" viewBox="0 0 1366 700"><path d="M329.195 434.105a.37.37 0 0 1-.43.293l-1.284-.248a.37.37 0 0 1-.29-.433l8.8-46.245a.37.37 0 0 1 .43-.293l1.283.247c.2.038.33.23.292.433l-8.8 46.245z" fill="#FFF"/></svg>
