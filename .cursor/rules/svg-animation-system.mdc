@@ -1,0 +1,50 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# SVG Animation System
+
+This project uses a custom SVG animation system built with SVG.js. The main components are:
+
+## Core Components
+
+- [app/scripts/svgjs-anim.js](mdc:app/scripts/svgjs-anim.js) - Main animation controller class that manages the SVG scene and animations
+- [app/scripts/svg-extensions.js](mdc:app/scripts/svg-extensions.js) - Contains all SVG element extensions (Step, Skip, Elevator, etc.)
+
+## Dependencies
+
+The system relies on these key npm packages:
+- @svgdotjs/svg.js - Core SVG manipulation library
+- eventbusjs - Event handling system
+- modernizr - Feature detection
+- classie - Class manipulation utilities
+
+## Animation Elements
+
+The system includes several animated elements, each defined as an SVG extension:
+- Step - Basic step animation
+- Skip - Skip animation
+- Elevator - Elevator movement
+- DumpTruck - Dump truck operations
+- Scooptram - Scooptram movement
+- ITHDrill - In-the-hole drilling
+- GroundSupport - Ground support operations
+- JumboDrill - Jumbo drilling
+- Longholes - Longhole drilling
+- RockBreaker - Rock breaking operations
+- JawCrusher - Jaw crusher operations
+- Zimba - Zimba operations
+- Zoom - Zoom functionality
+
+## Usage
+
+The animation system is initialized in [app/index.html](mdc:app/index.html) and uses ES modules for importing dependencies. Each animation element is created using the SVG.invent() method and can be controlled through the SVGjsAnim class.
+
+## Event System
+
+The system uses EventBus for communication between components:
+- clicked_heading - Triggered when a heading is clicked
+- clicked_Scene - Triggered when the scene is clicked
+- play_video - Triggered to play a video
+- stop_video - Triggered to stop video playback

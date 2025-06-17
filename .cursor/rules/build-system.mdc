@@ -1,0 +1,51 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Build System and Development Setup
+
+This project uses Vite as its build tool and development server. The setup has been migrated from Grunt and Bower to modern tooling.
+
+## Development
+
+To start the development server:
+```bash
+npm run dev
+```
+
+This will start the Vite development server with hot module replacement enabled.
+
+## Dependencies
+
+The project uses npm for dependency management. Key dependencies include:
+- Vite - Build tool and development server
+- @svgdotjs/svg.js - SVG manipulation
+- eventbusjs - Event handling
+- modernizr - Feature detection
+- classie - Class utilities
+
+## Project Structure
+
+- [app/](mdc:app) - Main application directory
+  - [index.html](mdc:app/index.html) - Main entry point
+  - [scripts/](mdc:app/scripts) - JavaScript source files
+  - [styles/](mdc:app/styles) - CSS styles
+  - [images/](mdc:app/images) - Image assets
+
+## Build Configuration
+
+The project uses ES modules and modern JavaScript features. The Vite configuration is set up to:
+- Handle SVG files
+- Process CSS
+- Support ES modules
+- Enable hot module replacement
+
+## Migration Notes
+
+The project has been migrated from:
+- Grunt → Vite
+- Bower → npm
+- CommonJS → ES Modules
+
+All SVG animations and interactions have been preserved during the migration.

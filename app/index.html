@@ -9,104 +9,122 @@
     <link rel="shortcut icon" href="/favicon.ico">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
-    <!-- bower:css -->
-    <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/mill.css">
     <link rel="stylesheet" href="styles/overlay.css">
     <!-- endbuild -->
     <!-- build:js(.) scripts/vendor.js -->
-    <!-- bower:js -->
-    <script src="bower_components/modernizr/modernizr.js"></script>
-    <script src="bower_components/svg.js/dist/svg.js"></script>
-    <script src="bower_components/classie/classie.js"></script>
-    <script src="bower_components/EventBus/src/EventBus.js"></script>
-    <!-- endbower -->
+    <script type="module">
+      import { SVG } from '@svgdotjs/svg.js';
+      import classie from 'classie';
+      import EventBus from 'eventbusjs';
+      import { SVGjsAnim } from './scripts/svgjs-anim.js';
+      import './scripts/svg-extensions.js';
+      import './scripts/modernizr-init.js';
+      import './scripts/svgjs_anim/headings.js';
+      import './scripts/svgjs_anim/preload.js';
+      import './scripts/svgjs_anim/hoisting.js';
+      import './scripts/svgjs_anim/skipping.js';
+      import './scripts/svgjs_anim/development.js';
+      import './scripts/svgjs_anim/haulage.js';
+      import './scripts/svgjs_anim/thunder-creek.js';
+      import './scripts/svgjs_anim/shop.js';
+      import './scripts/svgjs_anim/stoping.js';
+      import './scripts/overlay.js';
+
+      window.SVG = SVG;
+      window.classie = classie;
+      window.EventBus = EventBus;
+      window.SVGjsAnim = SVGjsAnim;
+    </script>
     <!-- endbuild -->
-    <script charset="ISO-8859-1" src="http://fast.wistia.com/assets/external/E-v1.js"
-async></script>
+    <script charset="ISO-8859-1" src="http://fast.wistia.com/assets/external/E-v1.js" async></script>
 
     <!-- build:js scripts/animation.js -->
-    <script src="scripts/svgjs-anim.js"></script>
-    <script src="scripts/overlay.js"></script>
-    <script src="scripts/svg.js/step.js"></script>
-    <script src="scripts/svg.js/skip.js"></script>
-    <script src="scripts/svg.js/elevator.js"></script>
-    <script src="scripts/svg.js/dump-truck.js"></script>
-    <script src="scripts/svg.js/dump-truck-haul.js"></script>
-    <script src="scripts/svg.js/scooptram.js"></script>
-    <script src="scripts/svg.js/ith_drill.js"></script>
-    <script src="scripts/svg.js/ground-support.js"></script>
-    <script src="scripts/svg.js/jumbo-drill.js"></script>
-    <script src="scripts/svg.js/longholes.js"></script>
-    <script src="scripts/svg.js/rock-breaker.js"></script>
-    <script src="scripts/svg.js/rock-breaker-rocks.js"></script>
-    <script src="scripts/svg.js/jaw-crusher.js"></script>
-    <script src="scripts/svg.js/zimba.js"></script>
-    <script src="scripts/svg.js/zoom.js"></script>
-    <script src="scripts/svgjs_anim/headings.js"></script>
-    <script src="scripts/svgjs_anim/preload.js"></script>
-    <script src="scripts/svgjs_anim/hoisting.js"></script>
-    <script src="scripts/svgjs_anim/skipping.js"></script>
-    <script src="scripts/svgjs_anim/development.js"></script>
-    <script src="scripts/svgjs_anim/haulage.js"></script>
-    <script src="scripts/svgjs_anim/thunder-creek.js"></script>
-    <script src="scripts/svgjs_anim/shop.js"></script>
-    <script src="scripts/svgjs_anim/stoping.js"></script>
+    <script type="module" src="scripts/svgjs-anim.js"></script>
+    <script type="module" src="scripts/overlay.js"></script>
+    <script type="module" src="scripts/svgjs_anim/headings.js"></script>
+    <script type="module" src="scripts/svgjs_anim/preload.js"></script>
+    <script type="module" src="scripts/svgjs_anim/hoisting.js"></script>
+    <script type="module" src="scripts/svgjs_anim/skipping.js"></script>
+    <script type="module" src="scripts/svgjs_anim/development.js"></script>
+    <script type="module" src="scripts/svgjs_anim/haulage.js"></script>
+    <script type="module" src="scripts/svgjs_anim/thunder-creek.js"></script>
+    <script type="module" src="scripts/svgjs_anim/shop.js"></script>
+    <script type="module" src="scripts/svgjs_anim/stoping.js"></script>
     <!-- endbuild -->
 
-    <script type="text/javascript">
-        window.addEventListener('load', function() {
-            if (classie.has(document.getElementsByTagName('html')[0], 'svg')) {
-              mill = new SVGjsAnim('drawing');
-              mill.preload();
-              mill.init();
+    <script type="module">
+      import { SVG } from '@svgdotjs/svg.js';
+      import classie from 'classie';
+      import EventBus from 'eventbusjs';
+      import { SVGjsAnim } from './scripts/svgjs-anim.js';
+      import './scripts/svg-extensions.js';
+      import './scripts/modernizr-init.js';
+      import './scripts/svgjs_anim/headings.js';
+      import './scripts/svgjs_anim/preload.js';
+      import './scripts/svgjs_anim/hoisting.js';
+      import './scripts/svgjs_anim/skipping.js';
+      import './scripts/svgjs_anim/development.js';
+      import './scripts/svgjs_anim/haulage.js';
+      import './scripts/svgjs_anim/thunder-creek.js';
+      import './scripts/svgjs_anim/shop.js';
+      import './scripts/svgjs_anim/stoping.js';
+      import './scripts/overlay.js';
 
-              SVG.on(window, 'resize', function() {
-                mill.draw.spof();
-              });
+      window.SVG = SVG;
+      window.classie = classie;
+      window.EventBus = EventBus;
+      window.SVGjsAnim = SVGjsAnim;
 
-              // Load wistia videos
-              mill.videos = {};
-              mill.videos.development = Wistia.embed('mnu1eklx4c', { videoFoam: true });
-              mill.videos.shop = Wistia.embed('ll5z0qrodq', { videoFoam: true });
-              mill.videos.skipping = Wistia.embed('w54mvkkt53', { videoFoam: true });
-              mill.videos.haulage = Wistia.embed('s7i9cf2rpc', { videoFoam: true });
-              mill.videos.stoping = Wistia.embed('gbjly4ff3x', { videoFoam: true });
-            }
+      window.addEventListener('load', function() {
+        if (classie.has(document.getElementsByTagName('html')[0], 'svg')) {
+          const anim = new SVGjsAnim('drawing');
+          anim.preload();
 
-        }, false);
-        </script>
-    </head>
-    <body>
-        <div id="no-svg">
-            Uh oh, your browser does not support modern technologies. Visit <a href="http://whatbrowser.org/" target="_blank">http://whatbrowser.org/</a> to learn more.
-        </div>
+          SVG.on(window, 'resize', function() {
+            anim.draw.spof();
+          });
 
-        <header class="page">
-            <img id="logo" src="images/logo.png">
-            <h1><a href="http://lsgold.com" target="_blank">Lake Shore Gold Corp.</a></h1>
-            <h2>Timmins West Mine</h2>
-        </header>
+          // Load wistia videos
+          anim.videos = {};
+          anim.videos.development = Wistia.embed('mnu1eklx4c', { videoFoam: true });
+          anim.videos.shop = Wistia.embed('ll5z0qrodq', { videoFoam: true });
+          anim.videos.skipping = Wistia.embed('w54mvkkt53', { videoFoam: true });
+          anim.videos.haulage = Wistia.embed('s7i9cf2rpc', { videoFoam: true });
+          anim.videos.stoping = Wistia.embed('gbjly4ff3x', { videoFoam: true });
+        }
+      }, false);
+    </script>
+  </head>
+  <body>
+    <div id="no-svg">
+      Uh oh, your browser does not support modern technologies. Visit <a href="http://whatbrowser.org/" target="_blank">http://whatbrowser.org/</a> to learn more.
+    </div>
 
-        <div class="container">
-            <div id="drawing" class="svg-container">
-                <img src="images/loading.svg" id="anim-loading">
-            </div>
-            <p style="display:none;"><button id="trigger-overlay" type="button">Open Overlay</button></p>
-        </div><!-- /container -->
+    <header class="page">
+      <img id="logo" src="images/logo.png">
+      <h1><a href="http://lsgold.com" target="_blank">Lake Shore Gold Corp.</a></h1>
+      <h2>Timmins West Mine</h2>
+    </header>
 
-        <div class="overlay overlay-door">
-            <button type="button" class="overlay-close" onclick="EventBus.dispatch('stop_video');">Close</button>
-            <div class="video-container">
-                <div id="wistia_mnu1eklx4c" class="wistia_embed video video-development"></div>
-                <div id="wistia_ll5z0qrodq" class="wistia_embed video video-shop"></div>
-                <div id="wistia_w54mvkkt53" class="wistia_embed video video-skipping"></div>
-                <div id="wistia_s7i9cf2rpc" class="wistia_embed video video-haulage"></div>
-                <div id="wistia_gbjly4ff3x" class="wistia_embed video video-longhole"></div>
-            </div>
-        </div>
+    <div class="container">
+      <div id="drawing" class="svg-container">
+        <img src="images/loading.svg" id="anim-loading">
+      </div>
+      <p style="display:none;"><button id="trigger-overlay" type="button">Open Overlay</button></p>
+    </div><!-- /container -->
 
-    </body>
+    <div class="overlay overlay-door">
+      <button type="button" class="overlay-close" onclick="EventBus.dispatch('stop_video');">Close</button>
+      <div class="video-container">
+        <div id="wistia_mnu1eklx4c" class="wistia_embed video video-development"></div>
+        <div id="wistia_ll5z0qrodq" class="wistia_embed video video-shop"></div>
+        <div id="wistia_w54mvkkt53" class="wistia_embed video video-skipping"></div>
+        <div id="wistia_s7i9cf2rpc" class="wistia_embed video video-haulage"></div>
+        <div id="wistia_gbjly4ff3x" class="wistia_embed video video-longhole"></div>
+      </div>
+    </div>
+  </body>
 </html>

@@ -29,7 +29,25 @@
 - [ ] Update `vite.config.js` to use plugins for images, SVGs, and static copy as needed
 - [ ] Create or update `postcss.config.js` for CSS processing
 
-## 4. Test and Clean Up
+## 4. Fix Current Errors
+
+- [ ] Fix Modernizr integration:
+    - [ ] Remove requirejs dependency
+    - [ ] Install and configure modernizr via npm
+    - [ ] Update modernizr imports to use ES modules
+- [ ] Fix SVG.js integration:
+    - [ ] Update SVG.js imports to use latest version
+    - [ ] Fix SVG.extend not being a function error
+    - [ ] Ensure SVG.js is properly initialized before extensions
+- [ ] Fix SVGjsAnim class:
+    - [ ] Ensure SVGjsAnim is properly exported from svgjs-anim.js
+    - [ ] Update all animation modules to properly import SVGjsAnim
+    - [ ] Fix circular dependencies if any
+- [ ] Fix static assets:
+    - [ ] Move favicon.ico to public directory
+    - [ ] Configure Vite to serve static assets correctly
+
+## 5. Test and Clean Up
 
 - [ ] Run `npm run dev` and verify the site works as expected
 - [ ] Run `npm run build` and verify the production build
@@ -44,8 +62,15 @@ Install Vite plugins:
 npm install --save-dev vite-plugin-imagemin vite-plugin-static-copy vite-plugin-svgo autoprefixer postcss
 ```
 
+Install core dependencies:
+```bash
+npm install @svgdotjs/svg.js modernizr classie eventbusjs
+```
+
 ---
 
 ## Notes
 - Refer to Vite documentation for plugin configuration: https://vitejs.dev/
+- SVG.js documentation: https://svgjs.com/docs/3.0/
+- Modernizr documentation: https://modernizr.com/docs
 - If you need help with a specific migration step, add a note below. 

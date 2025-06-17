@@ -2,37 +2,22 @@
   "name": "twm-animation",
   "type": "module",
   "devDependencies": {
-    "apache-server-configs": "^2.7.1",
-    "grunt": "^0.4.5",
-    "grunt-autoprefixer": "^1.0.0",
-    "grunt-concurrent": "^0.5.0",
-    "grunt-contrib-clean": "^0.6.0",
-    "grunt-contrib-concat": "^0.5.0",
-    "grunt-contrib-connect": "^0.8.0",
-    "grunt-contrib-copy": "^0.5.0",
-    "grunt-contrib-cssmin": "^0.10.0",
-    "grunt-contrib-htmlmin": "^0.3.0",
-    "grunt-contrib-imagemin": "^0.8.0",
-    "grunt-contrib-jshint": "^0.10.0",
-    "grunt-contrib-uglify": "^0.5.1",
-    "grunt-contrib-watch": "^0.6.1",
-    "grunt-ftp-deploy": "^0.1.9",
-    "grunt-modernizr": "^0.5.2",
-    "grunt-newer": "^0.7.0",
-    "grunt-rev": "^0.1.0",
-    "grunt-svgmin": "^0.4.0",
-    "grunt-usemin": "^2.3.0",
-    "grunt-wiredep": "^1.7.0",
-    "jshint-stylish": "^0.4.0",
-    "load-grunt-tasks": "^0.4.0",
-    "time-grunt": "^0.4.0",
-    "vite": "^5.4.19"
+    "@eslint/css": "^0.9.0",
+    "@eslint/js": "^9.29.0",
+    "@eslint/json": "^0.12.0",
+    "autoprefixer": "^10.4.19",
+    "eslint": "^9.29.0",
+    "globals": "^16.2.0",
+    "postcss": "^8.4.38",
+    "vite": "^5.4.19",
+    "vite-plugin-imagemin": "^0.6.1",
+    "vite-plugin-static-copy": "^1.0.0",
+    "vite-plugin-svgo": "^1.2.0"
   },
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=18.0.0"
   },
   "scripts": {
-    "start": "grunt serve",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
@@ -40,7 +25,7 @@
   "dependencies": {
     "@svgdotjs/svg.js": "^3.2.4",
     "classie": "^1.0.0",
-    "grunt-cli": "^0.1.13",
+    "eventbusjs": "^0.2.0",
     "modernizr": "^3.13.1"
   }
 }
