@@ -4,26 +4,28 @@
 import EventBus from 'eventbusjs';
 import { SVGjsAnim } from '../svgjs-anim.js';
 
-SVGjsAnim.prototype.Haulage = function() {
-  this.haulage = this.draw
-    .group()
-    .attr('id', 'haulage')
-  ;
-  this.scene.add(this.haulage);
+export function extendSVGjsAnimWithHaulage(SVGjsAnim) {
+  SVGjsAnim.prototype.Haulage = function() {
+    this.haulage = this.draw
+      .group()
+      .attr('id', 'haulage')
+    ;
+    this.scene.add(this.haulage);
 
-  this.dumpTruckHaul = this.draw.dumpTruckHaul();
-  this.haulage.add(this.dumpTruckHaul);
-  this.dumpTruckHaul.go();
+    this.dumpTruckHaul = this.draw.dumpTruckHaul();
+    this.haulage.add(this.dumpTruckHaul);
+    this.dumpTruckHaul.go();
 
-  this.dumpTruckDump = this.draw.dumpTruck();
-  this.haulage.add(this.dumpTruckDump);
-  this.dumpTruckDump.go();
+    this.dumpTruckDump = this.draw.dumpTruck();
+    this.haulage.add(this.dumpTruckDump);
+    this.dumpTruckDump.go();
 
-  this.headings.haulage = this.Heading('Haulage_Video', 'haulage', 3.65, 560, 600);
-  this.sceneHeadings.add(this.headings.haulage);
+    this.headings.haulage = this.Heading('Haulage_Video', 'haulage', 3.65, 560, 600);
+    this.sceneHeadings.add(this.headings.haulage);
 
-  return this;
-};
+    return this;
+  };
+}
 
 export function initHaulage(anim) {
   // Create haulage group

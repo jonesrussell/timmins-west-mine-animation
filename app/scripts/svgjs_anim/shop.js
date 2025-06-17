@@ -4,6 +4,23 @@
 import EventBus from 'eventbusjs';
 import { SVGjsAnim } from '../svgjs-anim.js';
 
+export function extendSVGjsAnimWithShop(SVGjsAnim) {
+  SVGjsAnim.prototype.Shop = function() {
+    this.shop = this.draw
+      .group()
+      .attr('id', 'shop');
+
+    this.headings.shop = this.Heading('Shop_Video', 'shop', 4.9, 650, 550);
+
+    this.scene
+      .add(this.shop);
+    this.sceneHeadings
+      .add(this.headings.shop);
+
+    return this;
+  };
+}
+
 export function initShop(anim) {
   // Create shop group
   const shop = anim.draw.group().attr({ id: 'shop' });
@@ -23,19 +40,4 @@ export function initShop(anim) {
     // Stop shop animations
   });
 }
-
-SVGjsAnim.prototype.Shop = function() {
-  this.shop = this.draw
-    .group()
-    .attr('id', 'shop');
-
-  this.headings.shop = this.Heading('Shop_Video', 'shop', 4.9, 650, 550);
-
-  this.scene
-    .add(this.shop);
-  this.sceneHeadings
-    .add(this.headings.shop);
-
-  return this;
-};
 

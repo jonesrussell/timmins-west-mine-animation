@@ -4,36 +4,38 @@
 import EventBus from 'eventbusjs';
 import { SVGjsAnim } from '../svgjs-anim.js';
 
-SVGjsAnim.prototype.Skipping = function() {
-  this.skipping = this.draw
-    .group()
-    .attr('id', 'skipping');
-  this.scene.add(this.skipping);
+export function extendSVGjsAnimWithSkipping(SVGjsAnim) {
+  SVGjsAnim.prototype.Skipping = function() {
+    this.skipping = this.draw
+      .group()
+      .attr('id', 'skipping');
+    this.scene.add(this.skipping);
 
-  this.skip = this.draw.skip();
-  this.skipping.add(this.skip);
-  this.skip.go();
+    this.skip = this.draw.skip();
+    this.skipping.add(this.skip);
+    this.skip.go();
 
-  this.headings.skipping = this.Heading('ORE__x26__WASTE_SKIPPING_Video', 'skipping', 4.9, 690, 700);
-  this.sceneHeadings.add(this.headings.skipping);
+    this.headings.skipping = this.Heading('ORE__x26__WASTE_SKIPPING_Video', 'skipping', 4.9, 690, 700);
+    this.sceneHeadings.add(this.headings.skipping);
 
-  // Add skipping-specific elements and animations here
-  const skippingHeading = this.skipping.text('Skipping').move(50, 50);
-  
-  // Example animation
-  skippingHeading.animate(1000).move(100, 100);
-  
-  // Add event listeners
-  EventBus.addEventListener('skipping_start', () => {
-    // Start skipping animations
-  });
-  
-  EventBus.addEventListener('skipping_stop', () => {
-    // Stop skipping animations
-  });
+    // Add skipping-specific elements and animations here
+    const skippingHeading = this.skipping.text('Skipping').move(50, 50);
+    
+    // Example animation
+    skippingHeading.animate(1000).move(100, 100);
+    
+    // Add event listeners
+    EventBus.addEventListener('skipping_start', () => {
+      // Start skipping animations
+    });
+    
+    EventBus.addEventListener('skipping_stop', () => {
+      // Stop skipping animations
+    });
 
-  return this;
-};
+    return this;
+  };
+}
 
 export function initSkipping(anim) {
   // Create skipping group

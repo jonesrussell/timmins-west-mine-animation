@@ -5,11 +5,12 @@ import EventBus from 'eventbusjs';
 import './svg-extensions.js';
 import { initPreload } from './svgjs_anim/preload.js';
 import { initHoisting } from './svgjs_anim/hoisting.js';
-import { initSkipping } from './svgjs_anim/skipping.js';
-import { initDevelopment } from './svgjs_anim/development.js';
-import { initHaulage } from './svgjs_anim/haulage.js';
-import { initThunderCreek } from './svgjs_anim/thunder-creek.js';
-import { initShop } from './svgjs_anim/shop.js';
+import { initSkipping, extendSVGjsAnimWithSkipping } from './svgjs_anim/skipping.js';
+import { initDevelopment, extendSVGjsAnimWithDevelopment } from './svgjs_anim/development.js';
+import { initHaulage, extendSVGjsAnimWithHaulage } from './svgjs_anim/haulage.js';
+import { initThunderCreek, extendSVGjsAnimWithThunderCreek } from './svgjs_anim/thunder-creek.js';
+import { initShop, extendSVGjsAnimWithShop } from './svgjs_anim/shop.js';
+import { extendSVGjsAnimWithStoping } from './svgjs_anim/stoping.js';
 
 // Separate controllers for different responsibilities
 class AnimationController {
@@ -183,6 +184,14 @@ export class SVGjsAnim {
       .loop();
   }
 }
+
+// Extend SVGjsAnim prototype with all animation modules
+extendSVGjsAnimWithSkipping(SVGjsAnim);
+extendSVGjsAnimWithDevelopment(SVGjsAnim);
+extendSVGjsAnimWithHaulage(SVGjsAnim);
+extendSVGjsAnimWithThunderCreek(SVGjsAnim);
+extendSVGjsAnimWithShop(SVGjsAnim);
+extendSVGjsAnimWithStoping(SVGjsAnim);
 
 // Make SVGjsAnim available globally
 window.SVGjsAnim = SVGjsAnim;
