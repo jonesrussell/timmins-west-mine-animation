@@ -1,65 +1,86 @@
 'use strict';
-/*global SVGjsAnim */
 
-import { SVG } from '@svgdotjs/svg.js';
 import EventBus from 'eventbusjs';
 
-SVGjsAnim.prototype.Hoisting = function() {
-  this.hoisting = this.draw
-    .group()
-    .attr('id', 'hoisting')
-  ;
-  this.scene.add(this.hoisting);
+class HoistingAnimation {
+  constructor(draw) {
+    this.draw = draw;
+    this.hoisting = null;
+    this.elevator = null;
+    this.rockBreaker = null;
+    this.rockBreakerRocks = null;
+    this.isRunning = false;
+  }
 
-  this.elevator = this.draw.elevator();
-  this.rockBreaker = this.draw.rockBreaker();
-  this.rockBreakerRocks = this.draw.rockBreakerRocks();
+  init() {
+    try {
+      this.hoisting = this.draw
+        .group()
+        .attr('id', 'hoisting');
 
-  this.hoisting
-    .add(this.rockBreaker)
-    .add(this.rockBreakerRocks)
-    .add(this.elevator)
-  ;
+      this.elevator = this.draw.elevator();
+      this.rockBreaker = this.draw.rockBreaker();
+      this.rockBreakerRocks = this.draw.rockBreakerRocks();
 
-  this.elevator.go();
-  this.rockBreaker.go();
-  this.rockBreakerRocks.go();
+      this.hoisting
+        .add(this.rockBreaker)
+        .add(this.rockBreakerRocks)
+        .add(this.elevator);
 
-  // Add hoisting-specific elements and animations here
-  const hoistingHeading = this.hoisting.text('Hoisting').move(50, 50);
-  
-  // Example animation
-  hoistingHeading.animate(1000).move(100, 100);
-  
-  // Add event listeners
-  EventBus.addEventListener('hoisting_start', () => {
-    // Start hoisting animations
-  });
-  
-  EventBus.addEventListener('hoisting_stop', () => {
-    // Stop hoisting animations
-  });
+      this.setupEventListeners();
+      return this;
+    } catch (error) {
+      console.error('Failed to initialize hoisting animation:', error);
+      throw error;
+    }
+  }
 
-  return this;
-};
+  setupEventListeners() {
+    EventBus.addEventListener('hoisting_start', () => this.start());
+    EventBus.addEventListener('hoisting_stop', () => this.stop());
+  }
+
+  start() {
+    if (this.isRunning) return;
+    
+    try {
+      this.elevator.go();
+      this.rockBreaker.go();
+      this.rockBreakerRocks.go();
+      this.isRunning = true;
+    } catch (error) {
+      console.error('Failed to start hoisting animation:', error);
+      this.stop();
+      throw error;
+    }
+  }
+
+  stop() {
+    if (!this.isRunning) return;
+    
+    try {
+      this.elevator.stop();
+      this.rockBreaker.stop();
+      this.rockBreakerRocks.stop();
+      this.isRunning = false;
+    } catch (error) {
+      console.error('Failed to stop hoisting animation:', error);
+      throw error;
+    }
+  }
+
+  cleanup() {
+    this.stop();
+    this.hoisting?.remove();
+    this.hoisting = null;
+    this.elevator = null;
+    this.rockBreaker = null;
+    this.rockBreakerRocks = null;
+  }
+}
 
 export function initHoisting(anim) {
-  // Create hoisting group
-  const hoisting = anim.draw.group().attr({ id: 'hoisting' });
-  
-  // Add hoisting-specific elements and animations here
-  const hoistingHeading = hoisting.text('Hoisting').move(50, 50);
-  
-  // Example animation
-  hoistingHeading.animate(1000).move(100, 100);
-  
-  // Add event listeners
-  EventBus.addEventListener('hoisting_start', () => {
-    // Start hoisting animations
-  });
-  
-  EventBus.addEventListener('hoisting_stop', () => {
-    // Stop hoisting animations
-  });
+  const hoistingAnimation = new HoistingAnimation(anim.draw);
+  return hoistingAnimation.init();
 }
 

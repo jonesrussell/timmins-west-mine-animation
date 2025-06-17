@@ -1,5 +1,4 @@
 'use strict';
-/*global SVG */
 
 import { SVG } from '@svgdotjs/svg.js';
 

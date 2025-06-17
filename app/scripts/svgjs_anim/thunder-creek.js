@@ -1,7 +1,6 @@
 'use strict';
 /*global SVGjsAnim */
 
-import { SVG } from '@svgdotjs/svg.js';
 import EventBus from 'eventbusjs';
 
 SVGjsAnim.prototype.ThunderCreek = function() {
