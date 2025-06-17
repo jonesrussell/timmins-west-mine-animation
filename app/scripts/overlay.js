@@ -2,6 +2,8 @@
 'use strict';
 /*global classie, Modernizr */
 
+import Modernizr from 'modernizr';
+
 window.addEventListener('load', function() {
 
   function toggleOverlay() {

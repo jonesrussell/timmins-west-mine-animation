@@ -1,6 +1,9 @@
 'use strict';
 /*global SVGjsAnim */
 
+import { SVG } from '@svgdotjs/svg.js';
+import EventBus from 'eventbusjs';
+
 SVGjsAnim.prototype.Haulage = function() {
   this.haulage = this.draw
     .group()
@@ -21,4 +24,23 @@ SVGjsAnim.prototype.Haulage = function() {
 
   return this;
 };
+
+export function initHaulage(anim) {
+  const haulage = anim.draw.group().attr({ id: 'haulage' });
+  
+  // Add haulage-specific elements and animations here
+  const haulageHeading = haulage.text('Haulage').move(50, 50);
+  
+  // Example animation
+  haulageHeading.animate(1000).move(100, 100);
+  
+  // Add event listeners
+  EventBus.addEventListener('haulage_start', () => {
+    // Start haulage animations
+  });
+  
+  EventBus.addEventListener('haulage_stop', () => {
+    // Stop haulage animations
+  });
+}
 

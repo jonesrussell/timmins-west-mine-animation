@@ -1,105 +1,111 @@
 'use strict';
 /*global SVG, mill, EventBus */
 
-function SVGjsAnim(id)
-{
-  this.draw = SVG(id)
-    .addClass('svg-content')
-    .spof();
+import { SVG } from '@svgdotjs/svg.js';
+import classie from 'classie';
+import EventBus from 'eventbusjs';
+import './svg-extensions.js';
+import { initHeadings } from './svgjs_anim/headings.js';
+import { initPreload } from './svgjs_anim/preload.js';
+import { initHoisting } from './svgjs_anim/hoisting.js';
+import { initSkipping } from './svgjs_anim/skipping.js';
+import { initDevelopment } from './svgjs_anim/development.js';
+import { initHaulage } from './svgjs_anim/haulage.js';
+import { initThunderCreek } from './svgjs_anim/thunder-creek.js';
+import { initShop } from './svgjs_anim/shop.js';
+import { initStoping } from './svgjs_anim/stoping.js';
 
-  this.scene = this.draw
-    .group()
-    .attr({ id: 'scene' });
-  this.sceneHeadings = this.draw
-    .group()
-    .attr({ id: 'scene-headings' });
-
-  this.origSceneW = 1366;
-  this.origSceneH = 700;
-
-  this.draw.viewbox(0, 0, this.origSceneW, this.origSceneH);
-  this.draw.attr('preserveAspectRatio', 'xMidYMax meet');
-
-//  this.scene.scale(4);
-//  this.scene.move(-130, -320);
-}
-
-SVGjsAnim.prototype.Scene = function() {
-  EventBus.addEventListener('clicked_heading', this.zoomIn, this);
-  EventBus.addEventListener('clicked_Scene', this.zoomOut, this);
-  EventBus.addEventListener('play_video', this.playVideo, this);
-  EventBus.addEventListener('stop_video', this.stopVideo, this);
-
-  this.scene.click(function(){ EventBus.dispatch('clicked_Scene'); });
-  this.scene.add(this.sceneHeadings);
-};
-
-SVGjsAnim.prototype.zoomIn = function(e, headingName, scale, cx, cy){
-  var scene = this.scene;
-  scene.data('active-heading', headingName);
-  var head = this.headings[headingName];
-  if (head.hasClass('zoom-in')) {
-    head.removeClass('zoom-in')
-      .addClass('action');
-    scene
-      .animate()
-      .transform({ scaleX: scale, scaleY: scale, cx: cx, cy: cy })
-      .after(function(){
-        scene.addClass('zoom-out');
-      })
-    ;
-  } else {
-    EventBus.dispatch('play_video', this, headingName);
+export class SVGjsAnim {
+  constructor(containerId) {
+    this.container = document.getElementById(containerId);
+    this.draw = SVG().addTo(this.container).size('100%', '100%');
+    this.videos = {};
+    this.init();
   }
-  event.stopPropagation();
-};
 
-SVGjsAnim.prototype.zoomOut = function() {
-  var scene = this.scene;
-  var headingName = scene.data('active-heading');
-  scene.data('active-heading', null);
-  if (scene.hasClass('zoom-out')) {
-    scene.removeClass('zoom-out');
-    scene.animate()
-      .transform(new SVG.Matrix);
-
-    this.headings[headingName]
-      .removeClass('action')
-      .addClass('zoom-in');
+  init() {
+    // Initialize all animation modules
+    initHeadings(this);
+    initPreload(this);
+    initHoisting(this);
+    initSkipping(this);
+    initDevelopment(this);
+    initHaulage(this);
+    initThunderCreek(this);
+    initShop(this);
+    initStoping(this);
   }
-};
 
-SVGjsAnim.prototype.playVideo = function(e, name) {
-  this.videos[name].container.style.display = 'block';
-  document.getElementById('trigger-overlay').click();
-  this.videos[name].play();
-};
-
-SVGjsAnim.prototype.stopVideo = function() {
-  var name;
-  for(name in this.videos) {
-    this.videos[name].container.style.display = 'none';
-    this.videos[name].pause();
-    this.videos[name].time(0);
-  }
-};
-
-SVGjsAnim.prototype.headings = {};
-
-SVGjsAnim.prototype.init = function() {
-    var svgjsAnim = mill;
-    // @TODO skip if no images to preload
-    if (svgjsAnim.preloadedImages) {
-        var loadingImage = document.getElementById('anim-loading');
-        loadingImage.parentNode.removeChild(loadingImage);
-        svgjsAnim.build();
-        svgjsAnim.start();
-    } else {
-        setTimeout(svgjsAnim.init, 100);
+  preload() {
+    // Add any preloading logic here
+    const loading = document.getElementById('anim-loading');
+    if (loading) {
+      loading.style.display = 'none';
     }
-};
+  }
 
-SVGjsAnim.prototype.build = function() {
+  Scene() {
+    EventBus.addEventListener('clicked_heading', this.zoomIn, this);
+    EventBus.addEventListener('clicked_Scene', this.zoomOut, this);
+    EventBus.addEventListener('play_video', this.playVideo, this);
+    EventBus.addEventListener('stop_video', this.stopVideo, this);
+
+    this.scene.click(() => { EventBus.dispatch('clicked_Scene'); });
+    this.scene.add(this.sceneHeadings);
+  }
+
+  zoomIn(e, headingName, scale, cx, cy) {
+    var scene = this.scene;
+    scene.data('active-heading', headingName);
+    var head = this.headings[headingName];
+    if (head.hasClass('zoom-in')) {
+      head.removeClass('zoom-in')
+        .addClass('action');
+      scene
+        .animate()
+        .transform({ scaleX: scale, scaleY: scale, cx: cx, cy: cy })
+        .after(() => {
+          scene.addClass('zoom-out');
+        });
+    } else {
+      EventBus.dispatch('play_video', this, headingName);
+    }
+    event.stopPropagation();
+  }
+
+  zoomOut() {
+    var scene = this.scene;
+    var headingName = scene.data('active-heading');
+    scene.data('active-heading', null);
+    if (scene.hasClass('zoom-out')) {
+      scene.removeClass('zoom-out');
+      scene.animate()
+        .transform(new SVG.Matrix);
+
+      this.headings[headingName]
+        .removeClass('action')
+        .addClass('zoom-in');
+    }
+  }
+
+  playVideo(e, name) {
+    this.videos[name].container.style.display = 'block';
+    document.getElementById('trigger-overlay').click();
+    this.videos[name].play();
+  }
+
+  stopVideo() {
+    var name;
+    for(name in this.videos) {
+      this.videos[name].container.style.display = 'none';
+      this.videos[name].pause();
+      this.videos[name].time(0);
+    }
+  }
+
+  headings = {};
+
+  build() {
     var w = this.origSceneW;
     var h = this.origSceneH;
 
@@ -126,13 +132,15 @@ SVGjsAnim.prototype.build = function() {
     this.scene.add(foreground);
 
     this.Scene();
-};
+  }
 
-SVGjsAnim.prototype.start = function()
-{
-  return this.cloudGroup
-    .animate(380000, '-', 0)
-    .move(this.origSceneW, 0)
-    .loop()
-  ;
-};
+  start() {
+    return this.cloudGroup
+      .animate(380000, '-', 0)
+      .move(this.origSceneW, 0)
+      .loop();
+  }
+}
+
+// Make SVGjsAnim available globally
+window.SVGjsAnim = SVGjsAnim;

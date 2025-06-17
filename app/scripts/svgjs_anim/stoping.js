@@ -1,6 +1,9 @@
 'use strict';
 /*global SVGjsAnim */
 
+import { SVG } from '@svgdotjs/svg.js';
+import EventBus from 'eventbusjs';
+
 SVGjsAnim.prototype.Stoping = function() {
   var ithBit1  = this.draw.use('Timmins_Loading_Longholes_1', 'images/master.svg');
   var ithBit2  = this.draw.use('Timmins_Loading_Longholes_2', 'images/master.svg');
@@ -90,6 +93,40 @@ SVGjsAnim.prototype.Stoping = function() {
   this.sceneHeadings
     .add(this.headings.stoping);
 
+  // Add stoping-specific elements and animations here
+  const stopingHeading = this.stoping.text('Stoping').move(50, 50);
+  
+  // Example animation
+  stopingHeading.animate(1000).move(100, 100);
+  
+  // Add event listeners
+  EventBus.addEventListener('stoping_start', () => {
+    // Start stoping animations
+  });
+  
+  EventBus.addEventListener('stoping_stop', () => {
+    // Stop stoping animations
+  });
+
   return this;
 };
+
+export function initStoping(anim) {
+  const stoping = anim.draw.group().attr({ id: 'stoping' });
+  
+  // Add stoping-specific elements and animations here
+  const stopingHeading = stoping.text('Stoping').move(50, 50);
+  
+  // Example animation
+  stopingHeading.animate(1000).move(100, 100);
+  
+  // Add event listeners
+  EventBus.addEventListener('stoping_start', () => {
+    // Start stoping animations
+  });
+  
+  EventBus.addEventListener('stoping_stop', () => {
+    // Stop stoping animations
+  });
+}
 

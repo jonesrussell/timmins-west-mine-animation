@@ -1,22 +1,17 @@
 'use strict';
 /*global SVG */
 
+import { SVG } from '@svgdotjs/svg.js';
+
 ;(function(){
 
     SVG.Step = SVG.invent({
         create: 'g',
         inherit: SVG.G,
         extend: {
-            build: function(id) {
-                this.scene = {};
-                this.heading = {};
-                this.zoom = {};
-                this._content = this.doc().group()
-                    .addClass('content');
-                this.add(this._content);
-
-                this.attr({ id: id });
-                this.addClass('step');
+            build: function() {
+                this.step = this.doc().use('Step', 'images/master.svg');
+                this.add(this.step);
                 return this;
             },
             setHeading: function(heading) {
@@ -38,9 +33,20 @@
             }
         },
         construct: {
-            step: function(id) {
-                return this.put(new SVG.Step).build(id);
-            }
+            step: function() { return this.put(new SVG.Step).build(); }
+        }
+    });
+
+    SVG.extend(SVG.Step, {
+        go: function() {
+            var self = this;
+            this.step
+                .animate(5000, '-', 0)
+                .move(0, -100)
+                .after(function() {
+                    self.step.y(0);
+                    self.go();
+                });
         }
     });
 

@@ -1,6 +1,9 @@
 'use strict';
 /*global SVGjsAnim */
 
+import { SVG } from '@svgdotjs/svg.js';
+import EventBus from 'eventbusjs';
+
 SVGjsAnim.prototype.ThunderCreek = function() {
   var zimbaBit2  = this.draw.use('TC_Loading_Longholes_Top_2', 'images/master.svg');
   var zimbaBit3  = this.draw.use('TC_Loading_Longholes_Top_3', 'images/master.svg');
@@ -74,4 +77,23 @@ SVGjsAnim.prototype.ThunderCreek = function() {
 
   return this;
 };
+
+export function initThunderCreek(anim) {
+  const thunderCreek = anim.draw.group().attr({ id: 'thunder-creek' });
+  
+  // Add thunder-creek-specific elements and animations here
+  const thunderCreekHeading = thunderCreek.text('Thunder Creek').move(50, 50);
+  
+  // Example animation
+  thunderCreekHeading.animate(1000).move(100, 100);
+  
+  // Add event listeners
+  EventBus.addEventListener('thunder_creek_start', () => {
+    // Start thunder creek animations
+  });
+  
+  EventBus.addEventListener('thunder_creek_stop', () => {
+    // Stop thunder creek animations
+  });
+}
 
