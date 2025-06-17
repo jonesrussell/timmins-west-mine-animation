@@ -38,6 +38,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "grunt-cli": "^0.1.13"
+    "@svgdotjs/svg.js": "^3.2.4",
+    "classie": "^1.0.0",
+    "grunt-cli": "^0.1.13",
+    "modernizr": "^3.13.1"
   }
 }
