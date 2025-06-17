@@ -2,6 +2,7 @@
 /*global SVGjsAnim */
 
 import EventBus from 'eventbusjs';
+import { SVGjsAnim } from '../svgjs-anim.js';
 
 SVGjsAnim.prototype.Skipping = function() {
   this.skipping = this.draw

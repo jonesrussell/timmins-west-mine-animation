@@ -2,6 +2,7 @@
 /*global SVGjsAnim */
 
 import EventBus from 'eventbusjs';
+import { SVGjsAnim } from '../svgjs-anim.js';
 
 export function initShop(anim) {
   // Create shop group

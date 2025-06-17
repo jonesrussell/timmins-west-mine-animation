@@ -1,6 +1,8 @@
 // Wonderful video overlay lifted from https://github.com/codrops/FullscreenOverlayStyles
 'use strict';
-/*global classie, Modernizr */
+
+import classie from 'classie';
+import Modernizr from 'modernizr';
 
 window.addEventListener('load', function() {
 

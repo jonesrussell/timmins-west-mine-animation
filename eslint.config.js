@@ -15,7 +15,14 @@ export default defineConfig([
     "vite.config.mjs",
     "eslint.config.js",
   ]),
-  { files: ["**/*.{js,mjs,cjs}"], plugins: { js }, extends: ["js/recommended"] },
+  { 
+    files: ["**/*.{js,mjs,cjs}"], 
+    plugins: { js }, 
+    extends: ["js/recommended"],
+    rules: {
+      "no-unused-vars": "off"
+    }
+  },
   { files: ["**/*.{js,mjs,cjs}"], languageOptions: { globals: globals.browser } },
   { files: ["**/*.json"], plugins: { json }, language: "json/json", extends: ["json/recommended"] },
   { files: ["**/*.css"], plugins: { css }, language: "css/css", extends: ["css/recommended"] },

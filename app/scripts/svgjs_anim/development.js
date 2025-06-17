@@ -2,6 +2,7 @@
 /*global SVGjsAnim */
 
 import EventBus from 'eventbusjs';
+import { SVGjsAnim } from '../svgjs-anim.js';
 
 SVGjsAnim.prototype.Development = function() {
   var gsBit1  = this.draw.use('GS_Bit_6', 'images/master.svg').opacity(0);

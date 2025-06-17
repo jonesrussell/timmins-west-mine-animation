@@ -2,6 +2,7 @@
 /*global SVGjsAnim */
 
 import EventBus from 'eventbusjs';
+import { SVGjsAnim } from '../svgjs-anim.js';
 
 SVGjsAnim.prototype.ThunderCreek = function() {
   var zimbaBit2  = this.draw.use('TC_Loading_Longholes_Top_2', 'images/master.svg');

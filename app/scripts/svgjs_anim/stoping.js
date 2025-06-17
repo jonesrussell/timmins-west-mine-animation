@@ -2,6 +2,7 @@
 /*global SVGjsAnim */
 
 import EventBus from 'eventbusjs';
+import { SVGjsAnim } from '../svgjs-anim.js';
 
 SVGjsAnim.prototype.Stoping = function() {
   var ithBit1  = this.draw.use('Timmins_Loading_Longholes_1', 'images/master.svg');
