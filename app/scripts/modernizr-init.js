@@ -1,10 +1,16 @@
-import Modernizr from 'modernizr';
+// Simple SVG feature detection
+const supportsSVG = (() => {
+  return !!document.createElementNS && 
+         !!document.createElementNS('http://www.w3.org/2000/svg', 'svg').createSVGRect;
+})();
 
-// Initialize Modernizr
-if (Modernizr.svg) {
+// Add appropriate class to document
+if (supportsSVG) {
   document.documentElement.classList.add('svg');
 } else {
   document.documentElement.classList.add('no-svg');
 }
 
-export default Modernizr; 
+export default {
+  svg: supportsSVG
+}; 

@@ -83,7 +83,7 @@
           const anim = new SVGjsAnim('drawing');
           anim.preload();
 
-          SVG.on(window, 'resize', function() {
+          window.addEventListener('resize', function() {
             anim.draw.spof();
           });
 

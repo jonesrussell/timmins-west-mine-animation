@@ -2,7 +2,32 @@
 'use strict';
 
 import classie from 'classie';
-import Modernizr from 'modernizr';
+
+// Simple feature detection for CSS transitions
+const supportsTransitions = (() => {
+  const el = document.createElement('div');
+  const transitions = {
+    'WebkitTransition': 'webkitTransitionEnd',
+    'MozTransition': 'transitionend',
+    'OTransition': 'oTransitionEnd',
+    'msTransition': 'MSTransitionEnd',
+    'transition': 'transitionend'
+  };
+  
+  for (const t in transitions) {
+    if (el.style[t] !== undefined) {
+      return {
+        transitions: true,
+        transitionEnd: transitions[t]
+      };
+    }
+  }
+  
+  return {
+    transitions: false,
+    transitionEnd: 'transitionend'
+  };
+})();
 
 window.addEventListener('load', function() {
 
@@ -11,14 +36,14 @@ window.addEventListener('load', function() {
       classie.remove(overlay, 'open');
       classie.add(overlay, 'close');
       var onEndTransitionFn = function( ev ) {
-        if(support.transitions) {
+        if(supportsTransitions.transitions) {
           if(ev.propertyName !== 'visibility') { return; }
-          this.removeEventListener( transEndEventName, onEndTransitionFn );
+          this.removeEventListener( supportsTransitions.transitionEnd, onEndTransitionFn );
         }
         classie.remove( overlay, 'close' );
       };
-      if(support.transitions) {
-        overlay.addEventListener( transEndEventName, onEndTransitionFn );
+      if(supportsTransitions.transitions) {
+        overlay.addEventListener( supportsTransitions.transitionEnd, onEndTransitionFn );
       }
       else {
         onEndTransitionFn();
@@ -32,15 +57,6 @@ window.addEventListener('load', function() {
   var triggerBttn = document.getElementById('trigger-overlay')
     , overlay = document.querySelector('div.overlay')
     , closeBttn = overlay.querySelector('button.overlay-close')
-    , transEndEventNames = {
-        'WebkitTransition': 'webkitTransitionEnd'
-      , 'MozTransition': 'transitionend'
-      , 'OTransition': 'oTransitionEnd'
-      , 'msTransition': 'MSTransitionEnd'
-      , 'transition': 'transitionend'
-    }
-    , transEndEventName = transEndEventNames[Modernizr.prefixed( 'transition' )]
-    , support = { transitions : Modernizr.csstransitions }
   ;
 
   triggerBttn.addEventListener( 'click', toggleOverlay );

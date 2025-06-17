@@ -27,7 +27,6 @@
   "dependencies": {
     "@svgdotjs/svg.js": "^3.2.4",
     "classie": "^1.0.0",
-    "eventbusjs": "^0.2.0",
-    "modernizr": "^3.13.1"
+    "eventbusjs": "^0.2.0"
   }
 }
