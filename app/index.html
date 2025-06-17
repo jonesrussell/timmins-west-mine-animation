@@ -79,7 +79,7 @@
       window.SVGjsAnim = SVGjsAnim;
 
       window.addEventListener('load', function() {
-        if (classie.has(document.getElementsByTagName('html')[0], 'svg')) {
+        if (classie.has(document.documentElement, 'svg')) {
           const anim = new SVGjsAnim('drawing');
           anim.preload();
 

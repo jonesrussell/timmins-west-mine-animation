@@ -2,7 +2,6 @@
 /*global SVG, mill, EventBus */
 
 import { SVG } from '@svgdotjs/svg.js';
-import classie from 'classie';
 import EventBus from 'eventbusjs';
 import './svg-extensions.js';
 import { initHeadings } from './svgjs_anim/headings.js';
@@ -20,6 +19,7 @@ export class SVGjsAnim {
     this.container = document.getElementById(containerId);
     this.draw = SVG().addTo(this.container).size('100%', '100%');
     this.videos = {};
+    this.headings = {};
     this.init();
   }
 
@@ -102,8 +102,6 @@ export class SVGjsAnim {
       this.videos[name].time(0);
     }
   }
-
-  headings = {};
 
   build() {
     var w = this.origSceneW;

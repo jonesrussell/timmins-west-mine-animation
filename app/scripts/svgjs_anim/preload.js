@@ -3,6 +3,7 @@
 
 import { SVG } from '@svgdotjs/svg.js';
 import EventBus from 'eventbusjs';
+import { SVGjsAnim } from '../svgjs-anim.js';
 
 SVGjsAnim.prototype.images = [
   'images/master.svg'
@@ -28,6 +29,7 @@ SVGjsAnim.prototype.preload = function() {
 };
 
 export function initPreload(anim) {
+  // Create preload group
   const preload = anim.draw.group().attr({ id: 'preload' });
   
   // Add preload-specific elements and animations here
