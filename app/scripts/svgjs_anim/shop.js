@@ -5,6 +5,7 @@ import { SVG } from '@svgdotjs/svg.js';
 import EventBus from 'eventbusjs';
 
 export function initShop(anim) {
+  // Create shop group
   const shop = anim.draw.group().attr({ id: 'shop' });
   
   // Add shop-specific elements and animations here

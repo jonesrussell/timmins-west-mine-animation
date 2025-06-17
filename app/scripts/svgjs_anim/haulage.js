@@ -26,6 +26,7 @@ SVGjsAnim.prototype.Haulage = function() {
 };
 
 export function initHaulage(anim) {
+  // Create haulage group
   const haulage = anim.draw.group().attr({ id: 'haulage' });
   
   // Add haulage-specific elements and animations here

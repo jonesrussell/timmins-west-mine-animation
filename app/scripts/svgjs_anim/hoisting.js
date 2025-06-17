@@ -44,6 +44,7 @@ SVGjsAnim.prototype.Hoisting = function() {
 };
 
 export function initHoisting(anim) {
+  // Create hoisting group
   const hoisting = anim.draw.group().attr({ id: 'hoisting' });
   
   // Add hoisting-specific elements and animations here

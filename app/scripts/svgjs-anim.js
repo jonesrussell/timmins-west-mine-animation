@@ -15,17 +15,19 @@ import { initShop } from './svgjs_anim/shop.js';
 import { initStoping } from './svgjs_anim/stoping.js';
 
 export class SVGjsAnim {
-  constructor(containerId) {
-    this.container = document.getElementById(containerId);
-    this.draw = SVG().addTo(this.container).size('100%', '100%');
-    this.videos = {};
+  constructor() {
+    this.draw = null;
     this.headings = {};
-    this.init();
+    this.videos = {};
+    this.currentScene = null;
+    this.isZoomed = false;
   }
 
   init() {
+    // Initialize SVG.js
+    this.draw = SVG('animation').size('100%', '100%');
+    
     // Initialize all animation modules
-    initHeadings(this);
     initPreload(this);
     initHoisting(this);
     initSkipping(this);
@@ -33,7 +35,32 @@ export class SVGjsAnim {
     initHaulage(this);
     initThunderCreek(this);
     initShop(this);
-    initStoping(this);
+  }
+
+  zoomIn() {
+    if (!this.isZoomed) {
+      this.draw.animate(500).scale(1.5);
+      this.isZoomed = true;
+    }
+  }
+
+  zoomOut() {
+    if (this.isZoomed) {
+      this.draw.animate(500).scale(1);
+      this.isZoomed = false;
+    }
+  }
+
+  playVideo(videoId) {
+    if (this.videos[videoId]) {
+      this.videos[videoId].play();
+    }
+  }
+
+  stopVideo(videoId) {
+    if (this.videos[videoId]) {
+      this.videos[videoId].pause();
+    }
   }
 
   preload() {
@@ -52,55 +79,6 @@ export class SVGjsAnim {
 
     this.scene.click(() => { EventBus.dispatch('clicked_Scene'); });
     this.scene.add(this.sceneHeadings);
-  }
-
-  zoomIn(e, headingName, scale, cx, cy) {
-    var scene = this.scene;
-    scene.data('active-heading', headingName);
-    var head = this.headings[headingName];
-    if (head.hasClass('zoom-in')) {
-      head.removeClass('zoom-in')
-        .addClass('action');
-      scene
-        .animate()
-        .transform({ scaleX: scale, scaleY: scale, cx: cx, cy: cy })
-        .after(() => {
-          scene.addClass('zoom-out');
-        });
-    } else {
-      EventBus.dispatch('play_video', this, headingName);
-    }
-    event.stopPropagation();
-  }
-
-  zoomOut() {
-    var scene = this.scene;
-    var headingName = scene.data('active-heading');
-    scene.data('active-heading', null);
-    if (scene.hasClass('zoom-out')) {
-      scene.removeClass('zoom-out');
-      scene.animate()
-        .transform(new SVG.Matrix);
-
-      this.headings[headingName]
-        .removeClass('action')
-        .addClass('zoom-in');
-    }
-  }
-
-  playVideo(e, name) {
-    this.videos[name].container.style.display = 'block';
-    document.getElementById('trigger-overlay').click();
-    this.videos[name].play();
-  }
-
-  stopVideo() {
-    var name;
-    for(name in this.videos) {
-      this.videos[name].container.style.display = 'none';
-      this.videos[name].pause();
-      this.videos[name].time(0);
-    }
   }
 
   build() {

@@ -79,9 +79,10 @@ SVGjsAnim.prototype.ThunderCreek = function() {
 };
 
 export function initThunderCreek(anim) {
+  // Create thunder creek group
   const thunderCreek = anim.draw.group().attr({ id: 'thunder-creek' });
   
-  // Add thunder-creek-specific elements and animations here
+  // Add thunder creek specific elements and animations here
   const thunderCreekHeading = thunderCreek.text('Thunder Creek').move(50, 50);
   
   // Example animation

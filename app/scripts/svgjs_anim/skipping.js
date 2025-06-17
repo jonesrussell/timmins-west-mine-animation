@@ -36,6 +36,7 @@ SVGjsAnim.prototype.Skipping = function() {
 };
 
 export function initSkipping(anim) {
+  // Create skipping group
   const skipping = anim.draw.group().attr({ id: 'skipping' });
   
   // Add skipping-specific elements and animations here

@@ -68,6 +68,7 @@ SVGjsAnim.prototype.Development = function() {
 };
 
 export function initDevelopment(anim) {
+  // Create development group
   const development = anim.draw.group().attr({ id: 'development' });
   
   // Add development-specific elements and animations here
