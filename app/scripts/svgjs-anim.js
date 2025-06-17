@@ -106,6 +106,7 @@ class ZoomController {
 
 export class SVGjsAnim {
   constructor() {
+    console.log('[SVGjsAnim] constructor called');
     this.draw = null;
     this.animationController = null;
     this.sceneManager = null;
@@ -114,15 +115,15 @@ export class SVGjsAnim {
   }
 
   init() {
+    console.log('[SVGjsAnim] init called');
     // Initialize SVG.js
-    this.draw = SVG('animation').size('100%', '100%');
-    
+    this.draw = SVG('drawing').size('100%', '100%');
+    console.log('[SVGjsAnim] SVG instance created:', this.draw);
     // Initialize controllers
     this.animationController = new AnimationController(this.draw);
     this.sceneManager = new SceneManager(this.draw);
     this.videoController = new VideoController();
     this.zoomController = new ZoomController(this.draw);
-    
     // Initialize all animation modules
     initPreload(this);
     initHoisting(this);
@@ -131,6 +132,13 @@ export class SVGjsAnim {
     initHaulage(this);
     initThunderCreek(this);
     initShop(this);
+    // Log the contents of the #drawing element
+    const drawingEl = document.getElementById('drawing');
+    if (drawingEl) {
+      console.log('[SVGjsAnim] #drawing innerHTML after init:', drawingEl.innerHTML);
+    } else {
+      console.warn('[SVGjsAnim] #drawing element not found');
+    }
   }
 
   // Event handling
@@ -142,9 +150,16 @@ export class SVGjsAnim {
   }
 
   preload() {
+    console.log('[SVGjsAnim] preload called');
     const loading = document.getElementById('anim-loading');
     if (loading) {
       loading.style.display = 'none';
+      console.log('[SVGjsAnim] Hiding #anim-loading');
+    }
+    // Log the contents of the #drawing element after preload
+    const drawingEl = document.getElementById('drawing');
+    if (drawingEl) {
+      console.log('[SVGjsAnim] #drawing innerHTML after preload:', drawingEl.innerHTML);
     }
   }
 

@@ -80,7 +80,8 @@
 
       window.addEventListener('load', function() {
         if (classie.has(document.documentElement, 'svg')) {
-          const anim = new SVGjsAnim('drawing');
+          const anim = new SVGjsAnim();
+          anim.init();
           anim.preload();
 
           window.addEventListener('resize', function() {
