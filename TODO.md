@@ -34,15 +34,17 @@
 - [ ] Fix Modernizr integration:
     - [x] Remove requirejs dependency
     - [x] Install and configure modernizr via npm
-    - [ ] Update modernizr imports to use ES modules
-- [ ] Fix SVG.js integration:
+    - [x] Update modernizr imports to use ES modules
+- [x] Fix SVG.js integration:
     - [x] Update SVG.js imports to use latest version
     - [x] Fix SVG.extend not being a function error
-    - [ ] Ensure SVG.js is properly initialized before extensions
+    - [x] Refactor elevator, rockBreaker, and rockBreakerRocks extensions to use factory functions for SVG.js v3 compatibility
+    - [x] Ensure SVG.js is properly initialized before extensions
 - [ ] Fix SVGjsAnim class:
     - [x] Ensure SVGjsAnim is properly exported from svgjs-anim.js
-    - [ ] Update all animation modules to properly import SVGjsAnim
-    - [ ] Fix circular dependencies if any
+    - [x] Update all animation modules to properly import SVGjsAnim
+    - [x] Fix circular dependencies if any
+    - [x] Update hoisting.js to use new SVG.js extension factories
 - [ ] Fix static assets:
     - [ ] Move favicon.ico to public directory
     - [ ] Configure Vite to serve static assets correctly

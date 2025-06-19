@@ -1,6 +1,9 @@
 'use strict';
 
 import EventBus from 'eventbusjs';
+import { createElevator } from '../svg.js/elevator.js';
+import { createRockBreaker } from '../svg.js/rock-breaker.js';
+import { createRockBreakerRocks } from '../svg.js/rock-breaker-rocks.js';
 
 class HoistingAnimation {
   constructor(draw) {
@@ -18,9 +21,9 @@ class HoistingAnimation {
         .group()
         .attr('id', 'hoisting');
 
-      this.elevator = this.draw.elevator();
-      this.rockBreaker = this.draw.rockBreaker();
-      this.rockBreakerRocks = this.draw.rockBreakerRocks();
+      this.elevator = createElevator(this.draw);
+      this.rockBreaker = createRockBreaker(this.draw);
+      this.rockBreakerRocks = createRockBreakerRocks(this.draw);
 
       this.hoisting
         .add(this.rockBreaker)

@@ -117,7 +117,7 @@ export class SVGjsAnim {
   init() {
     console.log('[SVGjsAnim] init called');
     // Initialize SVG.js
-    this.draw = SVG('drawing').size('100%', '100%');
+    this.draw = SVG().addTo('#drawing').size('100%', '100%');
     console.log('[SVGjsAnim] SVG instance created:', this.draw);
     // Initialize controllers
     this.animationController = new AnimationController(this.draw);

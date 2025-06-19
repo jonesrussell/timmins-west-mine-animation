@@ -1,58 +1,38 @@
 'use strict';
 /*global SVG */
 
-SVG.Elevator = SVG.invent({
-  create: 'g',
-  inherit: SVG.G,
-  extend: {
-    build: function() {
-      this.pathPoints = [
-        { y: -96, duration: 5000 }
-        , { y: -270, duration: 5000 }
-        , { y: -470, duration: 5000 }
-        , { y: -270, duration: 5000 }
-        , { y: -96, duration: 5000 }
-        , { y: 0, duration: 5000 }
-      ];
-      this.pathCounter = 0;
+export function createElevator(draw) {
+  // Create a group for the elevator
+  const group = draw.group();
 
-      // Hide parts the chain and elevator
-      // when animating
-      this.clip = this.doc()
-        .rect(1366, 700)
-        .move(0, 217);
-      this.add(this.clip);
-      this.elevatorBody = this.doc()
-        .image('images/elevator.svg', 1366, 700)
-        .clipWith(this.clip)
-      ;
-      this.add(this.elevatorBody);
+  // Path points for animation
+  const pathPoints = [
+    { y: -96, duration: 5000 },
+    { y: -270, duration: 5000 },
+    { y: -470, duration: 5000 },
+    { y: -270, duration: 5000 },
+    { y: -96, duration: 5000 },
+    { y: 0, duration: 5000 }
+  ];
+  let pathCounter = 0;
 
-      return this;
-    }
-  },
-  construct: {
-    elevator: function() {
-      return this.put(new SVG.Elevator)
-        .build();
-    }
-  }
-});
+  // Create and add the clip
+  const clip = draw.rect(1366, 700).move(0, 217);
+  group.add(clip);
 
-SVG.extend(SVG.Elevator, {
-  go: function() {
-    var i = this.pathCounter;
-    this.pathCounter++;
-    if (this.pathCounter >= this.pathPoints.length) {
-      this.pathCounter = 0;
-    }
-    var self = this;
-    return this.elevatorBody
-      .animate(self.pathPoints[i].duration)
-      .y(self.pathPoints[i].y)
-      .after(function() {
-        self.go();
-      })
-    ;
-  }
-});
+  // Create and add the elevator body
+  const elevatorBody = draw.image('images/elevator.svg', 1366, 700).clipWith(clip);
+  group.add(elevatorBody);
+
+  // Animation method
+  group.go = function() {
+    const i = pathCounter;
+    pathCounter = (pathCounter + 1) % pathPoints.length;
+    elevatorBody
+      .animate(pathPoints[i].duration)
+      .y(pathPoints[i].y)
+      .after(() => group.go());
+  };
+
+  return group;
+}

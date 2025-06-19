@@ -1,47 +1,30 @@
 'use strict';
-/*global SVG */
 
-SVG.RockBreakerRocks = SVG.invent({
-    create: 'g',
-    inherit: SVG.G,
-    extend: {
-        build: function() {
-          this.rocks = this.doc().use('Rock_Breaker_Rocks', 'images/master.svg');
+export function createRockBreakerRocks(draw) {
+  const group = draw.group();
 
-          this.clip = this.doc()
-            .rect(20, 40)
-            .move(750, 559)
-          ;
-          this.add(this.clip);
-          this.clipWith(this.clip);
+  // Add rocks
+  const rocks = draw.use('Rock_Breaker_Rocks', 'images/master.svg');
+  const clip = draw.rect(20, 40).move(750, 559);
+  group.add(clip);
+  group.clipWith(clip);
+  group.add(rocks);
 
-          this.add(this.rocks);
+  // Animation methods
+  group.down = function() {
+    return rocks.animate(5000, '-', 0).y(120);
+  };  
+  group.reset = function() {
+    rocks.y(0);
+    return group;
+  };
+  group.go = function() {
+    group.down().after(function(){
+      group.reset();
+      group.go();
+    });
+  };
 
-          return this;
-      }
-    },
-    construct: {
-      rockBreakerRocks: function() { return this.put(new SVG.RockBreakerRocks).build(); }
-    }
-});
-
-SVG.extend(SVG.RockBreakerRocks, {
-    down: function() {
-      return this.rocks
-        .animate(5000, '-', 0)
-        .y(120)
-      ;
-    }
-    , reset: function() {
-      this.rocks.y(0);
-      return this;
-    }
-    , go: function() {
-      var self = this;
-      self.down().after(function(){
-        self.reset();
-        self.go();
-      });
-    }
-});
+  return group;
+}
 

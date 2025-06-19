@@ -85,7 +85,8 @@
           anim.preload();
 
           window.addEventListener('resize', function() {
-            anim.draw.spof();
+            // Update animations based on new window size
+            anim.draw.size('100%', '100%');
           });
 
           // Load wistia videos
